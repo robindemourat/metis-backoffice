@@ -1,0 +1,15 @@
+{
+  "resetTimeMs": 2000,
+  "apiBaseUri": "https://mern-seed.herokuapp.com/api/",
+  "assetsBaseUri": "https://mern-seed.herokuapp.com/assets/",
+  "endpoints": {
+    "articles": "articles",
+    "assets": "assets",
+    "assetsUpload": "assets/upload",
+    "users": "users",
+    "login": "login",
+    "signUp": "sign-up",
+    "changePassword": "users/change-password",
+    "requestPasswordReset": "request-password-reset"
+  }
+}

@@ -1,0 +1,33 @@
+/**
+ * style definitions for the Layout component
+ *
+ * @module backoffice/features/Layout
+ */
+
+@import '../../../parameters.scss';
+
+
+
+.backoffice-Layout{
+  display: flex;
+  flex-flow: row;
+  justify-contents: spread;
+
+  overflow: hidden;
+  position : absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+  > nav{
+    flex: 1;
+    overflow: hidden;
+  }
+
+  > section{
+    flex: 5;
+    overflow: auto;
+    height: 100%;
+  }
+}
