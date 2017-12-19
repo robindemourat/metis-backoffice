@@ -14,18 +14,11 @@ const UsersLayout = ({
 
   ownUser,
 
-  // clientState,
-  clientStatus,
-  clientOperation,
-
   actions: {
     deleteUser,
   },
 }, {t}) => (
   <section className="backoffice-Users">
-    <div>
-      {clientOperation} - {clientStatus}
-    </div>
     <ul>
       {
         users.map((user, index) => {

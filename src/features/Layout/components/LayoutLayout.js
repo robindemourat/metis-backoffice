@@ -4,6 +4,7 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
+import ReduxToastr from 'react-redux-toastr';
 
 import './LayoutLayout.scss';
 
@@ -50,6 +51,11 @@ const LoginLayout = ({
     <section>
       {children}
     </section>
+
+    <ReduxToastr
+      transitionIn="fadeIn"
+      transitionOut="fadeOut"
+      timeOut={1000} />
   </div>
 );
 

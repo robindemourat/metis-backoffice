@@ -17,9 +17,6 @@ import './AssetsLayout.scss';
 const AssetsLayout = ({
   assets = [],
 
-  clientStatus,
-  clientOperation,
-
   actions: {
     uploadAsset,
     deleteAsset,
@@ -39,9 +36,6 @@ const AssetsLayout = ({
   };
   return (
     <section className="backoffice-Assets">
-      <div>
-        {clientOperation} - {clientStatus}
-      </div>
       <ul>
         {
           assets.map((asset, index) => {

@@ -15,6 +15,9 @@ import assets from './../features/Assets/duck';
 import users from './../features/Users/duck';
 import auth from './../features/Auth/duck';
 
+import {reducer as toastrReducer} from 'react-redux-toastr';
+
+
 export default combineReducers({
   articles,
   assets,
@@ -23,4 +26,5 @@ export default combineReducers({
   auth,
   i18nState,
   routing: routerReducer,
+  toastr: toastrReducer,
 });

@@ -11,7 +11,6 @@ import {Form, Text, RadioGroup, Radio} from 'react-form';
 import './NewUserLayout.scss';
 
 const NewUser = ({
-  clientStatus,
   router,
 
   actions: {
@@ -27,9 +26,6 @@ const NewUser = ({
   };
   return (
     <section className="backoffice-NewUser">
-      <div>
-        {clientStatus}
-      </div>
       <h1>{t('new user')}</h1>
       <Form defaultValues={{admin: 'no'}} onSubmit={onSubmit}>
         { formApi => (

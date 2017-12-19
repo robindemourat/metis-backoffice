@@ -10,9 +10,6 @@ import {Form, Text} from 'react-form';
 import './UserLayout.scss';
 
 const UserLayout = ({
-
-  clientStatus,
-
   ownUser,
   editedUser,
 
@@ -30,7 +27,6 @@ const UserLayout = ({
   };
   return editedUser ? (
     <section className="backoffice-User">
-      {clientStatus && <div>{clientStatus}</div>}
       <p>{editedUser.name}</p>
       <p>{editedUser.email}</p>
       <p>Admin : {editedUser.admin ? t('yes') : t('no')}</p>

@@ -7,10 +7,12 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {actions as toastrActions} from 'react-redux-toastr';
 
 import UserLayout from './UserLayout';
 import * as duck from '../duck';
 import * as authDuck from '../../Auth/duck';
+import {buildOperationToastr} from '../../../helpers/toastr';
 
 /**
  * Redux-decorated component class rendering the takeaway dialog feature to the app
@@ -48,12 +50,28 @@ class UserContainer extends Component {
    * constructor
    * @param {object} props - properties given to instance at instanciation
    */
-  constructor(props) {
+  constructor(props, context) {
     super(props);
+    this.toastr = bindActionCreators(toastrActions, context.store.dispatch);
   }
 
   componentWillMount () {
     this.props.actions.getUser(this.props.params.id);
+  }
+
+  componentWillReceiveProps = (nextProps) => {
+    if (this.props.clientStatus !== nextProps.clientStatus && nextProps.clientStatus) {
+      const toastr = buildOperationToastr({
+        operation: nextProps.clientOperation,
+        status: nextProps.clientStatus,
+        translations: {
+          success: this.context.t('success'),
+          requesting: this.context.t('requesting'),
+          error: this.context.t('error')
+        }
+      });
+      this.toastr.add(toastr);
+    }
   }
 
   shouldComponentUpdate() {
