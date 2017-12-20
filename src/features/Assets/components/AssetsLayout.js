@@ -40,7 +40,7 @@ const AssetsLayout = ({
     }, Promise.resolve());
   };
   return (
-    <section className="backoffice-Assets">
+    <section className="plurishing-backoffice-Assets">
       <ul>
         {
           assets.map((asset, index) => {

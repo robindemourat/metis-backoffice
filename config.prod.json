@@ -3,7 +3,7 @@
   "apiBaseUri": "https://mern-seed.herokuapp.com/api/",
   "assetsBaseUri": "https://mern-seed.herokuapp.com/assets/",
   "endpoints": {
-    "articles": "articles",
+    "resources": "resources",
     "assets": "assets",
     "assetsUpload": "assets/upload",
     "users": "users",

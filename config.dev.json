@@ -3,7 +3,7 @@
   "apiBaseUri": "http://localhost:3001/api/",
   "assetsBaseUri": "http://localhost:3001/assets/",
   "endpoints": {
-    "articles": "articles",
+    "resources": "resources",
     "assets": "assets",
     "assetsUpload": "assets/upload",
     "users": "users",

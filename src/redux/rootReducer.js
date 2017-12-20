@@ -1,15 +1,15 @@
 /**
- * Backoffice Application
+ * Plurishing backoffice Application
  * =======================================
  * Combining the app's reducers
- * @module backoffice
+ * @module plurishing-backoffice
  */
 import {combineReducers} from 'redux';
 
 import {i18nState} from 'redux-i18n';
 import {routerReducer} from 'react-router-redux';
 
-import articles from './../features/Articles/duck';
+import resources from './../features/Resources/duck';
 import assets from './../features/Assets/duck';
 
 import users from './../features/Users/duck';
@@ -17,9 +17,8 @@ import auth from './../features/Auth/duck';
 
 import {reducer as toastrReducer} from 'react-redux-toastr';
 
-
 export default combineReducers({
-  articles,
+  resources,
   assets,
   users,
 

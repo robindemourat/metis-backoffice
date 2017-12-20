@@ -14,8 +14,7 @@ import './Application.scss';
 
 import Layout from './features/Layout/components/LayoutContainer.js';
 
-import Articles from './features/Articles/components/ArticlesContainer.js';
-import Article from './features/Articles/components/ArticleContainer.js';
+import Resources from './features/Resources/components/ResourcesContainer.js';
 
 import Assets from './features/Assets/components/AssetsContainer.js';
 
@@ -45,8 +44,7 @@ const Application = ({history}) => (
     <Route path="/" component={userIsAuthenticated(Layout)}>
       {<IndexRoute path="" component={Home} />}
 
-      <Route path="/articles" component={Articles} />
-      <Route path="/articles/:id" component={Article} />
+      <Route path="/resources" component={Resources} />
 
       <Route path="/assets" component={Assets} />
 

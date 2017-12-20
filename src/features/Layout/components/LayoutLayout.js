@@ -16,7 +16,7 @@ const LoginLayout = ({
     logout
   }
 }, {t}) => (
-  <div className="backoffice-Layout">
+  <div className="plurishing-backoffice-Layout">
     <nav>
       <h1>Backoffice</h1>
       <ul>
@@ -24,10 +24,10 @@ const LoginLayout = ({
           <a href="/">{t('home')}</a>
         </li>
         <li>
-          <a href="/articles">{t('articles')}</a>
+          <a href="/assets">{t('assets')}</a>
         </li>
         <li>
-          <a href="/assets">{t('assets')}</a>
+          <a href="/resources">{t('resources')}</a>
         </li>
         {user && user.admin && <li>
           <a href="/users">{t('users')}</a>
