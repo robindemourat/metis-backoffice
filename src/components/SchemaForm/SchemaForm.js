@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import defaults from 'json-schema-defaults';
 import Ajv  from 'ajv';
 
@@ -135,6 +136,10 @@ const makeForm = (totalSchema, model, totalObject, value, level, key, path, onCh
 
 
 export default class SchemaForm extends Component {
+
+  static contextTypes = {
+    t: PropTypes.func.isRequired,
+  }
   constructor(props) {
     super(props);
 
@@ -201,12 +206,15 @@ export default class SchemaForm extends Component {
         title,
         onCancel
       },
+      context: {
+        t
+      },
       onChange,
       onValidate
     } = this;
 
     return (
-      <div>
+      <form onSubmit={onValidate}>
         <h1>{title}</h1>
         {makeForm(schema, schema, document, document, 0, undefined, [], onChange)}
         {errors &&
@@ -220,10 +228,10 @@ export default class SchemaForm extends Component {
           </ul>
         }
         <ul>
-          <li><button onClick={onValidate}>Validate</button></li>
-          <li><button onClick={onCancel}>Cancel</button></li>
+          <li><button onClick={onValidate}>{t('validate')}</button></li>
+          <li><button onClick={onCancel}>{t('cancel')}</button></li>
         </ul>
-      </div>
+      </form>
     )
   }
 }

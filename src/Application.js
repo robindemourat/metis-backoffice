@@ -18,6 +18,9 @@ import Resources from './features/Resources/components/ResourcesContainer.js';
 
 import Assets from './features/Assets/components/AssetsContainer.js';
 
+import Compositions from './features/Compositions/components/CompositionsContainer.js';
+import Composition from './features/Compositions/components/CompositionContainer.js';
+
 import Users from './features/Users/components/UsersContainer.js';
 import User from './features/Users/components/UserContainer.js';
 import NewUser from './features/Users/components/NewUserContainer.js';
@@ -47,6 +50,9 @@ const Application = ({history}) => (
       <Route path="/resources" component={Resources} />
 
       <Route path="/assets" component={Assets} />
+
+      <Route path="/compositions" component={Compositions} />
+      <Route path="/compositions/:id" component={Composition} />
 
       <Route path="/users" component={userIsAdmin(Users)} />
       <Route path="/users/:id" component={User} />

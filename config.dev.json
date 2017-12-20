@@ -1,11 +1,10 @@
 {
   "resetTimeMs": 2000,
   "apiBaseUri": "http://localhost:3001/api/",
-  "assetsBaseUri": "http://localhost:3001/assets/",
   "endpoints": {
     "resources": "resources",
+    "compositions": "compositions",
     "assets": "assets",
-    "assetsUpload": "assets/upload",
     "users": "users",
     "login": "login",
     "signUp": "sign-up",

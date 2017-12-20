@@ -44,8 +44,8 @@ const ResourcesLayout = ({
               key={index}
             >
               {resource.metadata.name || t('resource without name')}
-              <button onClick={onDelete}>Delete resource</button>
-              <button onClick={onPrompt}>Edit resource</button>
+              <button onClick={onDelete}>{t('delete resource')}</button>
+              <button onClick={onPrompt}>{t('edit resource')}</button>
             </li>
           );
         })

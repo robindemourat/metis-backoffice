@@ -1,0 +1,26 @@
+/**
+ * style definitions for the Composition component
+ *
+ * @module plurishing-backoffice/features/Composition
+ */
+
+@import '../../../parameters.scss';
+
+
+
+/*
+ * Primary layout
+ */
+
+.plurishing-backoffice-Composition
+{
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: stretch;
+  > section{
+    flex: 5;
+  }
+  > .plurishing-backoffice-Resources {
+    flex: 1;
+  }
+}

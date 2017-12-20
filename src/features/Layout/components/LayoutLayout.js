@@ -29,6 +29,9 @@ const LoginLayout = ({
         <li>
           <a href="/resources">{t('resources')}</a>
         </li>
+        <li>
+          <a href="/compositions">{t('compositions')}</a>
+        </li>
         {user && user.admin && <li>
           <a href="/users">{t('users')}</a>
         </li>}

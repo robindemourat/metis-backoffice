@@ -1,11 +1,10 @@
 {
   "resetTimeMs": 2000,
-  "apiBaseUri": "https://mern-seed.herokuapp.com/api/",
-  "assetsBaseUri": "https://mern-seed.herokuapp.com/assets/",
+  "apiBaseUri": "https://plurishing-backend.herokuapp.com/api/",
   "endpoints": {
     "resources": "resources",
+    "compositions": "compositions",
     "assets": "assets",
-    "assetsUpload": "assets/upload",
     "users": "users",
     "login": "login",
     "signUp": "sign-up",

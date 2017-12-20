@@ -11,6 +11,7 @@ import {routerReducer} from 'react-router-redux';
 
 import resources from './../features/Resources/duck';
 import assets from './../features/Assets/duck';
+import compositions from './../features/Compositions/duck';
 
 import users from './../features/Users/duck';
 import auth from './../features/Auth/duck';
@@ -20,6 +21,8 @@ import {reducer as toastrReducer} from 'react-redux-toastr';
 export default combineReducers({
   resources,
   assets,
+  compositions,
+  
   users,
 
   auth,
