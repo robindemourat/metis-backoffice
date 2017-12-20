@@ -39,7 +39,7 @@ export const SIGN_UP = 'SIGN_UP';
 export const login = (body) => ({
   type: LOGIN,
   promise: () =>
-    post('login', body)
+    post('login', undefined, body)
 });
 
 export const logout = () => ({
@@ -54,19 +54,19 @@ export const forgetUser = () => ({
 export const signUp = (body) => ({
   type: SIGN_UP,
   promise: () =>
-    post('signUp', body)
+    post('signUp', undefined, body)
 });
 
 export const requestPasswordReset = (email) => ({
   type: REQUEST_PASSWORD_RESET,
   promise: () =>
-    post('requestPasswordReset', {email})
+    post('requestPasswordReset', undefined, {email})
 });
 
 export const changePassword = (values) => ({
   type: CHANGE_PASSWORD,
   promise: () =>
-    post('changePassword', values)
+    post('changePassword', undefined, values)
 });
 
 /*

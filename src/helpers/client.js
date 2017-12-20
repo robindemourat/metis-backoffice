@@ -24,7 +24,7 @@ const client = {
 
 const buildEndpoint = (endpoint, options = {}) => {
   if (options.id) {
-    const id = options.id;
+    const id = encodeURIComponent(options.id);
     delete options.id;
     return `${client.settings.baseUrl}${client.endpoints[endpoint]}/${id}`;
   }
@@ -45,11 +45,12 @@ const buildOptions = (options = {}) => {
 export const get = (endpoint, options = {params: {}}) =>
   axios.get(buildEndpoint(endpoint, options), buildOptions(options));
 
-export const post = (endpoint, body) =>
-  axios.post(buildEndpoint(endpoint), body, buildOptions({}));
+export const post = (endpoint, options = {params: {}}, body) =>
+  axios.post(buildEndpoint(endpoint, options), body, buildOptions(options));
 
-export const put = (endpoint, options = {params: {}}, body) =>
-  axios.put(buildEndpoint(endpoint, options), body, buildOptions(options));
+export const put = (endpoint, options = {params: {}}, body) => {
+  return axios.put(buildEndpoint(endpoint, options), body, buildOptions(options));
+};
 
 export const del = (endpoint, options = {params: {}}) =>
   axios.delete(buildEndpoint(endpoint, options), buildOptions(options));

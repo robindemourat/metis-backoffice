@@ -51,7 +51,7 @@ export const getUser = (id) => ({
 export const createUser = (user) => ({
   type: CREATE_USER,
   promise: () =>
-    post('users', user)
+    post('users', undefined, user)
 });
 
 export const updateUser = (id, user) => ({

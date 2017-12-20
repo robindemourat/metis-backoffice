@@ -22,7 +22,6 @@ import {get, put, post, del} from '../../helpers/client';
  */
 export const GET_ASSETS = 'GET_ASSETS';
 export const CREATE_ASSET = 'CREATE_ASSET';
-export const UPLOAD_ASSET = 'UPLOAD_ASSET';
 export const UPDATE_ASSET = 'UPDATE_ASSET';
 export const DELETE_ASSET = 'DELETE_ASSET';
 
@@ -43,22 +42,22 @@ export const getAssets = () => ({
     get('assets')
 });
 
-export const createAsset = (asset) => ({
+export const createAsset = (fileName, thatData, config) => ({
   type: CREATE_ASSET,
   promise: () =>
-    post('assets', asset)
+    post('assets', {
+      ...config,
+      id: encodeURIComponent(fileName)
+    }, thatData)
 });
 
-export const uploadAsset = (fileName, thatData) => ({
-  type: UPLOAD_ASSET,
-  promise: () =>
-    put('assetsUpload', {params: {fileName}}, thatData)
-});
-
-export const updateAsset = (id, asset) => ({
+export const updateAsset = (assetId, thatData, config) => ({
   type: UPDATE_ASSET,
   promise: () =>
-    put('assets', {id}, asset)
+    put('assets', {
+      ...config,
+      id: assetId
+    }, thatData)
 });
 
 export const deleteAsset = (id) => ({
@@ -157,13 +156,25 @@ function data(state = DATA_DEFAULT_STATE, action) {
         assets: state.assets.concat(action.result.data)
       };
 
+    case UPDATE_ASSET + '_SUCCESS':
+      const asset = action.result.data;
+      return {
+        ...state,
+        assets: state.assets.map(other => {
+          if (other._id === asset._id) {
+            return asset;
+          }
+          return other;
+        })
+      };
+
+
     case DELETE_ASSET + '_SUCCESS':
       return {
         ...state,
         assets: action.result.data
       };
 
-    case UPLOAD_ASSET + '_SUCCESS':
     case GET_ASSETS + '_SUCCESS':
       return {
         ...state,
