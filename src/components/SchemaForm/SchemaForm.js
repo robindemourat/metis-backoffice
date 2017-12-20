@@ -1,10 +1,16 @@
 import React, {Component} from 'react';
 import defaults from 'json-schema-defaults';
 import Ajv  from 'ajv';
-const ajv = new Ajv();
+
+
 import {get, set} from 'dot-prop';
 import Select from 'react-select';
+
 import 'react-select/dist/react-select.css';
+
+import AssetWidget from '../AssetWidget/AssetWidget';
+
+const ajv = new Ajv();
 
 
 const ErrorDisplay = ({error}) => (
@@ -55,9 +61,12 @@ const makeForm = (totalSchema, model, totalObject, value, level, key, path, onCh
           case 'string':
             if (key.indexOf('asset_id') > -1) {
               return (
-                <div>
-                  Asset card picker here
-                </div>
+                <AssetWidget
+                  name={key}
+                  value={value}
+                  onChange={val => onChange(path, val)}
+                  accept={model.accept_mimetypes}
+                />
               )
             }
             else if (model.enum) {
@@ -108,7 +117,7 @@ const makeForm = (totalSchema, model, totalObject, value, level, key, path, onCh
               const refs = totalSchema.definitions;
               const subModel = refs[type];
               if (subModel) {
-                return makeForm(totalSchema, subModel, totalObject, value, level + 1, key, [...path, key], onChange)
+                return makeForm(totalSchema, subModel, totalObject, value, level + 1, key, [...path], onChange)
               }
             }
             return (<pre>{JSON.stringify(model, null, 2)}</pre>)
