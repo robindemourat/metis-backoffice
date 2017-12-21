@@ -1,0 +1,42 @@
+/**
+ * style definitions for the AsideToggler component
+ *
+ * @module plurishing-backoffice/components/AsideToggler
+ */
+@import '../../parameters.scss';
+
+
+.plurishing-backoffice-AsideToggler
+{
+    // margin: 0;
+    // padding: 0;
+    // padding-right: $gutter-medium;
+    // padding-left: $gutter-medium;
+
+    // @extend .flex-stretched-row;
+    // flex-wrap: wrap;
+    // .option
+    // {
+    //     padding: $gutter-medium;
+
+    //     list-style-type: none;
+
+    //     cursor: pointer;
+    //     text-align: center;
+
+    //     flex: 1;
+    //     @extend .important-item;
+    //     &:hover
+    //     {
+    //         @extend .important-item-intent;
+    //     }
+    //     &.active
+    //     {
+    //         @extend .important-item-active;
+    //         &:hover
+    //         {
+    //             cursor: default;
+    //         }
+    //     }
+    // }
+}

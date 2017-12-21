@@ -13,6 +13,7 @@ import {Composition as schema} from 'plurishing-schemas';
 
 import CompositionLayout from './CompositionLayout';
 import * as duck from '../duck';
+import * as resourcesDuck from '../../Resources/duck';
 import {buildOperationToastr} from '../../../helpers/toastr';
 
 
@@ -22,6 +23,7 @@ import {buildOperationToastr} from '../../../helpers/toastr';
 @connect(
   state => ({
     ...duck.selector(state.compositions),
+    ...resourcesDuck.selector(state.resources),
   }),
   dispatch => ({
     actions: bindActionCreators({

@@ -10,5 +10,10 @@
     "signUp": "sign-up",
     "changePassword": "users/change-password",
     "requestPasswordReset": "request-password-reset"
+  },
+  "timers": {
+    "nano": 10,
+    "short": 100,
+    "medium": 500
   }
 }

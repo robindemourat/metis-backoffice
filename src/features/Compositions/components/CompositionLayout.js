@@ -13,10 +13,12 @@ import './CompositionLayout.scss';
 import ResourcesContainer from '../../Resources/components/ResourcesContainer';
 
 import SchemaForm from '../../../components/SchemaForm/SchemaForm';
+import CompositionEditor from '../../../components/CompositionEditor/CompositionEditor';
 
 const CompositionLayout = ({
   schema,
   compositions = [],
+  resources = [],
 
   clientStatus,
   clientOperation,
@@ -24,31 +26,85 @@ const CompositionLayout = ({
   editedComposition,
   editedMetadata,
 
+  editorStates,
+  editorFocus,
+
   actions: {
     updateComposition,
     // promptNewCompositionForm,
     // unpromptNewCompositionForm,
     setEditedMetadata,
     unsetEditedMetadata,
+
+    updateDraftEditorState,
+    updateDraftEditorsStates,
+
+    setEditorFocus,
   }
 }, {t}) => {
   const onOpenMetadata = () => {
     setEditedMetadata(editedComposition.metadata);
   }
+  const resourcesMap = resources.reduce((res, resource) => ({
+    ...res,
+    [resource._id]: resource
+  }), {});
+
+  const onUpdateComposition = composition => {
+    updateComposition(composition._id, composition);
+  }
+
   return (
   <section className="plurishing-backoffice-Composition">
     <ResourcesContainer />
       {editedComposition ? 
-      <section>
+      <section className="composition-editor-wrapper">
         <div className="header">
           <h1>
-            {editedComposition.metadata.title}
+            <button onClick={onOpenMetadata}>{editedComposition.metadata.title}</button>
           </h1>
           <ul>
             <li>
               <button onClick={onOpenMetadata}>{t('edit metadata')}</button>
             </li>
           </ul>
+        </div>
+        <div className="body">
+          <CompositionEditor
+            resources={resourcesMap}
+            composition={editedComposition}
+
+            updateComposition={onUpdateComposition}
+            editorStates={editorStates}
+
+            updateDraftEditorState={updateDraftEditorState}
+            updateDraftEditorsStates={updateDraftEditorsStates}
+            editorFocus={editorFocus}
+
+            summonAsset={e => console.log('summon asset', e)}
+
+            createContextualization={e => console.log('create contextualization', e)}
+            createContextualizer={e => console.log('create contextualizer', e)}
+            createResource={e => console.log('create resource', e)}
+
+            updateContextualizer={e => console.log('update contextualizer', e)}
+            updateResource={e => console.log('update resource', e)}
+            updateContextualization={e => console.log('update contextualization', e)}
+
+            deleteContextualization={e => console.log('delete contextualization', e)}
+            deleteContextualizer={e => console.log('delete contextualizer', e)}
+
+            requestAsset={e => console.log('request asset', e)}
+            cancelAssetRequest={e => console.log('unprompt aset request', e)}
+            assetRequestState={undefined}
+            assetRequestPosition={undefined}
+            setAssetEmbedType={e => console.log('set asset embed type')}
+            assetEmbedType={'resources'}
+
+            openResourceConfiguration={e => console.log('open resource configuration', e)}
+
+            setEditorFocus={setEditorFocus}
+          />
         </div>
       </section>
       : t('loading')

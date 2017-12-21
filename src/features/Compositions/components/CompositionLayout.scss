@@ -17,8 +17,28 @@
   display: flex;
   flex-flow: row nowrap;
   align-items: stretch;
-  > section{
+  height: 100%;
+  > .composition-editor-wrapper{
     flex: 5;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    height: 100%;
+    overflow: hidden;
+    .body{
+      flex: 5;
+      position: relative;
+      .plurishing-backoffice-CompositionEditor,
+      .editor-wrapper,
+      .scholar-draft-Editor {
+        position: absolute;
+        left: 3%;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+      }
+    }
   }
   > .plurishing-backoffice-Resources {
     flex: 1;

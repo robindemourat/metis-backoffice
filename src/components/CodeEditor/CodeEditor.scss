@@ -1,0 +1,18 @@
+/**
+ * style definitions for the CodeEditor component
+ *
+ * @module plurishing-backoffice/components/CodeEditor
+ */
+@import '../../parameters.scss';
+
+
+.plurishing-backoffice-CodeEditor
+{
+    .CodeMirror-code
+    {
+        .CodeMirror-line{
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+    }
+}

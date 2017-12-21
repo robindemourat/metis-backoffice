@@ -1,0 +1,148 @@
+/**
+ * style definitions for the AssetPreview component
+ *
+ * @module plurishing-backoffice/components/AssetPreview
+ */
+@import '../../parameters.scss';
+
+.plurishing-backoffice-AssetPreview
+{
+    // padding-top: $gutter-medium;
+    // padding-bottom: $gutter-medium;
+
+    // overflow: auto;
+    // max-width: 100%;
+    // max-height: 20rem;
+
+    // @extend .flex-stretched-row;
+    // .preview-container
+    // {
+    //     position: relative;
+    //     position: relative;
+
+    //     flex: 5;
+
+    //     min-width: 80%;
+    //     min-height: 20rem;
+    // }
+    // .asset-metadata
+    // {
+    //     flex: 1;
+
+    //     max-width: 20%;
+    //     padding-right: $gutter-medium;
+    //     padding-left: $gutter-medium;
+
+    //     cursor: pointer;
+
+    //     @extend .flex-stretched-column;
+    //     &:hover
+    //     {
+    //         @extend .interactive-item-intent;
+    //     }
+    //     button
+    //     {
+    //         width: 100%;
+
+    //         &:hover
+    //         {
+    //             @extend .important-item-intent;
+    //         }
+    //     }
+    //     p
+    //     {
+    //         overflow: auto;
+
+    //         width: 100%;
+    //         max-height: 15rem;
+    //     }
+    // }
+    // iframe
+    // {
+    //     position: absolute;
+
+    //     width: 100%;
+    //     height: 100%;
+
+    //     border: none;
+
+    //     left: 0;
+    //     top: 0;
+    // }
+    // img
+    // {
+    //     max-width: 100%;
+    // }
+
+    // .peritext-contextualizer-codefiles{
+    //     max-width:  100%;
+    //     overflow: hidden;
+    //     @extend .flex-stretched-row;
+    //     .files-list
+    //     {
+    //         margin: 0;
+    //         padding: 0;
+    //         @extend .interactive-item;
+    //         li{
+    //             list-style-type: none;
+    //             padding: $gutter-small;
+    //             @extend .important-item;
+    //             &:hover{
+    //             @extend .important-item-intent;
+
+    //             }
+    //             &.active{
+    //                 @extend .important-item-active;
+    //                 &:hover{
+    //                 @extend .important-item-intent-active;
+
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     .file-content{
+    //         flex: 1;
+    //         padding:$gutter-small;
+    //         margin: 0;
+    //         flex-flow: column nowrap;
+
+    //         font-family: monospace;
+    //         counter-reset: line;
+
+    //         .code-line {
+    //             display: block;
+    //             line-height: $gutter-medium;
+                
+    //             &:before {
+    //               width: $gutter-medium;
+    //               text-align: right;
+    //               counter-increment: line;
+    //               content: counter(line);
+    //               display: inline-block;
+    //               border-right: 1px solid #ddd;
+    //               padding: 0 .5em;
+    //               margin-right: .5em;
+    //               color: #888;
+    //               background: $background-default;
+    //             }
+    //         }
+    //     }
+    // }
+
+    // table{
+    //     width: 100%;
+    //     thead{
+    //         background: $primary-color;
+    //         color: $background-default;
+    //     }
+    //     th{
+    //         border: 1px solid $primary-color;
+    //         padding: $gutter-medium;
+    //     }
+    // }
+    // .csl-entry{
+    //     .csl-left-margin{
+    //         display: none;
+    //     }
+    // }
+}

@@ -18,7 +18,7 @@ const LoginLayout = ({
 }, {t}) => (
   <div className="plurishing-backoffice-Layout">
     <nav>
-      <h1>Backoffice</h1>
+      <h1>Plurishing</h1>
       <ul>
         <li>
           <a href="/">{t('home')}</a>

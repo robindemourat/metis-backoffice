@@ -36,6 +36,10 @@ export const UNSET_EDITED_COMPOSITION = 'UNSET_EDITED_COMPOSITION';
 export const SET_EDITED_METADATA = 'SET_EDITED_METADATA';
 export const UNSET_EDITED_METADATA = 'UNSET_EDITED_METADATA';
 
+export const UPDATE_DRAFT_EDITOR_STATE = 'UPDATE_DRAFT_EDITOR_STATE';
+export const UPDATE_DRAFT_EDITORS_STATES = 'UPDATE_DRAFT_EDITORS_STATES';
+export const SET_EDITOR_FOCUS = 'SET_EDITOR_FOCUS';
+
 /*
  * ===========
  * ===========
@@ -101,11 +105,30 @@ export const unsetEditedComposition = () => ({
 export const setEditedMetadata = metadata => ({
   type: SET_EDITED_METADATA,
   metadata
-})
+});
 
 export const unsetEditedMetadata = () => ({
   type: UNSET_EDITED_METADATA
-})
+});
+
+/**
+ * Editor
+ */
+export const updateDraftEditorState = (id, editorState) => ({
+  type: UPDATE_DRAFT_EDITOR_STATE,
+  editorState,
+  id,
+});
+
+export const updateDraftEditorsStates = editorsStates => ({
+  type: UPDATE_DRAFT_EDITORS_STATES,
+  editorsStates,
+});
+
+export const setEditorFocus = editorFocus => ({
+  type: SET_EDITOR_FOCUS,
+  editorFocus
+});
 
 /*
  * ===========
@@ -226,7 +249,7 @@ function ui(state = UI_DEFAULT_STATE, action) {
 }
 
 const DATA_DEFAULT_STATE = {
-  compositions: []
+  compositions: [],
 };
 
 /**
@@ -291,6 +314,44 @@ function data(state = DATA_DEFAULT_STATE, action) {
   }
 }
 
+const EDITOR_DEFAULT_STATE = {
+  editorStates: {},
+  editorFocus: undefined
+};
+
+/**
+ * This redux reducer handles the editor state management
+ * @param {object} state - the state given to the reducer
+ * @param {object} action - the action to use to produce new state
+ * @return {object} newState - the resulting state
+ */
+function editor(state = EDITOR_DEFAULT_STATE, action) {
+  switch(action.type) {
+
+    case UPDATE_DRAFT_EDITOR_STATE:
+      return {
+        ...state,
+        editorStates: {
+          ...state.editorStates,
+          [action.id]: action.editorState
+        }
+      };
+    case UPDATE_DRAFT_EDITORS_STATES:
+      return {
+        ...state,
+        editorStates: action.editorsStates
+      };
+    case SET_EDITOR_FOCUS:
+      return {
+        ...state,
+        editorFocus: action.editorFocus
+      }
+
+    default:
+      return state;
+  }
+}
+
 /*
  * ===========
  * ===========
@@ -309,6 +370,7 @@ function data(state = DATA_DEFAULT_STATE, action) {
 export default combineReducers({
   ui,
   data,
+  editor,
 });
 
 
@@ -334,6 +396,12 @@ const compositions = state => state.data.compositions;
 const editedComposition = state => state.ui.editedComposition;
 const editedMetadata = state => state.ui.editedMetadata;
 
+// editor related
+const editorStates = state => state.editor.editorStates;
+const editorFocus = state => state.editor.editorFocus;
+
+
+
 /**
  * The selector is a set of functions for accessing this feature's state
  * @type {object}
@@ -345,4 +413,8 @@ export const selector = createStructuredSelector({
   editedComposition,
   editedMetadata,
   newCompositionPrompted,
+
+  // editor related
+  editorStates,
+  editorFocus,
 });
