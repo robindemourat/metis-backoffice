@@ -13,9 +13,12 @@ const config = getConfig();
 const {servicesBaseUri} = config;
 
 
-import TwitterPreview from './TwitterPreview';
-import FacebookPreview from './FacebookPreview';
-import MailingPreview from './MailingPreview';
+import TwitterPreview from 'plurishing-shared/dist/components/previews/TwitterPreview/TwitterPreview';
+import FacebookPreview from 'plurishing-shared/dist/components/previews/FacebookPreview/FacebookPreview';
+import MailingPreview from 'plurishing-shared/dist/components/previews/MailingPreview/MailingPreview';
+
+
+import profileImageUri from './assets/profile-placeholder.jpg';
 
 @connect(
   state => ({
@@ -137,7 +140,8 @@ export default class MicroPublicationPreview extends Component {
             <TwitterPreview
               montage={montage}
               composition={composition}
-              assets={assets} />
+              assets={assets}
+              profileImageUri={profileImageUri} />
            : t('loading')}
         </section>
         <section>
@@ -146,7 +150,8 @@ export default class MicroPublicationPreview extends Component {
             <FacebookPreview
               montage={montage}
               composition={composition}
-              assets={assets} />
+              assets={assets}
+              profileImageUri={profileImageUri} />
            : t('loading')}
         </section>
         <section>

@@ -9,7 +9,8 @@ import * as compositionsDuck from '../../features/Compositions/duck';
 import * as assetsDuck from '../../features/Assets/duck';
 import * as resourcesDuck from '../../features/Resources/duck';
 
-import PreviewContainer from './PreviewContainer';
+
+import PreviewContainer from 'plurishing-shared/dist/components/previews/StaticMontagePreview/PreviewContainer';
 
 
 @connect(
@@ -198,6 +199,7 @@ export default class DynamicMontagePreview extends Component {
         </section>
       );
     }
+
     return (
       <PreviewContainer
         montage={montage}
