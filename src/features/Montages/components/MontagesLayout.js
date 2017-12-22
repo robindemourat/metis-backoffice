@@ -34,10 +34,10 @@ const MontagesLayout = ({
       {
         montages.map((montage, index) => {
           const onDelete = () => {
-            if (confirm(t('sure to delete montage'))) {
+            if (confirm(t('sure to delete montage ?'))) {/* eslint no-alert : 0 */
               deleteMontage(montage._id);
             }
-          }
+          };
           const onPrompt = () => {
             setEditedMontage(montage);
           };

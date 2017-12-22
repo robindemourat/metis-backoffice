@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import defaults from 'json-schema-defaults';
 import DatePicker from 'react-datepicker';
-import { SketchPicker as ColorPicker } from 'react-color';
+import {SketchPicker as ColorPicker} from 'react-color';
 
 import moment from 'moment';
 
@@ -200,13 +200,12 @@ const makeForm = (totalSchema, model, totalObject, value, level, key, path, onCh
             }
             // pointing to a code field
             else if (key.indexOf('_code') > -1) {
-              const mode = key.indexOf('css') > -1 ? 'css': 'javascript';
+              const mode = key.indexOf('css') > -1 ? 'css' : 'javascript';
               return (
                 <CodeEditor
                   value={value}
                   mode={mode}
-                  onChange={val => onChange(path, val)}
-                />
+                  onChange={val => onChange(path, val)} />
               );
             }
             // pointing to a color field
@@ -214,8 +213,7 @@ const makeForm = (totalSchema, model, totalObject, value, level, key, path, onCh
               return (
                 <ColorPicker
                   color={value}
-                  onChange={val => onChange(path, val.hex)}
-                />
+                  onChange={val => onChange(path, val.hex)} />
               );
             }
             // value is an enumerable string (select)
@@ -231,12 +229,13 @@ const makeForm = (totalSchema, model, totalObject, value, level, key, path, onCh
                     options={
                       model.enum.map(thatValue => ({value: thatValue, label: thatValue}))
                     } />);
-              } else {
+              }
+ else {
                 return (
                   <p>
                     {value}
                   </p>
-                )
+                );
               }
             }
             // value is a plain string

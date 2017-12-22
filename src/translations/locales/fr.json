@@ -1,3 +1,24 @@
 {
-  "edit metadata": "éditer les métadonnées"
+  "yes": "oui",
+  "no": "no",
+  "preview-in-codex-mode": "preview-in-codex-mode",
+  "preview-in-web-mode": "preview-in-web-mode",
+  "composition without name": "composition without name",
+  "widget-pick-resource": "widget-pick-resource",
+  "widget-pick-resource-help": "widget-pick-resource-help",
+  "widget-pick-section": "widget-pick-section",
+  "widget-pick-section-help": "widget-pick-section-help",
+  "untitled-asset": "untitled-asset",
+  "loading": "loading",
+  "montage without name": "montage without name",
+  "composition without title": "composition without title",
+  "assets": "assets",
+  "resources": "resources",
+  "compositions": "compositions",
+  "montages": "montages",
+  "diffusions": "diffusions",
+  "users": "users",
+  "my profile": "my profile",
+  "montage without title": "montage without title",
+  "resource without name": "resource without name"
 }

@@ -9,13 +9,19 @@
     "lint": "eslint --fix src",
     "comb": "csscomb src",
     "test": "mocha --compilers js:babel-core/register -R spec --recursive $(find src -name '*.spec.js')",
-    "deploy": "npm run build && surge ./"
+    "deploy": "npm run build && surge ./",
+    "translations:backfill": "node translationScripts/backfillTranslations --locales ../src/translations/locales",
+    "translations:discover": "node translationScripts/discoverTranslations --locales ../src/translations/locales --src ../src --translatorFn t",
+    "translations:update": "npm run translations:backfill;npm run translations:discover",
+    "translations:add": "git add src/translations"
   },
   "pre-commit": [
     "lint",
     "build",
     "comb",
-    "test"
+    "test",
+    "translations:update",
+    "translations:add"
   ],
   "author": "Robin de Mourat <robin.demourat@gmail.com> (https://github.com/robindemourat)",
   "engines": {

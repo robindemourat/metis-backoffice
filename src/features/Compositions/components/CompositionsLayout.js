@@ -34,8 +34,8 @@ const CompositionsLayout = ({
       {
         compositions.map((composition, index) => {
           const onDelete = () => {
-            if (confirm(t('sure to delete composition'))) {
-              deleteComposition(composition._id)
+            if (confirm(t('sure to delete composition ?'))) {/* eslint no-alert : 0 */
+              deleteComposition(composition._id);
             }
           };
           // const onUpdate = newComposition => updateComposition(composition._id, newComposition);
