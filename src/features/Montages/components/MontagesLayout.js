@@ -33,14 +33,22 @@ const MontagesLayout = ({
     <ul>
       {
         montages.map((montage, index) => {
-          const onDelete = () => deleteMontage(montage._id);
+          const onDelete = () => {
+            if (confirm(t('sure to delete montage'))) {
+              deleteMontage(montage._id);
+            }
+          }
           const onPrompt = () => {
             setEditedMontage(montage);
           };
           return (
             <li
               key={index}>
-              <h2>{montage.metadata.title || t('montage without title')}</h2>
+              <h2>
+                <a href={`/montages/${montage._id}`}>
+                  {montage.metadata.title || t('montage without title')}
+                </a>
+              </h2>
               <ul>
                 <li>
                   {t('montage type')}: {montage.metadata.montage_type}

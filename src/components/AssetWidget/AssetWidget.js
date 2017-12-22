@@ -133,6 +133,7 @@ class AssetWidget extends Component {
           <Select
             options={options}
             value={value}
+            clearable={false}
             onChange={e => onChange(e && e.value)} />
           <Dropzone onDrop={this.onDrop}>
             Add new asset

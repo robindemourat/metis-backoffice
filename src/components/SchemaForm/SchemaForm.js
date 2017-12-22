@@ -4,22 +4,25 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import defaults from 'json-schema-defaults';
 import DatePicker from 'react-datepicker';
+import { SketchPicker as ColorPicker } from 'react-color';
+
 import moment from 'moment';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
 import Ajv from 'ajv';
 
-
-import {get, set} from '../../helpers/dot-prop';
-// import {get, set} from 'dot-prop';
 import Select from 'react-select';
 
 import 'react-select/dist/react-select.css';
 
+// import {get, set} from 'dot-prop';
+import {get, set} from '../../helpers/dot-prop';
+
 import AssetWidget from '../AssetWidget/AssetWidget';
 import CompositionWidget from '../CompositionWidget/CompositionWidget';
 import MontageWidget from '../MontageWidget/MontageWidget';
+import CodeEditor from '../CodeEditor/CodeEditor';
 
 const ajv = new Ajv();
 
@@ -119,12 +122,12 @@ const makeForm = (totalSchema, model, totalObject, value, level, key, path, onCh
             }
             // array allowing to manage a list of objects (e.g. authors)
             else {
+              const activeValue = value || [];
               const addElement = () => {
                 const newElement = defaults(model.items);
-                const newArray = [...value, newElement];
+                const newArray = [...activeValue, newElement];
                 onChange(path, newArray);
               };
-              const activeValue = value || [];
               return (
                 <ul>
                   {
@@ -195,16 +198,46 @@ const makeForm = (totalSchema, model, totalObject, value, level, key, path, onCh
                   onChange={val => onChange(path, val)} />
               );
             }
+            // pointing to a code field
+            else if (key.indexOf('_code') > -1) {
+              const mode = key.indexOf('css') > -1 ? 'css': 'javascript';
+              return (
+                <CodeEditor
+                  value={value}
+                  mode={mode}
+                  onChange={val => onChange(path, val)}
+                />
+              );
+            }
+            // pointing to a color field
+            else if (key.indexOf('_color') > -1) {
+              return (
+                <ColorPicker
+                  color={value}
+                  onChange={val => onChange(path, val.hex)}
+                />
+              );
+            }
             // value is an enumerable string (select)
             else if (model.enum) {
-              return (
-                <Select
-                  name={key}
-                  value={value}
-                  onChange={e => onChange(path, e.value)}
-                  options={
-                    model.enum.map(thatValue => ({value: thatValue, label: value}))
-                  } />);
+              if (model.enum.length > 1) {
+                return (
+                  <Select
+                    name={key}
+                    value={value}
+                    onChange={e => onChange(path, e.value)}
+                    clearable={false}
+                    searchable={false}
+                    options={
+                      model.enum.map(thatValue => ({value: thatValue, label: thatValue}))
+                    } />);
+              } else {
+                return (
+                  <p>
+                    {value}
+                  </p>
+                )
+              }
             }
             // value is a plain string
             else {
@@ -247,8 +280,8 @@ const makeForm = (totalSchema, model, totalObject, value, level, key, path, onCh
             );
           default:
             // value is a reference to a definition properties set
-            if (model.oneOf && model.oneOfFrom) {
-              const type = get(totalObject, model.oneOfFrom);
+            if (model.anyOf && model.anyOfFrom) {
+              const type = get(totalObject, model.anyOfFrom);
               const refs = totalSchema.definitions;
               const subModel = refs[type];
               if (subModel) {

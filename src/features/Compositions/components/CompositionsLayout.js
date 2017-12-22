@@ -33,7 +33,11 @@ const CompositionsLayout = ({
     <ul>
       {
         compositions.map((composition, index) => {
-          const onDelete = () => deleteComposition(composition._id);
+          const onDelete = () => {
+            if (confirm(t('sure to delete composition'))) {
+              deleteComposition(composition._id)
+            }
+          };
           // const onUpdate = newComposition => updateComposition(composition._id, newComposition);
           const onPrompt = () => {
             setEditedComposition(composition);
@@ -41,7 +45,11 @@ const CompositionsLayout = ({
           return (
             <li
               key={index}>
-              {composition.metadata.title || t('composition without title')}
+              <h3>
+                <a href={`/compositions/${composition._id}`}>
+                  {composition.metadata.title || t('composition without title')}
+                </a>
+              </h3>
               <button onClick={onDelete}>{t('delete composition')}</button>
               <button onClick={onPrompt}>{t('edit metadata')}</button>
               <a href={`/compositions/${composition._id}`}>{t('edit composition')}</a>

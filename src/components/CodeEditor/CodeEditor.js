@@ -5,7 +5,7 @@
  * @module plurishing-backoffice/components/CodeEditor
  */
 import React, {Component} from 'react';
-import {Controlled as CodeMirror} from 'react-codemirror2';
+import {UnControlled as CodeMirror} from 'react-codemirror2';
 import 'codemirror/lib/codemirror.css';
 import js from 'codemirror/mode/javascript/javascript';
 import xml from 'codemirror/mode/xml/xml';
@@ -41,7 +41,7 @@ class CodeEditor extends Component {
       onChange,
       onClick,
       props: {
-        value,
+        value = '',
         mode = 'javascript',
         lineNumbers = true
       }

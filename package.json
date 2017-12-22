@@ -34,6 +34,7 @@
     "plurishing-schemas": "git+https://github.com/robindemourat/plurishing-schemas.git",
     "react": "^16.1.1",
     "react-codemirror2": "^3.0.7",
+    "react-color": "^2.13.8",
     "react-datepicker": "^0.64.0",
     "react-dom": "^16.1.1",
     "react-dropzone": "^4.2.3",

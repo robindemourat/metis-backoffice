@@ -39,7 +39,7 @@ const ResourcesLayout = ({
           return (
             <li
               key={index}>
-              {resource.metadata.name || t('resource without name')}
+              <button onClick={onPrompt}>{resource.metadata.name || t('resource without name')}</button>
               <button onClick={onDelete}>{t('delete resource')}</button>
               <button onClick={onPrompt}>{t('edit resource')}</button>
             </li>
