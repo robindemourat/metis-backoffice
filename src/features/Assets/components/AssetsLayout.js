@@ -5,12 +5,15 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Dropzone from 'react-dropzone';
+import DropZone from '../../../components/DropZone/DropZone';
 
 import getConfig from '../../../helpers/getConfig';
 const config = getConfig();
 const {apiBaseUri} = config;
 // import {assetsBaseUri} from '../../../../config';
+
+// import AssetPreview from '../../../components/PrimitiveAssetPreview/PrimitiveAssetPreview';
+
 
 import './AssetsLayout.scss';
 
@@ -60,10 +63,13 @@ const AssetsLayout = ({
             return (
               <li key={index}>
                 <p>{asset.filename}</p>
+                <p>{asset.mimetype}</p>
                 <p>
                   <a target="blank" href={assetUrl}>{t('open asset')}</a>
                   - <button onClick={onDelete}>{t('delete asset')}</button></p>
-                <Dropzone onDrop={onUpdateDrop} />
+                <DropZone onDrop={onUpdateDrop}>
+                  {t('drop a new file to update the asset')}
+                </DropZone>
               </li>
             );
           })
@@ -71,7 +77,9 @@ const AssetsLayout = ({
       </ul>
       <div>
         <h2>{t('add assets')}</h2>
-        <Dropzone onDrop={onDrop} />
+        <DropZone onDrop={onDrop}>
+          {t('drop new assets here')}
+        </DropZone>
       </div>
     </section>
   );

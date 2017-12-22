@@ -1,7 +1,7 @@
 /**
  * This module exports a stateful component connected to the redux logic of the app,
- * dedicated to rendering the compositions container
- * @module plurishing-backoffice/features/Compositions
+ * dedicated to rendering the montages container
+ * @module plurishing-backoffice/features/Montages
  */
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
@@ -9,11 +9,10 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {actions as toastrActions} from 'react-redux-toastr';
 
-import {Composition as schema} from 'plurishing-schemas';
+import {Montage as schema} from 'plurishing-schemas';
 
-import CompositionLayout from './CompositionLayout';
+import MontagesLayout from './MontagesLayout';
 import * as duck from '../duck';
-import * as resourcesDuck from '../../Resources/duck';
 import {buildOperationToastr} from '../../../helpers/toastr';
 
 
@@ -22,8 +21,7 @@ import {buildOperationToastr} from '../../../helpers/toastr';
  */
 @connect(
   state => ({
-    ...duck.selector(state.compositions),
-    ...resourcesDuck.selector(state.resources),
+    ...duck.selector(state.montages),
   }),
   dispatch => ({
     actions: bindActionCreators({
@@ -31,7 +29,7 @@ import {buildOperationToastr} from '../../../helpers/toastr';
     }, dispatch)
   })
 )
-class CompositionContainer extends Component {
+class MontagesContainer extends Component {
 
   /**
    * Context data used by the component
@@ -59,11 +57,7 @@ class CompositionContainer extends Component {
   }
 
   componentWillMount () {
-    this.props.actions.getComposition(this.props.params.id)
-      .then(() => {
-        const editedComposition = this.props.compositions.find(thatComposition => thatComposition._id === this.props.params.id);
-        this.props.actions.setEditedComposition(editedComposition);
-      });
+    this.props.actions.getMontages();
   }
 
   componentWillReceiveProps = (nextProps) => {
@@ -91,11 +85,11 @@ class CompositionContainer extends Component {
    */
   render() {
     return (
-      <CompositionLayout
+      <MontagesLayout
         schema={schema}
         {...this.props} />
     );
   }
 }
 
-export default CompositionContainer;
+export default MontagesContainer;

@@ -16,6 +16,7 @@ import AsideToggler from '../AsideToggler/AsideToggler';
 import './ContextualizationWidget.scss';
 
 const config = getConfig();
+const {timers} = config;
 
 /**
  * ContextualizationWidget class for building react component instances
@@ -173,7 +174,9 @@ class ContextualizationWidget extends Component {
       onAssetChoice,
       setActiveMode,
     } = this.props;
-    const context = this.context;
+    const {
+      t
+    } = this.context;
 
     const activeOptions = options[activeMode] || [];
 

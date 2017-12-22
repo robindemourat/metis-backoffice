@@ -8,7 +8,6 @@
 import {combineReducers} from 'redux';
 import {createStructuredSelector} from 'reselect';
 import {get, put, post, del} from '../../helpers/client';
-import {createNewComposition} from '../../helpers/seeders';
 
 /*
  * ===========
@@ -87,20 +86,20 @@ export const deleteComposition = (id) => ({
  */
 export const promptNewCompositionForm = () => ({
   type: PROMPT_NEW_COMPOSITION_FORM
-})
+});
 
 export const unpromptNewCompositionForm = () => ({
   type: UNPROMPT_NEW_COMPOSITION_FORM
-})
+});
 
 export const setEditedComposition = composition => ({
   type: SET_EDITED_COMPOSITION,
   composition
-})
+});
 
 export const unsetEditedComposition = () => ({
   type: UNSET_EDITED_COMPOSITION
-})
+});
 
 export const setEditedMetadata = metadata => ({
   type: SET_EDITED_METADATA,
@@ -326,7 +325,7 @@ const EDITOR_DEFAULT_STATE = {
  * @return {object} newState - the resulting state
  */
 function editor(state = EDITOR_DEFAULT_STATE, action) {
-  switch(action.type) {
+  switch (action.type) {
 
     case UPDATE_DRAFT_EDITOR_STATE:
       return {
@@ -345,7 +344,7 @@ function editor(state = EDITOR_DEFAULT_STATE, action) {
       return {
         ...state,
         editorFocus: action.editorFocus
-      }
+      };
 
     default:
       return state;
@@ -399,7 +398,6 @@ const editedMetadata = state => state.ui.editedMetadata;
 // editor related
 const editorStates = state => state.editor.editorStates;
 const editorFocus = state => state.editor.editorFocus;
-
 
 
 /**

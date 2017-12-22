@@ -1,9 +1,12 @@
 {
   "resetTimeMs": 2000,
   "apiBaseUri": "https://plurishing-backend.herokuapp.com/api/",
+  "servicesBaseUri": "https://plurishing-backend.herokuapp.com/services/",
   "endpoints": {
     "resources": "resources",
     "compositions": "compositions",
+    "montages": "montages",
+    "diffusions": "diffusions",
     "assets": "assets",
     "users": "users",
     "login": "login",

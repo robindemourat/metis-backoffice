@@ -85,8 +85,8 @@ const AssetPreview = ({
   previewMode = 'web',
   showPannel = false
 }, context) => {
-  const translate = translateNameSpacer(context.t, 'Components.AssetPreview');
   const contextualizers = context.contextualizers || {};
+  const t = context.t;
   const onClick = e => {
     e.stopPropagation();
     if (typeof onEditRequest === 'function') {
@@ -121,7 +121,7 @@ const AssetPreview = ({
         {metadata.title && <h5>{metadata.title}</h5>}
         {metadata.description && <p>{metadata.description}</p>}
         <div>
-          <button onClick={onClick}>{translate('edit')}</button>
+          <button onClick={onClick}>{t('edit')}</button>
         </div>
       </div>}
     </div>);

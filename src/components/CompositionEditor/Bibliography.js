@@ -7,7 +7,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-
 /**
  * Renders the Bib component as a pure function
  * @param {object} props - (un)used props (see prop types below)

@@ -60,8 +60,8 @@ const {
 import defaultStyle from 'raw-loader!./assets/apa.csl';
 import defaultLocale from 'raw-loader!./assets/english-locale.xml';
 
-import BlockContextualizationContainer from './BlockContextualizationContainer';
-import InlineContextualizationContainer from './InlineContextualizationContainer';
+// import BlockContextualizationContainer from './BlockContextualizationContainer';
+// import InlineContextualizationContainer from './InlineContextualizationContainer';
 
 import ContextualizationWidget from '../ContextualizationWidget/ContextualizationWidget';
 
@@ -1224,13 +1224,13 @@ class CompositionEditor extends Component {
       onDataChange,
       state,
       props,
-      context: {
-        t
-      }
+      // context: {
+      //   t
+      // }
     } = this;
     const {
       composition,
-      updateComposition,
+      // updateComposition,
       editorStates = {},
       editorFocus,
       setEditorFocus,
@@ -1446,7 +1446,7 @@ class CompositionEditor extends Component {
               blockAssetComponents={blockAssetComponents}
               AssetChoiceComponent={ContextualizationWidget}
               inlineEntities={[/*{
-                strategy: compositionLinkStrategy.bind(this), 
+                strategy: compositionLinkStrategy.bind(this),
                 component: CompositionLink
               }*/]} />
 

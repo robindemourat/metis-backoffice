@@ -1,7 +1,7 @@
 /**
  * This module exports a stateful component connected to the redux logic of the app,
- * dedicated to rendering the compositions container
- * @module plurishing-backoffice/features/Compositions
+ * dedicated to rendering the diffusions container
+ * @module plurishing-backoffice/features/Diffusions
  */
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
@@ -9,12 +9,12 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {actions as toastrActions} from 'react-redux-toastr';
 
-import {Composition as schema} from 'plurishing-schemas';
+import {Diffusion as schema} from 'plurishing-schemas';
 
-import CompositionLayout from './CompositionLayout';
+import DiffusionsLayout from './DiffusionsLayout';
 import * as duck from '../duck';
-import * as resourcesDuck from '../../Resources/duck';
 import {buildOperationToastr} from '../../../helpers/toastr';
+import {get} from '../../../helpers/client';
 
 
 /**
@@ -22,8 +22,7 @@ import {buildOperationToastr} from '../../../helpers/toastr';
  */
 @connect(
   state => ({
-    ...duck.selector(state.compositions),
-    ...resourcesDuck.selector(state.resources),
+    ...duck.selector(state.diffusions),
   }),
   dispatch => ({
     actions: bindActionCreators({
@@ -31,7 +30,7 @@ import {buildOperationToastr} from '../../../helpers/toastr';
     }, dispatch)
   })
 )
-class CompositionContainer extends Component {
+class DiffusionsContainer extends Component {
 
   /**
    * Context data used by the component
@@ -59,11 +58,7 @@ class CompositionContainer extends Component {
   }
 
   componentWillMount () {
-    this.props.actions.getComposition(this.props.params.id)
-      .then(() => {
-        const editedComposition = this.props.compositions.find(thatComposition => thatComposition._id === this.props.params.id);
-        this.props.actions.setEditedComposition(editedComposition);
-      });
+    this.props.actions.getDiffusions();
   }
 
   componentWillReceiveProps = (nextProps) => {
@@ -85,17 +80,55 @@ class CompositionContainer extends Component {
     return true;
   }
 
+  onAfterChange = (document, inputPath) =>
+    new Promise((resolve, reject) => {
+      const path = inputPath.join('.');
+      switch (path) {
+        case 'montage_id':
+          get('montages', {id: document.montage_id})
+            .then(data => {
+              const montage = data.data;
+              const transformedDocument = {
+                ...document,
+                montage_type: montage.metadata.montage_type,
+                montage_title: montage.metadata.title,
+              };
+              resolve(transformedDocument);
+            })
+            .catch(reject);
+          break;
+        default:
+          return resolve(document);
+      }
+    })
   /**
    * Renders the component
    * @return {ReactElement} component - the component
    */
   render() {
+    const {
+      props: {
+        montageId,
+        montageType,
+        diffusions = []
+      },
+      onAfterChange
+    } = this;
+
+    const activeDiffusions = montageId ?
+      diffusions.filter(diffusion => diffusion.montage_id === montageId)
+       : diffusions;
+
     return (
-      <CompositionLayout
+      <DiffusionsLayout
+        {...this.props}
         schema={schema}
-        {...this.props} />
+        onAfterChange={onAfterChange}
+        montageId={montageId}
+        montageType={montageType}
+        diffusions={activeDiffusions} />
     );
   }
 }
 
-export default CompositionContainer;
+export default DiffusionsContainer;

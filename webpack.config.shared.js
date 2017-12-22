@@ -11,6 +11,11 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.js$/,
+        exclude: /node_modules\/(?!dot-prop)\/*/,
+        loader: 'babel-loader'
+      },
+      {
         test: /\.(jpe?g|png|gif|svg)$/i,
          use: [
           {

@@ -60,8 +60,8 @@ const {
 import defaultStyle from 'raw-loader!./assets/apa.csl';
 import defaultLocale from 'raw-loader!./assets/english-locale.xml';
 
-import BlockContextualizationContainer from './BlockContextualizationContainer';
-import InlineContextualizationContainer from './InlineContextualizationContainer';
+// import BlockContextualizationContainer from './BlockContextualizationContainer';
+// import InlineContextualizationContainer from './InlineContextualizationContainer';
 
 import ContextualizationWidget from '../ContextualizationWidget/ContextualizationWidget';
 
@@ -1282,8 +1282,9 @@ class CompositionEditor extends Component {
       notes: inputNotes
     } = activeComposition;
 
+    const t = this.context.t;
 
-    const translate = translateNameSpacer(this.context.t, 'Components.Footer');
+
     const mainEditorState = editorStates[compositionId]; // || this.editor.generateEmptyEditor();
     // replacing notes with dynamic non-serializable editor states
     const notes = inputNotes ? Object.keys(inputNotes).reduce((no, id) => ({
@@ -1506,7 +1507,7 @@ class CompositionEditor extends Component {
               blockAssetComponents={blockAssetComponents}
               AssetChoiceComponent={ContextualizationWidget}
               inlineEntities={[/*{
-                strategy: compositionLinkStrategy.bind(this), 
+                strategy: compositionLinkStrategy.bind(this),
                 component: CompositionLink
               }*/]} />
 

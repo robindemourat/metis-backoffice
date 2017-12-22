@@ -1,0 +1,41 @@
+
+
+
+.plurishing-backoffice-MailingPreview
+{
+
+  border: 1px solid #dddfe2;
+  border-radius: 4px;
+  padding: 12px 12px 0;
+
+  .header{
+    .row{
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: stretch;
+
+      margin-bottom: 1rem;
+
+      .label{
+        color: #90949c;
+        text-align: right;
+        min-width: 3rem;
+      }
+
+      .label::after{
+        content: ':';
+      }
+
+      .value{
+        flex: 1;
+        padding-left: 1rem;
+      }
+    }
+
+    border-bottom: 1px solid #dddfe2;
+  }
+
+  .body{
+    margin-top: 1rem;
+  }
+}

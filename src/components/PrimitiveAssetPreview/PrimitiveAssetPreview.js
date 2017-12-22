@@ -1,13 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import getConfig from '../../helpers/getConfig';
 const config = getConfig();
 const {apiBaseUri} = config;
 
+import './PrimitiveAssetPreview.scss';
+
 const render = asset => {
   const attachmentName = asset.filename;
   const assetUrl = `${apiBaseUri}assets/${asset._id}/${attachmentName}`;
-  switch(asset.mimetype) {
+  switch (asset.mimetype) {
     case 'application/pdf':
     case 'text/markdown':
       return <iframe src={assetUrl} />;
@@ -23,17 +26,26 @@ const render = asset => {
         <div>
           No preview available {asset.mimetype}
         </div>
-      )
+      );
   }
-}
+};
 
-export default ({
+const AssetPreview = ({
   asset
-}) => asset ? 
-  (
-    <div>
-      <h3>Preview</h3>
-      {render(asset)}
-    </div>
-  )
-: null
+}, {t}) => {
+  if (asset) {
+    return (
+      <div className="plurishing-backoffice-PrimitiveAssetPreview">
+        <h3>{t('preview')}</h3>
+        {render(asset)}
+      </div>
+    );
+  }
+  return null;
+};
+
+AssetPreview.contextTypes = {
+  t: PropTypes.func.isRequired,
+};
+
+export default AssetPreview;

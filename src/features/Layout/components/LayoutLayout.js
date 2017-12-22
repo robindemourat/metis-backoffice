@@ -8,36 +8,70 @@ import ReduxToastr from 'react-redux-toastr';
 
 import './LayoutLayout.scss';
 
+const RouteItem = ({
+  label,
+  path,
+  active
+}) => (
+  <li>
+    <a href={path}>{label} {active ? ' - active' : ''}</a>
+  </li>
+);
 
 const LoginLayout = ({
   user,
   children,
   actions: {
     logout
+  },
+  location: {
+    pathname
   }
 }, {t}) => (
   <div className="plurishing-backoffice-Layout">
     <nav>
-      <h1>Plurishing</h1>
+      <h1><a href="/">Plurishing</a></h1>
       <ul>
-        <li>
-          <a href="/">{t('home')}</a>
-        </li>
-        <li>
-          <a href="/assets">{t('assets')}</a>
-        </li>
-        <li>
-          <a href="/resources">{t('resources')}</a>
-        </li>
-        <li>
-          <a href="/compositions">{t('compositions')}</a>
-        </li>
-        {user && user.admin && <li>
-          <a href="/users">{t('users')}</a>
-        </li>}
-        <li>
-          <a href={`/users/${user._id}`}>{t('my profile')}</a>
-        </li>
+        {
+          [{
+            path: '/assets',
+            label: t('assets')
+          },
+          {
+            path: '/resources',
+            label: t('resources')
+          },
+          {
+            path: '/compositions',
+            label: t('compositions')
+          },
+          {
+            path: '/montages',
+            label: t('montages')
+          },
+          {
+            path: '/diffusions',
+            label: t('diffusions')
+          },
+          {
+            path: '/users',
+            label: t('users'),
+            condition: user && user.admin === true
+          },
+          {
+            path: `/users/${user._id}`,
+            label: t('my profile')
+          }
+          ]
+          .filter(route => route.condition === undefined || route.condition === true)
+          .map(({path, label}) => (
+            <RouteItem
+              key={path}
+              path={path}
+              label={label}
+              active={pathname.indexOf(path) === 0} />
+          ))
+        }
       </ul>
 
       {user &&

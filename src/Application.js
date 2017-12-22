@@ -21,6 +21,11 @@ import Assets from './features/Assets/components/AssetsContainer.js';
 import Compositions from './features/Compositions/components/CompositionsContainer.js';
 import Composition from './features/Compositions/components/CompositionContainer.js';
 
+import Montages from './features/Montages/components/MontagesContainer.js';
+import Montage from './features/Montages/components/MontageContainer.js';
+
+import Diffusions from './features/Diffusions/components/DiffusionsContainer.js';
+
 import Users from './features/Users/components/UsersContainer.js';
 import User from './features/Users/components/UserContainer.js';
 import NewUser from './features/Users/components/NewUserContainer.js';
@@ -53,6 +58,12 @@ const Application = ({history}) => (
 
       <Route path="/compositions" component={Compositions} />
       <Route path="/compositions/:id" component={Composition} />
+
+      <Route path="/montages" component={Montages} />
+      <Route path="/montages/:id" component={Montage} />
+
+      <Route path="/diffusions" component={Diffusions} />
+
 
       <Route path="/users" component={userIsAdmin(Users)} />
       <Route path="/users/:id" component={User} />

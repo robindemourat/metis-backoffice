@@ -5,11 +5,7 @@ import {connect} from 'react-redux';
 import {actions as toastrActions} from 'react-redux-toastr';
 import Select from 'react-select';
 
-import * as duck from '../../features/Assets/duck';
-
-import AssetPreview from '../PrimitiveAssetPreview/PrimitiveAssetPreview';
-
-import Dropzone from 'react-dropzone';
+import * as duck from '../../features/Compositions/duck';
 
 import {buildOperationToastr} from '../../helpers/toastr';
 
@@ -21,7 +17,7 @@ import {buildOperationToastr} from '../../helpers/toastr';
  */
 @connect(
   state => ({
-    ...duck.selector(state.assets),
+    ...duck.selector(state.compositions),
   }),
   dispatch => ({
     actions: bindActionCreators({
@@ -29,7 +25,7 @@ import {buildOperationToastr} from '../../helpers/toastr';
     }, dispatch)
   })
 )
-class AssetWidget extends Component {
+class CompositionWidget extends Component {
 
   /**
    * Context data used by the component
@@ -57,8 +53,8 @@ class AssetWidget extends Component {
   }
 
   componentWillMount () {
-    if (this.props.assets.length === 0) {
-      this.props.actions.getAssets();
+    if (this.props.compositions.length === 0) {
+      this.props.actions.getCompositions();
     }
   }
 
@@ -81,24 +77,6 @@ class AssetWidget extends Component {
     return true;
   }
 
-  onDrop = files => {
-    const file = files[0];
-    const data = new FormData();
-    const fileName = file.name;
-    data.append('file', file);
-    this.props.actions.createAsset(fileName, data, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-    })
-    .then(() => {
-      const created = this.props.assets.find(thatAsset => thatAsset.filename === fileName);
-      if (created) {
-        this.props.onChange(created._id);
-      }
-    });
-  }
-
   /**
    * Renders the component
    * @return {ReactElement} component - the component
@@ -108,25 +86,24 @@ class AssetWidget extends Component {
       // name,
       value,
       onChange,
-      assets,
+      compositions,
       // mimetype accepted
       accept = [],
     } = this.props;
     const {
       t
     } = this.context;
-
-    if (assets) {
-      const options = assets
-      .filter(asset => {
+    if (compositions) {
+      const options = compositions
+      .filter(composition => {
         if (accept.length > 0) {
-          return accept.indexOf(asset.mimetype) > -1;
+          return accept.indexOf(composition.mimetype) > -1;
         }
         return true;
       })
-      .map(asset => ({
-        value: asset._id,
-        label: asset.filename
+      .map(composition => ({
+        value: composition._id,
+        label: composition.metadata.title || t('composition without name')
       }));
       return (
         <div>
@@ -134,15 +111,10 @@ class AssetWidget extends Component {
             options={options}
             value={value}
             onChange={e => onChange(e && e.value)} />
-          <Dropzone onDrop={this.onDrop}>
-            Add new asset
-          </Dropzone>
-          <AssetPreview
-            asset={assets && assets.find(asset => asset._id === value)} />
         </div>
       );
     }
-    else {
+ else {
       return (<div>
         {t('loading')}
       </div>
@@ -151,4 +123,4 @@ class AssetWidget extends Component {
   }
 }
 
-export default AssetWidget;
+export default CompositionWidget;

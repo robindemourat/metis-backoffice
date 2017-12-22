@@ -83,6 +83,7 @@ class BlockContainer extends Component {
         startExistingResourceConfiguration,
         contextualizers,
         lang = 'en',
+        t,
       },
     } = this;
 
@@ -171,7 +172,7 @@ class BlockContainer extends Component {
           },
         });
       }
- else {
+      else {
         onAssetChange('contextualizer', contextualizer.id, {
           ...contextualizer,
           visibility: {

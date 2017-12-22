@@ -1,7 +1,7 @@
 /**
  * This module exports a stateful component connected to the redux logic of the app,
- * dedicated to rendering the compositions container
- * @module plurishing-backoffice/features/Compositions
+ * dedicated to rendering the montages container
+ * @module plurishing-backoffice/features/Montages
  */
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
@@ -9,9 +9,9 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {actions as toastrActions} from 'react-redux-toastr';
 
-import {Composition as schema} from 'plurishing-schemas';
+import {Montage as schema} from 'plurishing-schemas';
 
-import CompositionLayout from './CompositionLayout';
+import MontageLayout from './MontageLayout';
 import * as duck from '../duck';
 import * as resourcesDuck from '../../Resources/duck';
 import {buildOperationToastr} from '../../../helpers/toastr';
@@ -22,7 +22,7 @@ import {buildOperationToastr} from '../../../helpers/toastr';
  */
 @connect(
   state => ({
-    ...duck.selector(state.compositions),
+    ...duck.selector(state.montages),
     ...resourcesDuck.selector(state.resources),
   }),
   dispatch => ({
@@ -31,7 +31,7 @@ import {buildOperationToastr} from '../../../helpers/toastr';
     }, dispatch)
   })
 )
-class CompositionContainer extends Component {
+class MontageContainer extends Component {
 
   /**
    * Context data used by the component
@@ -59,10 +59,10 @@ class CompositionContainer extends Component {
   }
 
   componentWillMount () {
-    this.props.actions.getComposition(this.props.params.id)
+    this.props.actions.getMontage(this.props.params.id)
       .then(() => {
-        const editedComposition = this.props.compositions.find(thatComposition => thatComposition._id === this.props.params.id);
-        this.props.actions.setEditedComposition(editedComposition);
+        const editedMontage = this.props.montages.find(thatComposition => thatComposition._id === this.props.params.id);
+        this.props.actions.setEditedMontage(editedMontage);
       });
   }
 
@@ -91,11 +91,11 @@ class CompositionContainer extends Component {
    */
   render() {
     return (
-      <CompositionLayout
+      <MontageLayout
         schema={schema}
         {...this.props} />
     );
   }
 }
 
-export default CompositionContainer;
+export default MontageContainer;

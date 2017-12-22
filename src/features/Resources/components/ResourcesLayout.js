@@ -15,8 +15,6 @@ const ResourcesLayout = ({
   schema,
   resources = [],
 
-  clientStatus,
-  clientOperation,
   newResourcePrompted,
   editedResource,
 
@@ -35,14 +33,12 @@ const ResourcesLayout = ({
       {
         resources.map((resource, index) => {
           const onDelete = () => deleteResource(resource._id);
-          const onUpdate = newResource => updateResource(resource._id, newResource);
           const onPrompt = () => {
             setEditedResource(resource);
-          }
+          };
           return (
             <li
-              key={index}
-            >
+              key={index}>
               {resource.metadata.name || t('resource without name')}
               <button onClick={onDelete}>{t('delete resource')}</button>
               <button onClick={onPrompt}>{t('edit resource')}</button>
@@ -58,8 +54,7 @@ const ResourcesLayout = ({
       isOpen={newResourcePrompted}
       onRequestClose={unpromptNewResourceForm}
       contentLabel="Modal"
-      ariaHideApp={false}
-    >
+      ariaHideApp={false}>
       <SchemaForm
         title={t('new resource')}
         schema={schema}
@@ -68,16 +63,14 @@ const ResourcesLayout = ({
           createResource(resource);
           unpromptNewResourceForm();
         }}
-        onCancel={unpromptNewResourceForm}
-      />
+        onCancel={unpromptNewResourceForm} />
     </Modal>
 
     <Modal
       isOpen={editedResource !== undefined}
       onRequestClose={unsetEditedResource}
       contentLabel="Modal"
-      ariaHideApp={false}
-    >
+      ariaHideApp={false}>
       <SchemaForm
         title={t('edit resource')}
         schema={schema}
@@ -86,8 +79,7 @@ const ResourcesLayout = ({
           updateResource(resource._id, resource);
           unsetEditedResource();
         }}
-        onCancel={unsetEditedResource}
-      />
+        onCancel={unsetEditedResource} />
     </Modal>
   </section>
 );

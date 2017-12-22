@@ -8,7 +8,6 @@
 import {combineReducers} from 'redux';
 import {createStructuredSelector} from 'reselect';
 import {get, put, post, del} from '../../helpers/client';
-import {createNewResource} from '../../helpers/seeders';
 
 /*
  * ===========
@@ -80,20 +79,20 @@ export const deleteResource = (id) => ({
  */
 export const promptNewResourceForm = () => ({
   type: PROMPT_NEW_RESOURCE_FORM
-})
+});
 
 export const unpromptNewResourceForm = () => ({
   type: UNPROMPT_NEW_RESOURCE_FORM
-})
+});
 
 export const setEditedResource = resource => ({
   type: SET_EDITED_RESOURCE,
   resource
-})
+});
 
-export const unsetEditedResource = resource => ({
+export const unsetEditedResource = () => ({
   type: UNSET_EDITED_RESOURCE
-})
+});
 
 /*
  * ===========

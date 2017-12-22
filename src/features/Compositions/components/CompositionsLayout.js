@@ -16,8 +16,6 @@ const CompositionsLayout = ({
   schema,
   compositions = [],
 
-  clientStatus,
-  clientOperation,
   newCompositionPrompted,
   editedComposition,
 
@@ -36,14 +34,13 @@ const CompositionsLayout = ({
       {
         compositions.map((composition, index) => {
           const onDelete = () => deleteComposition(composition._id);
-          const onUpdate = newComposition => updateComposition(composition._id, newComposition);
+          // const onUpdate = newComposition => updateComposition(composition._id, newComposition);
           const onPrompt = () => {
             setEditedComposition(composition);
-          }
+          };
           return (
             <li
-              key={index}
-            >
+              key={index}>
               {composition.metadata.title || t('composition without title')}
               <button onClick={onDelete}>{t('delete composition')}</button>
               <button onClick={onPrompt}>{t('edit metadata')}</button>
@@ -60,8 +57,7 @@ const CompositionsLayout = ({
       isOpen={newCompositionPrompted}
       onRequestClose={unpromptNewCompositionForm}
       contentLabel="Modal"
-      ariaHideApp={false}
-    >
+      ariaHideApp={false}>
       <SchemaForm
         title={t('new composition')}
         schema={schema.properties.metadata}
@@ -71,20 +67,17 @@ const CompositionsLayout = ({
             ...defaults(schema),
             metadata
           };
-          console.log(composition);
           createComposition(composition);
           unpromptNewCompositionForm();
         }}
-        onCancel={unpromptNewCompositionForm}
-      />
+        onCancel={unpromptNewCompositionForm} />
     </Modal>
 
     <Modal
       isOpen={editedComposition !== undefined}
       onRequestClose={unsetEditedComposition}
       contentLabel="Modal"
-      ariaHideApp={false}
-    >
+      ariaHideApp={false}>
       <SchemaForm
         title={t('edit composition')}
         schema={schema.properties.metadata}
@@ -96,8 +89,7 @@ const CompositionsLayout = ({
           });
           unsetEditedComposition();
         }}
-        onCancel={unsetEditedComposition}
-      />
+        onCancel={unsetEditedComposition} />
     </Modal>
   </section>
 );
