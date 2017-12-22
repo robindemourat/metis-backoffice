@@ -342,7 +342,7 @@ export default class SchemaForm extends Component {
 
     this.setState({
       document: newDocument,
-      errors: valid.errors
+      errors: ajv.errors
     });
     // upstream hook
     if (typeof onAfterChange === 'function') {
