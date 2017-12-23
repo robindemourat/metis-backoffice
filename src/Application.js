@@ -24,6 +24,8 @@ import Composition from './features/Compositions/components/CompositionContainer
 import Montages from './features/Montages/components/MontagesContainer.js';
 import Montage from './features/Montages/components/MontageContainer.js';
 
+import Deliverables from './features/Deliverables/components/DeliverablesContainer.js';
+
 import Diffusions from './features/Diffusions/components/DiffusionsContainer.js';
 
 import Users from './features/Users/components/UsersContainer.js';
@@ -55,6 +57,8 @@ const Application = ({history}) => (
       <Route path="/resources" component={Resources} />
 
       <Route path="/assets" component={Assets} />
+
+      <Route path="/deliverables" component={Deliverables} />
 
       <Route path="/compositions" component={Compositions} />
       <Route path="/compositions/:id" component={Composition} />

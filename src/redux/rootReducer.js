@@ -14,6 +14,7 @@ import assets from './../features/Assets/duck';
 import compositions from './../features/Compositions/duck';
 import montages from './../features/Montages/duck';
 import diffusions from './../features/Diffusions/duck';
+import deliverables from './../features/Deliverables/duck';
 
 import users from './../features/Users/duck';
 import auth from './../features/Auth/duck';
@@ -26,6 +27,7 @@ export default combineReducers({
   compositions,
   montages,
   diffusions,
+  deliverables,
 
   users,
 

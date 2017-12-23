@@ -10,7 +10,6 @@ import DropZone from '../../../components/DropZone/DropZone';
 import getConfig from '../../../helpers/getConfig';
 const config = getConfig();
 const {apiBaseUri} = config;
-// import {assetsBaseUri} from '../../../../config';
 
 // import AssetPreview from '../../../components/PrimitiveAssetPreview/PrimitiveAssetPreview';
 

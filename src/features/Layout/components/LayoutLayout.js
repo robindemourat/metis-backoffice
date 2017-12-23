@@ -54,6 +54,10 @@ const LoginLayout = ({
             label: t('diffusions')
           },
           {
+            path: '/deliverables',
+            label: t('deliverables')
+          },
+          {
             path: '/users',
             label: t('users'),
             condition: user && user.admin === true
