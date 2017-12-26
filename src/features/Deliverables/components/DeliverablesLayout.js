@@ -26,7 +26,7 @@ const DeliverablesLayout = ({
           const deliverableUrl = `${apiBaseUri}deliverables/${deliverable._id}/${attachmentName}`;
           const onDelete = () => {
             deleteDeliverable(deliverable._id);
-          }
+          };
           return (
             <li
               key={index}>
