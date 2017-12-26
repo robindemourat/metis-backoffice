@@ -156,7 +156,7 @@ export default class DynamicMontagePreview extends Component {
         loading: false,
         error: undefined,
         compositions: this.mapify(availableCompositions, '_id'),
-        resources: this.mapify(availableAssets, '_id'),
+        resources: this.mapify(availableResources, '_id'),
         assets: this.mapify(availableAssets, '_id'),
       });
     }

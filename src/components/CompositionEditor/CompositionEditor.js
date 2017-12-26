@@ -154,6 +154,10 @@ class CompositionEditor extends Component {
    */
   getChildContext = () => ({
     openResourceConfiguration: this.props.openResourceConfiguration,
+    /**
+     * @todo properly set rendering mode for editor
+     */
+    renderingMode: 'web'
     // lang: this.props.lang,
   });
 

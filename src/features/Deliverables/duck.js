@@ -7,7 +7,7 @@
 
 import {combineReducers} from 'redux';
 import {createStructuredSelector} from 'reselect';
-import {get} from '../../helpers/client';
+import {get, del} from '../../helpers/client';
 
 /*
  * ===========
@@ -21,6 +21,7 @@ import {get} from '../../helpers/client';
  * ===========
  */
 export const GET_DELIVERABLES = 'GET_DELIVERABLES';
+export const DELETE_DELIVERABLE = 'DELETE_DELIVERABLE';
 
 /*
  * ===========
@@ -38,6 +39,15 @@ export const getDeliverables = () => ({
   promise: () =>
     get('deliverables')
 });
+
+
+export const deleteDeliverable = (id) => ({
+  type: DELETE_DELIVERABLE,
+  promise: () =>
+    del('deliverables', {id})
+      .then(() => get('deliverables'))
+});
+
 
 /*
  * ===========
@@ -72,6 +82,7 @@ function ui(state = UI_DEFAULT_STATE, action) {
   switch (action.type) {
 
     case GET_DELIVERABLES:
+    case DELETE_DELIVERABLE:
       return {
         ...state,
         clientStatus: 'requesting',
@@ -80,24 +91,26 @@ function ui(state = UI_DEFAULT_STATE, action) {
       };
 
     case `${GET_DELIVERABLES}_SUCCESS`:
+    case `${DELETE_DELIVERABLE}_SUCCESS`:
       return {
         ...state,
         clientStatus: 'success',
       };
 
     case `${GET_DELIVERABLES}_FAIL`:
+    case `${DELETE_DELIVERABLE}_FAIL`:
       return {
         ...state,
         clientStatus: 'error',
       };
 
     case `${GET_DELIVERABLES}_RESET`:
+    case `${DELETE_DELIVERABLE}_RESET`:
       return {
         ...state,
         clientStatus: '',
         clientOperation: '',
       };
-
 
     default:
       return state;
@@ -118,6 +131,12 @@ function data(state = DATA_DEFAULT_STATE, action) {
   switch (action.type) {
 
     case `${GET_DELIVERABLES}_SUCCESS`:
+      return {
+        ...state,
+        deliverables: action.result.data
+      };
+
+    case `${DELETE_DELIVERABLE}_SUCCESS`:
       return {
         ...state,
         deliverables: action.result.data

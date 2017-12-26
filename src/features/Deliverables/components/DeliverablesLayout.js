@@ -14,6 +14,9 @@ const {apiBaseUri} = config;
 
 const DeliverablesLayout = ({
   deliverables = [],
+  actions: {
+    deleteDeliverable
+  }
 }, {t}) => (
   <section className="plurishing-backoffice-Deliverables">
     <ul>
@@ -21,7 +24,9 @@ const DeliverablesLayout = ({
         deliverables.map((deliverable, index) => {
           const attachmentName = deliverable.filename;
           const deliverableUrl = `${apiBaseUri}deliverables/${deliverable._id}/${attachmentName}`;
-
+          const onDelete = () => {
+            deleteDeliverable(deliverable._id);
+          }
           return (
             <li
               key={index}>
@@ -47,6 +52,11 @@ const DeliverablesLayout = ({
                 </li>
                 <li>
                   {t('mimetype')} : {deliverable.mimetype}
+                </li>
+                <li>
+                  <button onClick={onDelete}>
+                    {t('delete deliverable')}
+                  </button>
                 </li>
               </ul>
             </li>

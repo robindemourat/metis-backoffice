@@ -45,7 +45,7 @@ const ErrorDisplay = ({error}) => (
  * @param {boolean} required - whether edited property is required
  * @return {ReactMarkup} form - the form part corresponding to form scope
  */
-const makeForm = (totalSchema, model, totalObject, value, level, key, path, onChange, required) => {
+const makeForm = (totalSchema, model, totalObject, value, level, key, path, onChange, required, translate) => {
   const render = () => {
         let onRadioClick;
 
@@ -154,7 +154,9 @@ const makeForm = (totalSchema, model, totalObject, value, level, key, path, onCh
                           level + 1,
                           key,
                           [...path, index],
-                          onChange
+                          onChange,
+                          false,
+                          translate
                         )}
                           {index > 0 && <button onClick={onUp}>up</button>}
                           {index < value.length - 1 && <button onClick={onDown}>down</button>}
@@ -248,6 +250,7 @@ const makeForm = (totalSchema, model, totalObject, value, level, key, path, onCh
             }
           // value is an object ...
           case 'object':
+            const actualValue = value || {};
             // value has properties -> nest a new properties manager
             return (
               <div>
@@ -265,12 +268,13 @@ const makeForm = (totalSchema, model, totalObject, value, level, key, path, onCh
                         totalSchema,
                         model.properties[thatKey],
                         totalObject,
-                        value[thatKey],
+                        actualValue[thatKey],
                         level + 1,
                         thatKey,
                         [...path, thatKey],
                         onChange,
-                        model.required && model.required.indexOf(thatKey) > -1
+                        model.required && model.required.indexOf(thatKey) > -1,
+                        translate
                       )}
                     </div>
                   ))
@@ -284,7 +288,7 @@ const makeForm = (totalSchema, model, totalObject, value, level, key, path, onCh
               const refs = totalSchema.definitions;
               const subModel = refs[type];
               if (subModel) {
-                return makeForm(totalSchema, subModel, totalObject, value, level + 1, key, [...path], onChange);
+                return makeForm(totalSchema, subModel, totalObject, value, level + 1, key, [...path], onChange, false, translate);
               }
             }
             // default: render as json
@@ -406,11 +410,10 @@ export default class SchemaForm extends Component {
       onValidate
     } = this;
 
-
     return (
       <form onSubmit={e => e.preventDefault()}>
         <h1>{title}</h1>
-        {makeForm(schema, schema, document, document, 0, undefined, [], onChange)}
+        {makeForm(schema, schema, document, document, 0, undefined, [], onChange, false, t)}
         {errors &&
           <ul>
             {errors.map((error, key) => (

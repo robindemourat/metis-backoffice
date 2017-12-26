@@ -1,4 +1,5 @@
 /* eslint react/jsx-no-bind : 0 */
+/* eslint no-alert : 0 */
 /**
  * This module exports a stateless component rendering the layout of the montages view
  * @module plurishing-backoffice/features/Montages
@@ -34,7 +35,7 @@ const MontagesLayout = ({
       {
         montages.map((montage, index) => {
           const onDelete = () => {
-            if (confirm(t('sure to delete montage ?'))) {/* eslint no-alert : 0 */
+            if (confirm(t('sure to delete montage ?'))) {
               deleteMontage(montage._id);
             }
           };
@@ -85,6 +86,8 @@ const MontagesLayout = ({
             ...defaults(schema),
             metadata
           };
+          const subModel = schema.definitions[montage.metadata.montage_type];
+          montage.data = defaults(subModel);
           createMontage(montage);
           unpromptNewMontageForm();
         }}

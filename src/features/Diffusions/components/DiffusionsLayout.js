@@ -50,6 +50,7 @@ const DiffusionsLayout = ({
                 <ul>
                   <li>{t('diffusion of montage')} : {diffusion.montage_title}</li>
                   <li>{t('diffusion montage type')} : {diffusion.montage_type}</li>
+                  <li>{t('status')} : {diffusion.status}</li>
                   {diffusion.date_started && <li>{t('diffusion date')} {diffusion.date_started}</li>}
                   {/*<li><button onClick={onDelete}>{t('delete diffusion')}</button></li>*/}
                   <li><button onClick={onPrompt}>{t('edit diffusion')}</button></li>
