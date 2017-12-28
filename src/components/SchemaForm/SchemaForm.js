@@ -125,7 +125,6 @@ const makeForm = (totalSchema, model, totalObject, value, level, key, path, onCh
               const activeValue = value || [];
               const addElement = () => {
                 const newElement = defaults(model.items);
-                console.log('default', newElement);
                 const newArray = [...activeValue, newElement];
                 onChange(path, newArray);
               };
