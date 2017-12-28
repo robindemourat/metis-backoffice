@@ -38,6 +38,7 @@ export const UNSET_EDITED_METADATA = 'UNSET_EDITED_METADATA';
 export const UPDATE_DRAFT_EDITOR_STATE = 'UPDATE_DRAFT_EDITOR_STATE';
 export const UPDATE_DRAFT_EDITORS_STATES = 'UPDATE_DRAFT_EDITORS_STATES';
 export const SET_EDITOR_FOCUS = 'SET_EDITOR_FOCUS';
+export const SET_PREVIEW_MODE = 'SET_PREVIEW_MODE';
 
 /*
  * ===========
@@ -110,6 +111,11 @@ export const unsetEditedMetadata = () => ({
   type: UNSET_EDITED_METADATA
 });
 
+export const setPreviewMode = (previewMode) => ({
+  type: SET_PREVIEW_MODE,
+  previewMode
+});
+
 /**
  * Editor
  */
@@ -150,6 +156,7 @@ const UI_DEFAULT_STATE = {
 
   newCompositionPrompted: false,
   editedComposition: undefined,
+  previewMode: 'web'
 };
 /**
  * This redux reducer handles the ui state management (screen & modals opening)
@@ -240,6 +247,12 @@ function ui(state = UI_DEFAULT_STATE, action) {
       return {
         ...state,
         editedMetadata: undefined
+      };
+
+    case SET_PREVIEW_MODE:
+      return {
+        ...state,
+        previewMode: action.previewMode
       };
 
     default:
@@ -390,6 +403,7 @@ export default combineReducers({
 const clientOperation = state => state.ui.clientOperation;
 const clientStatus = state => state.ui.clientStatus;
 const newCompositionPrompted = state => state.ui.newCompositionPrompted;
+const previewMode = state => state.ui.previewMode;
 
 const compositions = state => state.data.compositions;
 const editedComposition = state => state.ui.editedComposition;
@@ -415,4 +429,5 @@ export const selector = createStructuredSelector({
   // editor related
   editorStates,
   editorFocus,
+  previewMode
 });
