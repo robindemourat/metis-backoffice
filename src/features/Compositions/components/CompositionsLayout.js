@@ -1,4 +1,5 @@
 /* eslint react/jsx-no-bind : 0 */
+/* eslint no-alert : 0 */
 /**
  * This module exports a stateless component rendering the layout of the compositions view
  * @module plurishing-backoffice/features/Compositions
@@ -34,7 +35,7 @@ const CompositionsLayout = ({
       {
         compositions.map((composition, index) => {
           const onDelete = () => {
-            if (confirm(t('sure to delete composition ?'))) {/* eslint no-alert : 0 */
+            if (confirm(t('sure to delete composition ?'))) {
               deleteComposition(composition._id);
             }
           };

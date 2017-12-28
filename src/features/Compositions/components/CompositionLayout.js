@@ -25,6 +25,8 @@ const CompositionLayout = ({
   editorStates,
   editorFocus,
 
+  previewMode,
+
   actions: {
     updateComposition,
     // promptNewCompositionForm,
@@ -36,6 +38,7 @@ const CompositionLayout = ({
     updateDraftEditorsStates,
 
     setEditorFocus,
+    setPreviewMode,
   }
 }, {t}) => {
   const onOpenMetadata = () => {
@@ -64,6 +67,41 @@ const CompositionLayout = ({
                 <button onClick={onOpenMetadata}>{t('edit metadata')}</button>
               </li>
             </ul>
+            <ul>
+              {
+                [
+                  {
+                    id: 'web',
+                    label: t('web')
+                  },
+                  {
+                    id: 'pdf',
+                    label: t('pdf')
+                  },
+                  {
+                    id: 'epub-fixed',
+                    label: t('epub-fixed')
+                  },
+                  {
+                    id: 'epub-reflowable',
+                    label: t('epub-reflowable')
+                  }
+                ]
+                .map(option => {
+                  const active = option.id === previewMode;
+                  const onClick = () => {
+                    setPreviewMode(option.id);
+                  };
+                  return (
+                    <li key={option.id}>
+                      <button onClick={onClick}>
+                        {option.label}{active ? ' - active' : ''}
+                      </button>
+                    </li>
+                  );
+                })
+              }
+            </ul>
           </div>
           <div className="body">
             <CompositionEditor
@@ -72,6 +110,8 @@ const CompositionLayout = ({
 
               updateComposition={onUpdateComposition}
               editorStates={editorStates}
+
+              renderingMode={previewMode}
 
               updateDraftEditorState={updateDraftEditorState}
               updateDraftEditorsStates={updateDraftEditorsStates}
