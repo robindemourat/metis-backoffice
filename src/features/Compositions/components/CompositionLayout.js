@@ -27,6 +27,8 @@ const CompositionLayout = ({
 
   previewMode,
 
+  assetRequestState,
+
   actions: {
     updateComposition,
     // promptNewCompositionForm,
@@ -39,6 +41,9 @@ const CompositionLayout = ({
 
     setEditorFocus,
     setPreviewMode,
+
+    promptAssetRequest,
+    unpromptAssetRequest,
   }
 }, {t}) => {
   const onOpenMetadata = () => {
@@ -130,11 +135,10 @@ const CompositionLayout = ({
               deleteContextualization={e => console.log('delete contextualization', e)}
               deleteContextualizer={e => console.log('delete contextualizer', e)}
 
-              requestAsset={e => console.log('request asset', e)}
-              cancelAssetRequest={e => console.log('unprompt aset request', e)}
-              assetRequestState={undefined}
-              assetRequestPosition={undefined}
-              setAssetEmbedType={e => console.log('set asset embed type', e)}
+              requestAsset={promptAssetRequest}
+              cancelAssetRequest={unpromptAssetRequest}
+              assetRequestState={assetRequestState}
+              assetRequestPosition={assetRequestState.selection}
               assetEmbedType={'resources'}
 
               openResourceConfiguration={e => console.log('open resource configuration', e)}

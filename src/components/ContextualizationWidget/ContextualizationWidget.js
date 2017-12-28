@@ -7,20 +7,36 @@
  */
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import {actions as toastrActions} from 'react-redux-toastr';
+// import Select from 'react-select';
 
 import getConfig from '../../helpers/getConfig';
 
-import AsideToggler from '../AsideToggler/AsideToggler';
-
+import * as duck from '../../features/Resources/duck';
 
 import './ContextualizationWidget.scss';
 
 const config = getConfig();
 const {timers} = config;
 
+import {buildOperationToastr} from '../../helpers/toastr';
+
+
 /**
- * ContextualizationWidget class for building react component instances
+ * Redux-decorated component class rendering the ContextualizationWidget component to the app
  */
+@connect(
+  state => ({
+    ...duck.selector(state.resources),
+  }),
+  dispatch => ({
+    actions: bindActionCreators({
+      ...duck,
+    }, dispatch)
+  })
+)
 class ContextualizationWidget extends Component {
 
 
@@ -41,8 +57,17 @@ class ContextualizationWidget extends Component {
     t: PropTypes.func.isRequired,
 
     assetChoiceProps: PropTypes.object,
+
+    /**
+     * Redux store
+     */
+    store: PropTypes.object.isRequired,
   }
 
+  constructor(props, context) {
+    super(props);
+    this.toastr = bindActionCreators(toastrActions, context.store.dispatch);
+  }
 
   /**
    * Initial state
@@ -58,6 +83,12 @@ class ContextualizationWidget extends Component {
      * the currently selected item in the list of available items
      */
     selectedItemIndex: 0,
+  }
+
+  componentWillMount () {
+    if (this.props.resources.length === 0) {
+      this.props.actions.getResources();
+    }
   }
 
 
@@ -80,6 +111,25 @@ class ContextualizationWidget extends Component {
     this.unsubscribe = this.context.emitter.subscribeToAssetChoiceProps((props) => {
       this.setState({...props});
     });
+  }
+
+  componentWillReceiveProps = (nextProps) => {
+    if (this.props.clientStatus !== nextProps.clientStatus && nextProps.clientStatus) {
+      const toastr = buildOperationToastr({
+        operation: nextProps.clientOperation,
+        status: nextProps.clientStatus,
+        translations: {
+          success: this.context.t('success'),
+          requesting: this.context.t('requesting'),
+          error: this.context.t('error')
+        }
+      });
+      this.toastr.add(toastr);
+    }
+  }
+
+  shouldComponentUpdate() {
+    return true;
   }
 
   componentWillUnmount() {
@@ -167,18 +217,20 @@ class ContextualizationWidget extends Component {
    */
   render () {
     const {
-      options = {},
+      // options = {},
       activeMode,
     } = this.state;
     const {
       onAssetChoice,
-      setActiveMode,
+      // setActiveMode,
+      resources,
     } = this.props;
     const {
       t
     } = this.context;
 
-    const activeOptions = options[activeMode] || [];
+    // const activeOptions = options[activeMode] || [];
+    const activeOptions = resources;
 
     const onOptionClick = option => {
       onAssetChoice(option, this.props.contentId, activeMode);
@@ -188,26 +240,6 @@ class ContextualizationWidget extends Component {
     };
     return (
       <div className="plurishing-backoffice-ContextualizationWidget">
-        <AsideToggler
-          options={[
-          {
-            id: 'resources',
-            name: t('widget-pick-resource'),
-            help: t('widget-pick-resource-help'),
-          },
-         /*{
-            id: 'sections',
-            name: t('widget-pick-section'),
-            help: t('widget-pick-section-help'),
-          },}
-          {
-            id: 'figure',
-            name: translate('widget-pick-figure'),
-            help: translate('widget-pick-figure-help'),
-          },*/
-          ]}
-          activeOption={activeMode}
-          setOption={setActiveMode} />
         <form className="search-form" onSubmit={this.onSubmit}>
           <span className="arobase">@</span>
           <input
@@ -225,24 +257,13 @@ class ContextualizationWidget extends Component {
             .filter(option => JSON.stringify(option).toLowerCase().indexOf(this.state.searchTerm.toLowerCase()) > -1)
             .map((option, index) => {
               const onC = () => onOptionClick(option);
-              let optionName;
-              const {
-                data,
-                metadata
-              } = option;
-              if (metadata.type === 'bib') {
-                optionName = data[0] && data[0].title && data[0].title.length ? data[0].title : t('untitled-asset');
-              }
-              else if (metadata.type === 'glossary') {
-                optionName = data.name && data.name.length ? data.name : t('untitled-asset');
-              }
-              else {
-                optionName = metadata.title && metadata.title.length ? metadata.title : t('untitled-asset');
-              }
+              const optionName = option.metadata.name || t('resource without name');
+              const optionType = t(option.metadata.ressource_type);
+
               return (<li
                 className={'choice-option' + (index === this.state.selectedItemIndex ? ' active' : '')}
                 key={index}
-                onClick={onC}>{optionName}</li>
+                onClick={onC}>{optionName} ({optionType})</li>
               );
             })
           }

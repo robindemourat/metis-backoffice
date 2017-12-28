@@ -29,6 +29,10 @@ export const UPDATE_COMPOSITION = 'UPDATE_COMPOSITION';
 export const PROMPT_NEW_COMPOSITION_FORM = 'PROMPT_NEW_COMPOSITION_FORM';
 export const UNPROMPT_NEW_COMPOSITION_FORM = 'UNPROMPT_NEW_COMPOSITION_FORM';
 
+export const PROMPT_ASSET_REQUEST = 'PROMPT_ASSET_REQUEST';
+export const UNPROMPT_ASSET_REQUEST = 'UNPROMPT_ASSET_REQUEST';
+
+
 export const SET_EDITED_COMPOSITION = 'SET_EDITED_COMPOSITION';
 export const UNSET_EDITED_COMPOSITION = 'UNSET_EDITED_COMPOSITION';
 
@@ -119,6 +123,16 @@ export const setPreviewMode = (previewMode) => ({
 /**
  * Editor
  */
+export const promptAssetRequest = (editorId, selection) => ({
+  type: PROMPT_ASSET_REQUEST,
+  editorId,
+  selection
+});
+
+export const unpromptAssetRequest = () => ({
+  type: UNPROMPT_ASSET_REQUEST
+});
+
 export const updateDraftEditorState = (id, editorState) => ({
   type: UPDATE_DRAFT_EDITOR_STATE,
   editorState,
@@ -156,7 +170,7 @@ const UI_DEFAULT_STATE = {
 
   newCompositionPrompted: false,
   editedComposition: undefined,
-  previewMode: 'web'
+  previewMode: 'web',
 };
 /**
  * This redux reducer handles the ui state management (screen & modals opening)
@@ -364,6 +378,66 @@ function editor(state = EDITOR_DEFAULT_STATE, action) {
   }
 }
 
+/**
+ * asset requests are separated as they contain not serializable data
+ */
+const ASSET_REQUEST_DEFAULT_STATE = {
+
+  /**
+   * Id of the editor being prompted for asset (uuid of the section or uuid of the note)
+   */
+  editorId: undefined,
+
+  /**
+   * selection state of the editor being prompted
+   * @type {SelectionState}
+   */
+  selection: undefined,
+
+  /**
+   * Whether an asset is requested
+   */
+  assetRequested: false,
+
+  /**
+   * Interface type of assets to embed
+   */
+  assetEmbedType: 'resources',
+};
+
+/**
+ * Handles the state change of asset request state
+ * @param {object} state - the previous state
+ * @param {object} action - the dispatched action
+ * @return {object} state - the new state
+ */
+const assetRequeststate = (state = ASSET_REQUEST_DEFAULT_STATE, action) => {
+  switch (action.type) {
+    // an asset is prompted
+    case PROMPT_ASSET_REQUEST:
+      return {
+        ...state,
+        // in what editor is the asset prompted
+        editorId: action.editorId,
+        // where is the asset prompted in the editor
+        selection: action.selection,
+        // asset is prompted
+        assetRequested: true,
+      };
+    // assets prompt is dismissed
+    case UNPROMPT_ASSET_REQUEST:
+      return {
+        ...state,
+        editorId: undefined,
+        selection: undefined,
+        assetRequested: false,
+      };
+    default:
+      return state;
+  }
+};
+
+
 /*
  * ===========
  * ===========
@@ -383,6 +457,7 @@ export default combineReducers({
   ui,
   data,
   editor,
+  assetRequeststate
 });
 
 
@@ -413,6 +488,9 @@ const editedMetadata = state => state.ui.editedMetadata;
 const editorStates = state => state.editor.editorStates;
 const editorFocus = state => state.editor.editorFocus;
 
+// asset request related
+const assetRequestState = state => state.assetRequeststate;
+const assetRequested = state => state.assetRequested;
 
 /**
  * The selector is a set of functions for accessing this feature's state
@@ -429,5 +507,8 @@ export const selector = createStructuredSelector({
   // editor related
   editorStates,
   editorFocus,
-  previewMode
+  previewMode,
+
+  assetRequestState,
+  assetRequested,
 });

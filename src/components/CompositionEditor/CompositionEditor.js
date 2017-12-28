@@ -1145,8 +1145,10 @@ class CompositionEditor extends Component {
       // editorFocus,
     } = this.props;
 
-    const editorId = contentId === 'main' ? this.props.compositionId : contentId;
+
+    const editorId = contentId === 'main' ? this.props.composition._id : contentId;
     const selection = inputSelection || editorStates[editorId].getSelection();
+
 
     setEditorFocus(contentId);
     this.editor.focus(contentId);
@@ -1303,7 +1305,7 @@ class CompositionEditor extends Component {
     };
 
     const onEditorChange = (editorId, editor) => {
-      const editorStateId = editorId === 'main' ? compositionId : editorId;
+      const editorStateId = editorId === 'main' ? composition._id : editorId;
       // update active immutable editor state
       updateDraftEditorState(editorStateId, editor);
       // ("debouncily") update serialized content
