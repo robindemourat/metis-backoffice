@@ -157,7 +157,7 @@ class CompositionEditor extends Component {
     /**
      * @todo properly set rendering mode for editor
      */
-    renderingMode: 'web'
+    renderingMode: this.props.previewMode,
     // lang: this.props.lang,
   });
 
@@ -246,7 +246,7 @@ class CompositionEditor extends Component {
    * Executes code after component re-rendered
    */
   componentDidUpdate = (prevProps) => {
-    if (!this.state.locked && this.props.editorStates[this.props.composition.id] !== prevProps.editorStates[this.props.composition.id]) {
+    if (!this.state.locked && this.props.editorStates[this.props.composition._id] !== prevProps.editorStates[this.props.composition._id]) {
       this.debouncedCleanStuffFromEditorInspection(this.props.composition.id);
     }
     // console.timeEnd('editor update time');
@@ -935,10 +935,11 @@ class CompositionEditor extends Component {
   updateNotesFromEditor = (props) => {
     const {
       editorStates,
-      compositionId,
+      // compositionId,
       composition,
       updateComposition,
     } = props;
+    const compositionId = composition._id;
     const {newNotes, notesOrder} = updateNotesFromEditor(editorStates[compositionId], composition.notes);
     const newComposition = composition;
     newComposition.notes = newNotes;
@@ -987,10 +988,13 @@ class CompositionEditor extends Component {
     const {
       editorStates,
       composition,
-      compositionId,
+      // compositionId,
     } = this.props;
 
+    const compositionId = composition._id;
+
     const id = generateId();
+
     // add related entity in main editor
     const mainEditorState = insertNoteInEditor(editorStates[compositionId], id);
     // prepare notes with immutable editorState
@@ -1282,14 +1286,6 @@ class CompositionEditor extends Component {
     /**
      * Callbacks
      */
-    // the following callbacks are not used for now but available
-    // const onAssetClick = () => console.log('on asset click');
-    // const onAssetMouseOver = () => console.log('onAssetMouseOver');
-    // const onAssetMouseOut = () => console.log('onAssetMouseOut');
-
-    // const onNotePointerMouseOver = () => console.log('onNotePointerMouseOver');
-    // const onNotePointerMouseOut = () => console.log('onNotePointerMouseOut');
-    // const onNotePointerMouseClick = () => console.log('onNotePointerMouseClick');
 
     // used callbacks
     const onAssetChoice = (option, contentId) => {
@@ -1517,6 +1513,8 @@ CompositionEditor.propTypes = {
 
 CompositionEditor.childContextTypes = {
   openResourceConfiguration: PropTypes.func,
+
+  renderingMode: PropTypes.string,
   // lang: PropTypes.string,
 };
 
