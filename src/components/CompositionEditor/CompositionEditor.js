@@ -60,8 +60,8 @@ const {
 import defaultStyle from 'raw-loader!./assets/apa.csl';
 import defaultLocale from 'raw-loader!./assets/english-locale.xml';
 
-// import BlockContextualizationContainer from './BlockContextualizationContainer';
-// import InlineContextualizationContainer from './InlineContextualizationContainer';
+import BlockContextualizationContainer from './BlockContextualizationContainer';
+import InlineContextualizationContainer from './InlineContextualizationContainer';
 
 import ContextualizationWidget from '../ContextualizationWidget/ContextualizationWidget';
 
@@ -79,6 +79,7 @@ import Bibliography from './Bibliography';
  */
 const inlineAssetComponents = {
   // bib: InlineCitation,
+  image: InlineContextualizationContainer,
   // glossary: GlossaryMention,
 };
 
@@ -94,7 +95,7 @@ const blockAssetComponents = {
   // 'data-presentation': BlockContextualizationContainer,
   // 'dicto': BlockContextualizationContainer,
   // 'embed': BlockContextualizationContainer,
-  // 'image': BlockContextualizationContainer,
+  image: BlockContextualizationContainer,
   // 'p5': BlockContextualizationContainer,
   // 'table': BlockContextualizationContainer,
   // 'vegalite': BlockContextualizationContainer,
@@ -157,7 +158,7 @@ class CompositionEditor extends Component {
     /**
      * @todo properly set rendering mode for editor
      */
-    renderingMode: this.props.previewMode,
+    renderingMode: this.props.renderingMode,
     // lang: this.props.lang,
   });
 
@@ -292,6 +293,7 @@ class CompositionEditor extends Component {
     return assets;
   }
 
+
   makeCitationData = (props, assets) => {
     const {
       resources,
@@ -316,6 +318,7 @@ class CompositionEditor extends Component {
     // with all assets except glossary
     const citationItems = Object.keys(assets)
       .filter(id =>
+          assets[id].resource &&
           assets[id].resource.metadata.type !== 'glossary' &&
           assets[id].compositionId === composition.id
         )
@@ -1250,6 +1253,7 @@ class CompositionEditor extends Component {
       summonAsset,
       setAssetEmbedType,
       assetEmbedType,
+      renderingMode,
       resources,
     } = props;
 
@@ -1289,13 +1293,15 @@ class CompositionEditor extends Component {
      * Callbacks
      */
 
-    // used callbacks
-    const onAssetChoice = (option, contentId) => {
-      const id = option.metadata.id || option.id;
-      let targetedEditorId = contentId;
-      if (!targetedEditorId) {
-        targetedEditorId = this.props.editorFocus;
-      }
+    const onAssetChoice = (
+      option
+      /*, contentId*/
+    ) => {
+      const id = option._id;
+      // let targetedEditorId = contentId;
+      // if (!targetedEditorId) {
+      const targetedEditorId = this.props.editorFocus;
+      // }
       cancelAssetRequest();
       summonAsset(targetedEditorId, id);
       setTimeout(() => {
@@ -1390,18 +1396,9 @@ class CompositionEditor extends Component {
     };
 
 
-    // define citation style and locales, falling back on defaults if needed
-    const style = /*(settings &&
-                          settings.citationStyle &&
-                          settings.citationStyle.data
-                        )
-                          ||*/ defaultStyle;
-    const locale = /*(
-                          settings &&
-                          settings.citationLocale &&
-                          settings.citationLocale.data
-                        )
-                          ||*/ defaultLocale;
+    // define citation style and locales
+    const style = defaultStyle;
+    const locale = defaultLocale;
 
     return (
       <div className="plurishing-backoffice-CompositionEditor">
@@ -1425,6 +1422,8 @@ class CompositionEditor extends Component {
               focusedEditorId={focusedEditorId}
 
               onEditorChange={onEditorChange}
+
+              renderingMode={renderingMode}
 
               onDrop={onDrop}
               onDragOver={onDragOver}

@@ -3,70 +3,14 @@
  * This module provides a asset preview element component
  * @module plurishing-backoffice/components/AssetPreview
  */
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-
-// import 'peritext-contextualizer-dicto/dist/main.css';
-// import {Media, Player} from 'react-media-player';
-// import ReactTable from 'react-table';
-// import 'react-table/react-table.css';
-
+import shared from 'plurishing-shared';
+const {
+  components: {contextualizers}
+} = shared;
 
 import './AssetPreview.scss';
-
-
-/**
- * EmbedContainer class for building react component instances
- * that wrap an embed/iframe element
- * (it is just aimed at preventing intempestuous reloading of embed code)
- */
-class EmbedContainer extends Component {
-
-  /**
-   * constructor
-   * @param {object} props - properties given to instance at instanciation
-   */
-  constructor(props) {
-    super(props);
-  }
-
-
-  /**
-   * Defines whether the component should re-render
-   * @param {object} nextProps - the props to come
-   * @return {boolean} shouldUpdate - whether to update or not
-   */
-  shouldComponentUpdate(nextProps) {
-    return this.props.html !== nextProps.html;
-  }
-
-
-  /**
-   * Renders the component
-   * @return {ReactElement} component - the component
-   */
-  render() {
-    const {
-      html
-    } = this.props;
-    return (<div
-      dangerouslySetInnerHTML={{
-            __html: html
-          }} />);
-  }
-}
-
-
-/**
- * Component's properties types
- */
-EmbedContainer.propTypes = {
-
-  /**
-   * Raw html code to embed
-   */
-  html: PropTypes.string,
-};
 
 
 /**
@@ -82,10 +26,9 @@ const AssetPreview = ({
   contextualizer,
   metadata = {},
   onEditRequest,
-  previewMode = 'web',
-  showPannel = false
+  showPannel = false,
+  renderingMode
 }, context) => {
-  const contextualizers = context.contextualizers || {};
   const t = context.t;
   const onClick = e => {
     e.stopPropagation();
@@ -100,23 +43,22 @@ const AssetPreview = ({
    * @return {ReactElement} component - appropriate component
    */
   const renderPreview = () => {
-    let ThatComponent;
-    if (previewMode === 'web' && contextualizers[type] && contextualizers[type].BlockDynamic) {
-      ThatComponent = contextualizers[type].BlockDynamic;
-    }
-    else if (previewMode === 'codex' && contextualizers[type] && contextualizers[type].BlockStatic) {
-      ThatComponent = contextualizers[type].BlockStatic;
-    }
-    if (Component) {
+    const lib = contextualizers[type];
+    const ThatComponent = lib.Block;
+    if (ThatComponent) {
       return (<ThatComponent
         resource={resource}
         contextualizer={contextualizer}
-        contextualization={contextualization} />);
+        contextualization={contextualization}
+        renderingMode={renderingMode} />);
     }
   };
+
   return (
     <div className="plurishing-backoffice-AssetPreview">
-      <div className="preview-container">{renderPreview()}</div>
+      <div className="preview-container">
+        {renderPreview()}
+      </div>
       {showPannel && <div onClick={onClick} className="asset-metadata">
         {metadata.title && <h5>{metadata.title}</h5>}
         {metadata.description && <p>{metadata.description}</p>}

@@ -44,7 +44,18 @@ const CompositionLayout = ({
 
     promptAssetRequest,
     unpromptAssetRequest,
-  }
+
+    createContextualization,
+    updateContextualization,
+    deleteContextualization,
+
+    createContextualizer,
+    updateContextualizer,
+    deleteContextualizer,
+
+  },
+  // custom functions
+  summonAsset
 }, {t}) => {
   const onOpenMetadata = () => {
     setEditedMetadata(editedComposition.metadata);
@@ -122,18 +133,17 @@ const CompositionLayout = ({
               updateDraftEditorsStates={updateDraftEditorsStates}
               editorFocus={editorFocus}
 
-              summonAsset={e => console.log('summon asset', e)}
+              summonAsset={summonAsset}
 
-              createContextualization={e => console.log('create contextualization', e)}
-              createContextualizer={e => console.log('create contextualizer', e)}
-              createResource={e => console.log('create resource', e)}
+              createContextualization={createContextualization}
+              createContextualizer={createContextualizer}
 
-              updateContextualizer={e => console.log('update contextualizer', e)}
+              updateContextualizer={updateContextualizer}
               updateResource={e => console.log('update resource', e)}
-              updateContextualization={e => console.log('update contextualization', e)}
+              updateContextualization={updateContextualization}
 
-              deleteContextualization={e => console.log('delete contextualization', e)}
-              deleteContextualizer={e => console.log('delete contextualizer', e)}
+              deleteContextualization={deleteContextualization}
+              deleteContextualizer={deleteContextualizer}
 
               requestAsset={promptAssetRequest}
               cancelAssetRequest={unpromptAssetRequest}

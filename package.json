@@ -33,6 +33,7 @@
     "citation-js": "^0.3.4",
     "codemirror": "^5.30.0",
     "dot-prop": "git+https://github.com/robindemourat/dot-prop.git",
+    "draft-js": "^0.10.4",
     "json-schema-defaults": "^0.3.0",
     "moment": "^2.20.1",
     "oy-vey": "^0.11.0",
@@ -57,7 +58,7 @@
     "redux-auth-wrapper": "^2.0.2",
     "redux-i18n": "^1.1.4",
     "reselect": "^3.0.1",
-    "scholar-draft": "^0.2.6",
+    "scholar-draft": "^0.2.7",
     "uuid": "^3.0.1"
   },
   "devDependencies": {

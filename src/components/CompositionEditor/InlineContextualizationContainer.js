@@ -5,7 +5,10 @@
 
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-
+import shared from 'plurishing-shared';
+const {
+  components: {contextualizers}
+} = shared;
 /**
  * InlineContainer class for building react component instances
  */
@@ -38,13 +41,15 @@ class InlineContainer extends Component {
    * @return {ReactElement} component - the component
    */
   render() {
+
+
     const {
       asset,
+      renderingMode
     } = this.props;
 
     const {
-      startExistingResourceConfiguration,
-      contextualizers = {}
+      startExistingResourceConfiguration
     } = this.context;
 
     const {
@@ -60,10 +65,10 @@ class InlineContainer extends Component {
     };
 
     let ThatComponent;
-    const type = resource.metadata && resource.metadata.type;
+    const type = resource.metadata && resource.metadata.ressource_type;
 
-    if (contextualizers[type] && contextualizers[type].InlineDynamic) {
-      ThatComponent = contextualizers[type].InlineDynamic;
+    if (contextualizers[type] && contextualizers[type].Inline) {
+      ThatComponent = contextualizers[type].Inline;
       return (<ThatComponent
         type={type}
         data={resource.data}
@@ -72,7 +77,8 @@ class InlineContainer extends Component {
         resource={resource}
         contextualization={contextualization}
         contextualizer={contextualizer}
-        showPannel />);
+        showPannel
+        renderingMode={renderingMode} />);
     }
 
     return null;

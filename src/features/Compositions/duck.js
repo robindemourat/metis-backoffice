@@ -44,6 +44,16 @@ export const UPDATE_DRAFT_EDITORS_STATES = 'UPDATE_DRAFT_EDITORS_STATES';
 export const SET_EDITOR_FOCUS = 'SET_EDITOR_FOCUS';
 export const SET_PREVIEW_MODE = 'SET_PREVIEW_MODE';
 
+
+export const CREATE_CONTEXTUALIZER = 'CREATE_CONTEXTUALIZER';
+export const UPDATE_CONTEXTUALIZER = 'UPDATE_CONTEXTUALIZER';
+export const DELETE_CONTEXTUALIZER = 'DELETE_CONTEXTUALIZER';
+
+export const CREATE_CONTEXTUALIZATION = 'CREATE_CONTEXTUALIZATION';
+export const UPDATE_CONTEXTUALIZATION = 'UPDATE_CONTEXTUALIZATION';
+export const DELETE_CONTEXTUALIZATION = 'DELETE_CONTEXTUALIZATION';
+
+
 /*
  * ===========
  * ===========
@@ -149,6 +159,76 @@ export const setEditorFocus = editorFocus => ({
   editorFocus
 });
 
+
+/**
+ * Creates a contextualizer
+ * @param {string} contextualizerId  - id of the contextualizer to update
+ * @param {object} contextualizer  - new contextualizer data
+ * @return {object} action - the redux action to dispatch
+ */
+export const createContextualizer = (contextualizerId, contextualizer) => ({
+  type: CREATE_CONTEXTUALIZER,
+  contextualizerId,
+  contextualizer
+});
+
+/**
+ * Updates a contextualizer
+ * @param {string} contextualizerId  - id of the contextualizer to update
+ * @param {object} contextualizer  - new contextualizer data
+ * @return {object} action - the redux action to dispatch
+ */
+export const updateContextualizer = (contextualizerId, contextualizer) => ({
+  type: UPDATE_CONTEXTUALIZER,
+  contextualizerId,
+  contextualizer
+});
+
+/**
+ * Deletes a contextualizer
+ * @param {string} contextualizerId  - id of the contextualizer to update
+ * @return {object} action - the redux action to dispatch
+ */
+export const deleteContextualizer = (contextualizerId) => ({
+  type: DELETE_CONTEXTUALIZER,
+  contextualizerId
+});
+
+/**
+ * Creates a contextualization
+ * @param {string} contextualizationId  - id of the contextualization to update
+ * @param {object} contextualization  - new contextualization data
+ * @return {object} action - the redux action to dispatch
+ */
+export const createContextualization = (contextualizationId, contextualization) => ({
+  type: CREATE_CONTEXTUALIZATION,
+  contextualizationId,
+  contextualization
+});
+
+/**
+ * Updates a contextualization
+ * @param {string} storyId  - id of the story to update
+ * @param {string} contextualizationId  - id of the contextualization to update
+ * @param {object} contextualization  - new contextualization data
+ * @return {object} action - the redux action to dispatch
+ */
+export const updateContextualization = (contextualizationId, contextualization) => ({
+  type: UPDATE_CONTEXTUALIZATION,
+  contextualizationId,
+  contextualization
+});
+
+/**
+ * Deletes a contextualization
+ * @param {string} contextualizationId  - id of the contextualization to update
+ * @return {object} action - the redux action to dispatch
+ */
+export const deleteContextualization = (contextualizationId) => ({
+  type: DELETE_CONTEXTUALIZATION,
+  contextualizationId
+});
+
 /*
  * ===========
  * ===========
@@ -180,6 +260,9 @@ const UI_DEFAULT_STATE = {
  * @todo automate status messages management in all ui reducers
  */
 function ui(state = UI_DEFAULT_STATE, action) {
+
+  let resourceId;
+  let newState;
   switch (action.type) {
 
     case GET_COMPOSITIONS:
@@ -268,6 +351,78 @@ function ui(state = UI_DEFAULT_STATE, action) {
         ...state,
         previewMode: action.previewMode
       };
+
+    /**
+     * CONTEXTUALIZATION RELATED
+     */
+    case UPDATE_CONTEXTUALIZATION:
+    case CREATE_CONTEXTUALIZATION:
+      const {
+        contextualizationId,
+        contextualization
+      } = action;
+      resourceId = contextualization.resourceId;
+      const existingResources = state.editedComposition.resources;
+      const newResources = existingResources.indexOf(resourceId) > -1 ?
+                              existingResources : existingResources.concat(resourceId);
+
+      return {
+        ...state,
+        editedComposition: {
+          ...state.editedComposition,
+          contextualizations: {
+            ...state.editedComposition.contextualizations,
+            [contextualizationId]: action.contextualization
+          },
+          resources: newResources
+        }
+      };
+    case DELETE_CONTEXTUALIZATION:
+      newState = {...state};
+      const thatContextualization = newState.editedComposition.contextualizations[action.contextualizationId];
+      // fetch resource reference
+      resourceId = thatContextualization.resourceId;
+      // verify that resource is not used by another contextualization
+      const resourceIsUsed = Object.keys(newState.editedComposition.contextualizations)
+                      .filter(id => id !== action.contextualizationId)
+                      .find(thatContextualizationId => {
+                        const cont = newState.editedComposition.contextualizations[thatContextualizationId];
+                        return cont.resourceId === resourceId;
+                      });
+      // delete resource reference if not used by another contextualization
+      if (!resourceIsUsed) {
+        newState.editedComposition.resources = newState.editedComposition.resources.filter(id => id !== resourceId);
+      }
+      // fetch contextualizer reference
+      const contextualizerId = thatContextualization.contextualizerId;
+      // verify that contextualizer is not used by another contextualization
+      const contextualizerIsUsed = Object.keys(newState.editedComposition.contextualizations)
+                      .filter(id => id !== action.contextualizationId)
+                      .find(thatContextualizationId => {
+                        const cont = newState.editedComposition.contextualizations[thatContextualizationId];
+                        return cont.contextualizerId === contextualizerId;
+                      });
+      // delete contextualizer if not used by another contextualization
+      if (!contextualizerIsUsed) {
+        delete newState.editedComposition.contextualizers[contextualizerId];
+      }
+      // delete contextualization reference
+      delete newState.editedComposition.contextualizations[action.contextualizationId];
+      return newState;
+
+    case UPDATE_CONTEXTUALIZER:
+    case CREATE_CONTEXTUALIZER:
+      return {
+        ...state,
+        editedComposition: {
+          ...state.editedComposition,
+          contextualizers: {
+            ...state.editedComposition.contextualizers,
+            [action.contextualizerId]: action.contextualizer
+          }
+        }
+      };
+
 
     default:
       return state;
@@ -384,7 +539,7 @@ function editor(state = EDITOR_DEFAULT_STATE, action) {
 const ASSET_REQUEST_DEFAULT_STATE = {
 
   /**
-   * Id of the editor being prompted for asset (uuid of the section or uuid of the note)
+   * Id of the editor being prompted for asset (uuid of the composition or uuid of the note)
    */
   editorId: undefined,
 

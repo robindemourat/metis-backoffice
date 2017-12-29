@@ -217,10 +217,6 @@ class ContextualizationWidget extends Component {
    */
   render () {
     const {
-      // options = {},
-      activeMode,
-    } = this.state;
-    const {
       onAssetChoice,
       // setActiveMode,
       resources,
@@ -233,7 +229,7 @@ class ContextualizationWidget extends Component {
     const activeOptions = resources;
 
     const onOptionClick = option => {
-      onAssetChoice(option, this.props.contentId, activeMode);
+      onAssetChoice(option, this.props.contentId);
     };
     const bindRef = input => {
       this.input = input;
