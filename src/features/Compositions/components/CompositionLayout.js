@@ -18,6 +18,7 @@ import CompositionEditor from '../../../components/CompositionEditor/Composition
 const CompositionLayout = ({
   schema,
   resources = [],
+  assets = [],
 
   editedComposition,
   editedMetadata,
@@ -63,6 +64,11 @@ const CompositionLayout = ({
   const resourcesMap = resources.reduce((res, resource) => ({
     ...res,
     [resource._id]: resource
+  }), {});
+
+  const assetsMap = assets.reduce((total, asset) => ({
+    ...total,
+    [asset._id]: asset,
   }), {});
 
   const onUpdateComposition = composition => {
@@ -122,6 +128,7 @@ const CompositionLayout = ({
           <div className="body">
             <CompositionEditor
               resources={resourcesMap}
+              assets={assetsMap}
               composition={editedComposition}
 
               updateComposition={onUpdateComposition}

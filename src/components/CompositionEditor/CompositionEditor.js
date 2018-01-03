@@ -159,6 +159,11 @@ class CompositionEditor extends Component {
      * @todo properly set rendering mode for editor
      */
     renderingMode: this.props.renderingMode,
+
+    /**
+     * Map of necessary assets to render contextualizations previews
+     */
+    assets: this.props.assets,
     // lang: this.props.lang,
   });
 
@@ -183,6 +188,9 @@ class CompositionEditor extends Component {
    * @param {object} nextProps - the future properties of the component
    */
   componentWillReceiveProps(nextProps) {
+
+    const nextEditor = nextProps.editorStates[nextProps.composition._id];
+    console.log('will receive selection', nextEditor.getSelection().toJS());
     if (this.props.composition._id !== nextProps.composition._id) {
       const {
         composition
@@ -216,6 +224,9 @@ class CompositionEditor extends Component {
     }
 
     if (this.props.composition.contextualizations !== nextProps.composition.contextualizations) {
+      /**
+       * @todo this state setting causes a bug with editor selection - must investigate
+       */
       const assets = this.makeAssets(nextProps);
       const {
         citationData,
@@ -1314,6 +1325,7 @@ class CompositionEditor extends Component {
       const editorStateId = editorId === 'main' ? composition._id : editorId;
       // update active immutable editor state
       updateDraftEditorState(editorStateId, editor);
+      console.log('update draft editor state', editor && editor.getSelection().toJS());
       // ("debouncily") update serialized content
       updateCompositionRawContentDebounced(editorId, compositionId);
     };
@@ -1399,6 +1411,8 @@ class CompositionEditor extends Component {
     // define citation style and locales
     const style = defaultStyle;
     const locale = defaultLocale;
+
+    // console.log(mainEditorState && mainEditorState.getSelection().toJS());
 
     return (
       <div className="plurishing-backoffice-CompositionEditor">
@@ -1516,6 +1530,8 @@ CompositionEditor.childContextTypes = {
   openResourceConfiguration: PropTypes.func,
 
   renderingMode: PropTypes.string,
+
+  assets: PropTypes.object,
   // lang: PropTypes.string,
 };
 

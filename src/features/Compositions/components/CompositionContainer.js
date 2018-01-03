@@ -15,6 +15,7 @@ import {Composition as schema} from 'plurishing-schemas';
 import CompositionLayout from './CompositionLayout';
 import * as duck from '../duck';
 import * as resourcesDuck from '../../Resources/duck';
+import * as assetsDuck from '../../Assets/duck';
 import {buildOperationToastr} from '../../../helpers/toastr';
 
 import {
@@ -31,10 +32,12 @@ import {
   state => ({
     ...duck.selector(state.compositions),
     ...resourcesDuck.selector(state.resources),
+    ...assetsDuck.selector(state.assets),
   }),
   dispatch => ({
     actions: bindActionCreators({
       ...duck,
+      ...assetsDuck,
     }, dispatch)
   })
 )
@@ -71,6 +74,7 @@ class CompositionContainer extends Component {
         const editedComposition = this.props.compositions.find(thatComposition => thatComposition._id === this.props.params.id);
         this.props.actions.setEditedComposition(editedComposition);
       });
+    this.props.actions.getAssets()
   }
 
   componentWillReceiveProps = (nextProps) => {
