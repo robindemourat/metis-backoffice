@@ -90,9 +90,8 @@ class BlockContainer extends Component {
       },
     } = this;
 
-
     const {
-      resource = {},
+      resource,
       contextualizer,
       ...contextualization
     } = asset;
@@ -173,8 +172,13 @@ class BlockContainer extends Component {
     //     return possible === true;
     //   });
 
+    const preventClick = e => {
+      e.stopPropagation();
+      e.preventDefault();
+    };
+
     return (
-      <div className="plurishing-backoffice-BlockContextualizationContainer">
+      <div className="plurishing-backoffice-BlockContextualizationContainer" onClick={preventClick}>
 
         <AssetPreview
           type={contextualizer.type}

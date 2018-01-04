@@ -24,6 +24,9 @@ import {
   insertBlockContextualization,
 } from '../../../helpers/draftUtils';
 
+import getConfig from '../../../helpers/getConfig';
+const {apiBaseUri} = getConfig();
+
 
 /**
  * Redux-decorated component class rendering the takeaway dialog feature to the app
@@ -74,7 +77,7 @@ class CompositionContainer extends Component {
         const editedComposition = this.props.compositions.find(thatComposition => thatComposition._id === this.props.params.id);
         this.props.actions.setEditedComposition(editedComposition);
       });
-    this.props.actions.getAssets()
+    this.props.actions.getAssets();
   }
 
   componentWillReceiveProps = (nextProps) => {
@@ -211,6 +214,10 @@ class CompositionContainer extends Component {
     });
   }
 
+  getAssetUri = asset => {
+    return `${apiBaseUri}/assets/${asset._id}/${asset.filename}`;
+  }
+
   /**
    * Renders the component
    * @return {ReactElement} component - the component
@@ -220,6 +227,7 @@ class CompositionContainer extends Component {
       <CompositionLayout
         schema={schema}
         summonAsset={this.summonAsset}
+        getAssetUri={this.getAssetUri}
         {...this.props} />
     );
   }

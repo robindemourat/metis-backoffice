@@ -224,6 +224,10 @@ export default combineReducers({
 const clientStatus = state => state.ui.clientStatus;
 const clientOperation = state => state.ui.clientOperation;
 const assets = state => state.data.assets;
+const assetsData = state => state.data.assets.reduce((total, asset) => ({
+  ...total,
+  [asset._id]: asset
+}), {});
 
 /**
  * The selector is a set of functions for accessing this feature's state
@@ -231,6 +235,10 @@ const assets = state => state.data.assets;
  */
 export const selector = createStructuredSelector({
   assets,
+  /**
+   * @todo this is a temporary hack to remove later
+   */
+  assetsData,
   clientStatus,
   clientOperation,
 });

@@ -18,7 +18,8 @@ import CompositionEditor from '../../../components/CompositionEditor/Composition
 const CompositionLayout = ({
   schema,
   resources = [],
-  assets = [],
+  assetsData = {},
+  assets,
 
   editedComposition,
   editedMetadata,
@@ -56,7 +57,8 @@ const CompositionLayout = ({
 
   },
   // custom functions
-  summonAsset
+  summonAsset,
+  getAssetUri,
 }, {t}) => {
   const onOpenMetadata = () => {
     setEditedMetadata(editedComposition.metadata);
@@ -129,6 +131,10 @@ const CompositionLayout = ({
             <CompositionEditor
               resources={resourcesMap}
               assets={assetsMap}
+
+              assetsData={assetsData}
+              getAssetUri={getAssetUri}
+
               composition={editedComposition}
 
               updateComposition={onUpdateComposition}

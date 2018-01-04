@@ -163,8 +163,10 @@ class CompositionEditor extends Component {
     /**
      * Map of necessary assets to render contextualizations previews
      */
-    assets: this.props.assets,
+    assetsData: this.props.assetsData,
     // lang: this.props.lang,
+
+    getAssetUri: this.props.getAssetUri,
   });
 
   /**
@@ -189,8 +191,8 @@ class CompositionEditor extends Component {
    */
   componentWillReceiveProps(nextProps) {
 
-    const nextEditor = nextProps.editorStates[nextProps.composition._id];
-    console.log('will receive selection', nextEditor.getSelection().toJS());
+    // const nextEditor = nextProps.editorStates[nextProps.composition._id];
+    // console.log('will receive selection', nextEditor.getSelection().toJS());
     if (this.props.composition._id !== nextProps.composition._id) {
       const {
         composition
@@ -284,6 +286,7 @@ class CompositionEditor extends Component {
       },
       resources,
     } = props;
+
     /*
      * Resource Assets preparation
      */
@@ -291,15 +294,19 @@ class CompositionEditor extends Component {
     .reduce((ass, id) => {
       const contextualization = contextualizations[id];
       const contextualizer = contextualizers[contextualization.contextualizerId];
-      return {
-        ...ass,
-        [id]: {
-          ...contextualization,
-          resource: resources[contextualization.resourceId],
-          contextualizer,
-          type: contextualizer ? contextualizer.type : INLINE_ASSET
-        }
-      };
+      const resource = resources[contextualization.resourceId];
+      if (resource) {
+        return {
+          ...ass,
+          [id]: {
+            ...contextualization,
+            resource,
+            contextualizer,
+            type: contextualizer ? contextualizer.type : INLINE_ASSET
+          }
+        };
+      }
+      return ass;
     }, {});
     return assets;
   }
@@ -1279,7 +1286,6 @@ class CompositionEditor extends Component {
       return null;
     }
 
-
     const {
       notes: inputNotes
     } = composition;
@@ -1325,7 +1331,7 @@ class CompositionEditor extends Component {
       const editorStateId = editorId === 'main' ? composition._id : editorId;
       // update active immutable editor state
       updateDraftEditorState(editorStateId, editor);
-      console.log('update draft editor state', editor && editor.getSelection().toJS());
+      // console.log('update draft editor state', editor && editor.getSelection().toJS());
       // ("debouncily") update serialized content
       updateCompositionRawContentDebounced(editorId, compositionId);
     };
@@ -1531,8 +1537,10 @@ CompositionEditor.childContextTypes = {
 
   renderingMode: PropTypes.string,
 
-  assets: PropTypes.object,
+  assetsData: PropTypes.object,
   // lang: PropTypes.string,
+
+  getAssetUri: PropTypes.func,
 };
 
 export default CompositionEditor;

@@ -48,10 +48,10 @@ const AssetPreview = ({
     if (ThatComponent) {
       return (
         <ThatComponent
-        resource={resource}
-        contextualizer={contextualizer}
-        contextualization={contextualization}
-        renderingMode={renderingMode} />
+          resource={resource}
+          contextualizer={contextualizer}
+          contextualization={contextualization}
+          renderingMode={renderingMode} />
       );
     }
   };
