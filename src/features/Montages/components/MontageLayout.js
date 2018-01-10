@@ -19,7 +19,8 @@ const MontageLayout = ({
   editedMontage,
   actions: {
     updateMontage,
-  }
+  },
+  getAssetUri
 }, {t}) => {
 
   const onUpdateMontage = montage => {
@@ -50,7 +51,7 @@ const MontageLayout = ({
       </div>
       {editedMontage ? <div>
         <h2>{t('montage preview')}</h2>
-        <MontagePreview montage={editedMontage} />
+        <MontagePreview getAssetUri={getAssetUri} montage={editedMontage} />
       </div> : null}
       <div>
         <h2>{t('related diffusions')}</h2>

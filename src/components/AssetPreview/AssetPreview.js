@@ -10,6 +10,8 @@ const {
   components: {contextualizers}
 } = shared;
 
+import 'react-table/react-table.css';
+
 import './AssetPreview.scss';
 
 

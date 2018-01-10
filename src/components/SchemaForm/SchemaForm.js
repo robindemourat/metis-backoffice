@@ -122,7 +122,7 @@ const makeForm = (totalSchema, model, totalObject, value, level, key, path, onCh
             }
             // array allowing to manage a list of objects (e.g. authors)
             else {
-              const activeValue = value || [];
+              const activeValue = (value && Array.isArray(value)) ? value : [];
               const addElement = () => {
                 const newElement = defaults(model.items);
                 const newArray = [...activeValue, newElement];

@@ -1,9 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import {Media, Player, controls} from 'react-media-player';
+const {PlayPause, MuteUnmute} = controls;
+
+import Table from 'plurishing-shared/dist/components/contextualizers/Table/DynamicTable';
+
 import getConfig from '../../helpers/getConfig';
 const config = getConfig();
 const {apiBaseUri} = config;
+
+import 'react-table/react-table.css';
 
 import './PrimitiveAssetPreview.scss';
 
@@ -21,6 +28,34 @@ const render = asset => {
     case 'image/gif':
       return <img src={assetUrl} />;
 
+    case 'video/mp4':
+    case 'video/x-msvideo':
+    case 'video/mpeg':
+    case 'video/ogg':
+    case 'video/webm':
+    case 'video/3gp':
+    case 'audio/mpeg':
+    case 'audio/mp3':
+      return (
+        <Media>
+          <div className="media">
+            <div className="media-player">
+              <Player src={assetUrl} />
+            </div>
+            <div className="media-controls">
+              <PlayPause />
+              <MuteUnmute />
+            </div>
+          </div>
+        </Media>
+      );
+
+    case 'text/csv':
+    case 'text/tsv':
+      return (
+        <Table
+          src={assetUrl} />
+      );
     default:
       return (
         <div>

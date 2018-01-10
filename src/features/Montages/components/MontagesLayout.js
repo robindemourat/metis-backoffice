@@ -8,10 +8,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import defaults from 'json-schema-defaults';
+import getConfig from '../../../helpers/getConfig';
 
 import './MontagesLayout.scss';
 
 import SchemaForm from '../../../components/SchemaForm/SchemaForm';
+
+const {apiBaseUri} = getConfig();
 
 const MontagesLayout = ({
   schema,
@@ -59,6 +62,9 @@ const MontagesLayout = ({
                 </li>
                 <li>
                   <button onClick={onPrompt}>{t('edit metadata')}</button>
+                </li>
+                <li>
+                  <a href={`${apiBaseUri}montages/${montage._id}`} download>{t('download montage')}</a>
                 </li>
                 <li>
                   <a href={`/montages/${montage._id}`}>{t('edit montage')}</a>

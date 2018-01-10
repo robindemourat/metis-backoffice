@@ -1,8 +1,4 @@
 {
-  "yes": "oui",
-  "no": "no",
-  "preview-in-codex-mode": "preview-in-codex-mode",
-  "preview-in-web-mode": "preview-in-web-mode",
   "composition without name": "composition without name",
   "resource without name": "resource without name",
   "loading": "loading",
@@ -20,5 +16,7 @@
   "deliverables": "deliverables",
   "users": "users",
   "my profile": "my profile",
-  "montage without title": "montage without title"
+  "montage without title": "montage without title",
+  "yes": "oui",
+  "no": "no"
 }

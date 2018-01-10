@@ -41,6 +41,7 @@
     "plurishing-schemas": "git+https://github.com/robindemourat/plurishing-schemas.git",
     "plurishing-shared": "git+https://github.com/robindemourat/plurishing-shared.git",
     "react": "^16.1.1",
+    "react-citeproc": "^0.1.7",
     "react-codemirror2": "^3.0.7",
     "react-color": "^2.13.8",
     "react-datepicker": "^0.64.0",
@@ -58,7 +59,7 @@
     "redux-auth-wrapper": "^2.0.2",
     "redux-i18n": "^1.1.4",
     "reselect": "^3.0.1",
-    "scholar-draft": "^0.2.7",
+    "scholar-draft": "^0.2.9",
     "uuid": "^3.0.1"
   },
   "devDependencies": {

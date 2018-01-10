@@ -20,6 +20,7 @@ import {get, put, post, del} from '../../helpers/client';
  * ===========
  * ===========
  */
+export const GET_ASSET = 'GET_ASSET';
 export const GET_ASSETS = 'GET_ASSETS';
 export const CREATE_ASSET = 'CREATE_ASSET';
 export const UPDATE_ASSET = 'UPDATE_ASSET';
@@ -36,6 +37,12 @@ export const DELETE_ASSET = 'DELETE_ASSET';
  * ===========
  * ===========
  */
+export const getAsset = (id) => ({
+  type: GET_ASSET,
+  promise: () =>
+    get('assets', {id})
+});
+
 export const getAssets = () => ({
   type: GET_ASSETS,
   promise: () =>
@@ -95,6 +102,7 @@ const UI_DEFAULT_STATE = {
 function ui(state = UI_DEFAULT_STATE, action) {
   switch (action.type) {
 
+    case `${GET_ASSET}`:
     case GET_ASSETS:
     case CREATE_ASSET:
     case UPDATE_ASSET:
@@ -105,6 +113,7 @@ function ui(state = UI_DEFAULT_STATE, action) {
         clientOperation: action.type,
       };
 
+    case `${GET_ASSET}_SUCCESS`:
     case `${GET_ASSETS}_SUCCESS`:
     case `${CREATE_ASSET}_SUCCESS`:
     case `${UPDATE_ASSET}_SUCCESS`:
@@ -114,6 +123,7 @@ function ui(state = UI_DEFAULT_STATE, action) {
         clientStatus: 'success',
       };
 
+    case `${GET_ASSET}_FAIL`:
     case `${GET_ASSETS}_FAIL`:
     case `${CREATE_ASSET}_FAIL`:
     case `${UPDATE_ASSET}_FAIL`:
@@ -123,6 +133,7 @@ function ui(state = UI_DEFAULT_STATE, action) {
         clientStatus: 'error',
       };
 
+    case `${GET_ASSET}_RESET`:
     case `${GET_ASSETS}_RESET`:
     case `${UPDATE_ASSET}_RESET`:
     case `${DELETE_ASSET}_RESET`:
@@ -173,6 +184,15 @@ function data(state = DATA_DEFAULT_STATE, action) {
       return {
         ...state,
         assets: action.result.data
+      };
+
+    case `${GET_ASSET}_SUCCESS`:
+      const a = action.result.data;
+      return {
+        ...state,
+        assets: state.assets
+                    .filter(thatAsset => thatAsset._id !== a._id)
+                    .concat(a),
       };
 
     case GET_ASSETS + '_SUCCESS':

@@ -91,16 +91,13 @@ const inlineAssetComponents = {
  */
 const blockAssetComponents = {
   // 'bib': BlockContextualizationContainer,
-  // 'codefiles': BlockContextualizationContainer,
-  // 'data-presentation': BlockContextualizationContainer,
-  // 'dicto': BlockContextualizationContainer,
-  // 'embed': BlockContextualizationContainer,
+  iframe: BlockContextualizationContainer,
   image: BlockContextualizationContainer,
-  // 'p5': BlockContextualizationContainer,
-  // 'table': BlockContextualizationContainer,
-  // 'vegalite': BlockContextualizationContainer,
-  // 'video': BlockContextualizationContainer,
-  // 'webpage': BlockContextualizationContainer,
+  imagesgallery: BlockContextualizationContainer,
+  table: BlockContextualizationContainer,
+  audio: BlockContextualizationContainer,
+  video: BlockContextualizationContainer,
+  mobiliscene: BlockContextualizationContainer,
 };
 
 

@@ -16,6 +16,9 @@ import * as duck from '../duck';
 import * as resourcesDuck from '../../Resources/duck';
 import {buildOperationToastr} from '../../../helpers/toastr';
 
+import getConfig from '../../../helpers/getConfig';
+const {apiBaseUri} = getConfig();
+
 
 /**
  * Redux-decorated component class rendering the takeaway dialog feature to the app
@@ -85,6 +88,11 @@ class MontageContainer extends Component {
     return true;
   }
 
+  getAssetUri = asset => {
+    return `${apiBaseUri}/assets/${asset._id}/${asset.filename}`;
+  }
+
+
   /**
    * Renders the component
    * @return {ReactElement} component - the component
@@ -93,6 +101,7 @@ class MontageContainer extends Component {
     return (
       <MontageLayout
         schema={schema}
+        getAssetUri={this.getAssetUri}
         {...this.props} />
     );
   }

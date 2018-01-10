@@ -8,10 +8,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import defaults from 'json-schema-defaults';
+import getConfig from '../../../helpers/getConfig';
 
 import './CompositionsLayout.scss';
 
 import SchemaForm from '../../../components/SchemaForm/SchemaForm';
+
+const {apiBaseUri} = getConfig();
 
 const CompositionsLayout = ({
   schema,
@@ -53,6 +56,7 @@ const CompositionsLayout = ({
               </h3>
               <button onClick={onDelete}>{t('delete composition')}</button>
               <button onClick={onPrompt}>{t('edit metadata')}</button>
+              <a href={`${apiBaseUri}compositions/${composition._id}`} download>{t('download composition')}</a>
               <a href={`/compositions/${composition._id}`}>{t('edit composition')}</a>
             </li>
           );

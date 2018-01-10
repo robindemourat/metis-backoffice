@@ -1,10 +1,14 @@
 
 
 .plurishing-backoffice-PrimitiveAssetPreview{
-  max-height: 30rem;
+  max-height: 40rem;
   overflow: auto;
 
-  img{
+  position: relative;
+
+  img,
+  .media-player,
+  video{
     max-height: 30rem;
   }
 }

@@ -13,9 +13,12 @@ const config = {
   module: sharedConfig.module,
   node: sharedConfig.node,
   plugins: sharedConfig.plugins
-    .concat(
-      new webpack.optimize.UglifyJsPlugin()
-    )
+    /**
+     * @todo fix uglify bug probably caused by opentype.js lib
+     */
+    // .concat(
+    //   new webpack.optimize.UglifyJsPlugin()
+    // )
     .concat(new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
     }))

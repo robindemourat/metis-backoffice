@@ -171,7 +171,8 @@ export default class DynamicMontagePreview extends Component {
   render() {
     const {
       props: {
-        montage
+        montage,
+        getAssetUri
       },
       state: {
         error,
@@ -182,7 +183,7 @@ export default class DynamicMontagePreview extends Component {
       },
       context: {
         t
-      }
+      },
     } = this;
     if (loading) {
       return (
@@ -204,7 +205,8 @@ export default class DynamicMontagePreview extends Component {
         montage={montage}
         compositions={compositions}
         resources={resources}
-        assets={assets} />
+        assets={assets}
+        getAssetUri={getAssetUri} />
     );
   }
 }
