@@ -9,6 +9,8 @@ import Modal from 'react-modal';
 
 import './ResourcesLayout.scss';
 
+import ResourceDrop from '../../../components/ResourceDrop/ResourceDrop';
+
 import SchemaForm from '../../../components/SchemaForm/SchemaForm';
 
 const ResourcesLayout = ({
@@ -26,7 +28,8 @@ const ResourcesLayout = ({
     unpromptNewResourceForm,
     setEditedResource,
     unsetEditedResource,
-  }
+  },
+  createResources
 }, {t}) => (
   <section className="plurishing-backoffice-Resources">
     <ul>
@@ -48,6 +51,11 @@ const ResourcesLayout = ({
       }
       <li>
         <button onClick={promptNewResourceForm}>{t('new resource')}</button>
+      </li>
+      <li>
+        <ResourceDrop
+          title={t('drop .bib file here to add bibliographical resources')}
+          onDrop={createResources} />
       </li>
     </ul>
     <Modal

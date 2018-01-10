@@ -79,6 +79,11 @@ class ResourcesContainer extends Component {
     return true;
   }
 
+  createResources = resources => {
+    resources.forEach(resource => {
+      this.props.actions.createResource(resource);
+    });
+  }
   /**
    * Renders the component
    * @return {ReactElement} component - the component
@@ -87,6 +92,7 @@ class ResourcesContainer extends Component {
     return (
       <ResourcesLayout
         schema={schema}
+        createResources={this.createResources}
         {...this.props} />
     );
   }

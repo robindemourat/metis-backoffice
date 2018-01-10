@@ -164,6 +164,9 @@ class CompositionEditor extends Component {
     // lang: this.props.lang,
 
     getAssetUri: this.props.getAssetUri,
+
+    citationStyle: defaultStyle,
+    citationLocale: defaultLocale,
   });
 
   /**
@@ -328,6 +331,7 @@ class CompositionEditor extends Component {
     .filter(asset => {
       return asset.type === 'bib' && asset.compositionId === composition.id;
     });
+    // console.log('bib citations', bibContextualizations);
 
     // build citations items data
     // with all assets except glossary
@@ -1538,6 +1542,9 @@ CompositionEditor.childContextTypes = {
   // lang: PropTypes.string,
 
   getAssetUri: PropTypes.func,
+
+  citationStyle: PropTypes.string,
+  citationLocale: PropTypes.string
 };
 
 export default CompositionEditor;
