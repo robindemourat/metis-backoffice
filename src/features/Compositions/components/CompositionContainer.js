@@ -157,20 +157,19 @@ class CompositionContainer extends Component {
     /**
      * @todo in schemas and code rename resource_type to resource_type for consistency
      */
-    const resourceType = resource.metadata.resource_type; 
+    const resourceType = resource.metadata.resource_type;
     /**
      * @todo : consume a schema for attributing default contextualizer to a given resource type
      */
     let contextualizerType;
     // for inline use bib by default
-    if(insertionType === 'inline' && resourceType !== 'bib' && resourceType !== 'webpage') {
+    if (insertionType === 'inline' && resourceType !== 'bib' && resourceType !== 'webpage') {
         contextualizerType = 'bib';
     // for all other contextualization situations use provided contextualizer
-    } else {
+    }
+    else {
       contextualizerType = resource.metadata.resource_type;
     }
-
-    console.log('contextualizer type', contextualizerType);
 
     const contextualizerId = genId();
 

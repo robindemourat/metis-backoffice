@@ -58,6 +58,10 @@ const LoginLayout = ({
             label: t('deliverables')
           },
           {
+            path: '/operations',
+            label: t('operations')
+          },
+          {
             path: '/users',
             label: t('users'),
             condition: user && user.admin === true

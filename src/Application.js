@@ -28,6 +28,8 @@ import Deliverables from './features/Deliverables/components/DeliverablesContain
 
 import Diffusions from './features/Diffusions/components/DiffusionsContainer.js';
 
+import Operations from './features/Operations/components/OperationsContainer.js';
+
 import Users from './features/Users/components/UsersContainer.js';
 import User from './features/Users/components/UserContainer.js';
 import NewUser from './features/Users/components/NewUserContainer.js';
@@ -67,6 +69,8 @@ const Application = ({history}) => (
       <Route path="/montages/:id" component={Montage} />
 
       <Route path="/diffusions" component={Diffusions} />
+
+      <Route path="/operations" component={Operations} />
 
 
       <Route path="/users" component={userIsAdmin(Users)} />
