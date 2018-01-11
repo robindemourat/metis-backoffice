@@ -60,7 +60,7 @@ const AssetPreview = ({
 
   return (
     <div className="plurishing-backoffice-AssetPreview">
-      <div className="preview-container">
+      <div className={`preview-container ${contextualizer.type}`}>
         {renderPreview()}
       </div>
       {showPannel && <div onClick={onClick} className="asset-metadata">

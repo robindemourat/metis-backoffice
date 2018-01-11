@@ -23,7 +23,7 @@ import {
   getSelectedBlocksList
 } from 'draftjs-utils';
 
-import {resourceToCslJSON} from 'peritext-rendering-utils';
+import {resourceToCslJSON} from './utils';
 
 // import CompositionLink from './CompositionLink/CompositionLink';
 // import compositionLinkStrategy from './CompositionLink/strategy';
@@ -78,8 +78,8 @@ import Bibliography from './Bibliography';
  * and we cannot use those provided by contextualizers modules as they must be editable
  */
 const inlineAssetComponents = {
-  // bib: InlineCitation,
-  image: InlineContextualizationContainer,
+  bib: InlineContextualizationContainer,
+  // image: InlineContextualizationContainer,
   // glossary: GlossaryMention,
 };
 
@@ -90,7 +90,7 @@ const inlineAssetComponents = {
  * one level lower
  */
 const blockAssetComponents = {
-  // 'bib': BlockContextualizationContainer,
+  bib: BlockContextualizationContainer,
   iframe: BlockContextualizationContainer,
   image: BlockContextualizationContainer,
   imagesgallery: BlockContextualizationContainer,
@@ -167,6 +167,7 @@ class CompositionEditor extends Component {
 
     citationStyle: defaultStyle,
     citationLocale: defaultLocale,
+    citationItems: this.state.citationItems,
   });
 
   /**
@@ -225,7 +226,11 @@ class CompositionEditor extends Component {
       }, 500);
     }
 
-    if (this.props.composition.contextualizations !== nextProps.composition.contextualizations) {
+    if (
+      this.props.composition.contextualizations !== nextProps.composition.contextualizations ||
+      this.props.composition.contextualizers !== nextProps.composition.contextualizers ||
+      this.props.composition.resources !== nextProps.composition.contextualizers
+    ) {
       /**
        * @todo this state setting causes a bug with editor selection - must investigate
        */
@@ -238,14 +243,6 @@ class CompositionEditor extends Component {
         assets,
         citationData,
         citationItems,
-      });
-    }
-    else if (
-      this.props.composition.contextualizers !== nextProps.composition.contextualizers ||
-      this.props.composition.resources !== nextProps.composition.contextualizers
-      ) {
-      this.setState({
-        assets: this.makeAssets(nextProps)
       });
     }
   }
@@ -327,34 +324,35 @@ class CompositionEditor extends Component {
      */
     // isolate bib contextualizations
     const bibContextualizations = Object.keys(assets)
-    .map(assetKey => assets[assetKey])
-    .filter(asset => {
-      return asset.type === 'bib' && asset.compositionId === composition.id;
-    });
-    // console.log('bib citations', bibContextualizations);
+    .map(assetKey => assets[assetKey]);
+    // .filter(asset => {
+    //   return asset.type === 'bib';
+    // });
 
     // build citations items data
-    // with all assets except glossary
-    const citationItems = Object.keys(assets)
-      .filter(id =>
-          assets[id].resource &&
-          assets[id].resource.metadata.type !== 'glossary' &&
-          assets[id].compositionId === composition.id
-        )
-      .reduce((finalCitations, key1) => {
-        const asset = assets[key1];
-        const citations = resourceToCslJSON(asset.resource);
-        // const citations = bibCit.resource.data;
-        const newCitations = citations.reduce((final2, citation) => {
-          return {
-            ...final2,
-            [citation.id]: citation
-          };
-        }, {});
+    const citationItems = bibContextualizations
+    // const citationItems = Object.keys(assets)
+      // .filter(id =>
+      //     assets[id].resource &&
+      //     assets[id].compositionId === composition.id
+      //   )
+      .reduce((finalCitations, asset) => {
         return {
           ...finalCitations,
-          ...newCitations,
+          [resourceToCslJSON(asset.resource).id]: resourceToCslJSON(asset.resource),
         };
+        // const citations = resourceToCslJSON(asset.resource);
+        // console.log(citations);
+        // const newCitations = citations.reduce((final2, citation) => {
+        //   return {
+        //     ...final2,
+        //     [citation.id]: citation
+        //   };
+        // }, {});
+        // return {
+        //   ...finalCitations,
+        //   ...newCitations,
+        // };
       }, {});
 
     // build citations's citations data
@@ -367,13 +365,20 @@ class CompositionEditor extends Component {
         const resource = resources[contextualization.resourceId];
         return {
           citationID: key1,
-          citationItems: resourceToCslJSON(resource).map(ref => ({
+          citationItems: [{
+            id: resourceToCslJSON(resource).id,
             locator: contextualizer.locator,
             prefix: contextualizer.prefix,
             suffix: contextualizer.suffix,
-            // ...contextualizer,
-            id: ref.id,
-          })),
+          }],
+          // citationItems: resourceToCslJSON(resource).map(ref => ({
+          //   locator: contextualizer.locator,
+          //   prefix: contextualizer.prefix,
+          //   suffix: contextualizer.suffix,
+          //   // ...contextualizer,
+          //   // id: ref.id,
+          //   id: ref.id,
+          // })),
           properties: {
             noteIndex: index + 1
           }
@@ -667,7 +672,6 @@ class CompositionEditor extends Component {
               // if the target note is a "ghost" one
               // (i.e. linked to an old note id), attribute correct id
               if (noteId && newNotes[noteId].oldId) {
-                // console.info('reattributing entity to note id', newNotes[noteId].id);
                 return {
                   ...result,
                   [newNotes[noteId].id]: data.copiedEntities[newNotes[noteId].oldId]
@@ -1544,7 +1548,8 @@ CompositionEditor.childContextTypes = {
   getAssetUri: PropTypes.func,
 
   citationStyle: PropTypes.string,
-  citationLocale: PropTypes.string
+  citationLocale: PropTypes.string,
+  citationItems: PropTypes.object
 };
 
 export default CompositionEditor;

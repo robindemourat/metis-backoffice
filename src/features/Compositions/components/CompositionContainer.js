@@ -165,6 +165,7 @@ class CompositionContainer extends Component {
     const contextualizerType = resourceType;
 
     const contextualizerId = genId();
+
     const contextualizer = {
       id: contextualizerId,
       type: contextualizerType,
