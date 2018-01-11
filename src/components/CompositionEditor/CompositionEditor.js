@@ -79,8 +79,13 @@ import Bibliography from './Bibliography';
  */
 const inlineAssetComponents = {
   bib: InlineContextualizationContainer,
-  // image: InlineContextualizationContainer,
-  // glossary: GlossaryMention,
+  webpage: InlineContextualizationContainer,
+  image: InlineContextualizationContainer,
+  imagesgallery: InlineContextualizationContainer,
+  table: InlineContextualizationContainer,
+  audio: InlineContextualizationContainer,
+  video: InlineContextualizationContainer,
+  mobiliscene: InlineContextualizationContainer,
 };
 
 
@@ -91,7 +96,7 @@ const inlineAssetComponents = {
  */
 const blockAssetComponents = {
   bib: BlockContextualizationContainer,
-  iframe: BlockContextualizationContainer,
+  webpage: BlockContextualizationContainer,
   image: BlockContextualizationContainer,
   imagesgallery: BlockContextualizationContainer,
   table: BlockContextualizationContainer,

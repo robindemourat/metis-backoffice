@@ -37,7 +37,6 @@
     "json-schema-defaults": "^0.3.0",
     "moment": "^2.20.1",
     "oy-vey": "^0.11.0",
-    "peritext-rendering-utils": "0.0.19",
     "plurishing-schemas": "git+https://github.com/robindemourat/plurishing-schemas.git",
     "plurishing-shared": "git+https://github.com/robindemourat/plurishing-shared.git",
     "react": "^16.1.1",

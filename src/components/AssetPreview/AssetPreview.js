@@ -46,8 +46,8 @@ const AssetPreview = ({
    */
   const renderPreview = () => {
     const lib = contextualizers[type];
-    const ThatComponent = lib.Block;
-    if (ThatComponent) {
+    if (lib && lib.Block) {
+      const ThatComponent = lib.Block;
       return (
         <ThatComponent
           resource={resource}
@@ -56,6 +56,7 @@ const AssetPreview = ({
           renderingMode={renderingMode} />
       );
     }
+    return null;
   };
 
   return (

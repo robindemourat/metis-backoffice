@@ -46,7 +46,7 @@ export default class ResourceDrop extends Component {
         // convert to resources
         const resources = csl.map(citation => ({
           metadata: {
-            ressource_type: 'bib',
+            resource_type: 'bib',
             name: citation.title,
             /**
              * @todo when importing bib parse csl-json authors to determine resource creators

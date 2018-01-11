@@ -65,7 +65,7 @@ class InlineContainer extends Component {
     };
 
     let ThatComponent;
-    const type = resource.metadata && resource.metadata.ressource_type;
+    const type = resource.metadata && resource.metadata.resource_type;
 
     if (contextualizers[type] && contextualizers[type].Inline) {
       ThatComponent = contextualizers[type].Inline;

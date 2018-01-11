@@ -2,7 +2,7 @@
 
 export const resourceToCslJSON = resource => {
 
-  const type = resource.metadata.ressource_type;
+  const type = resource.metadata.resource_type;
   let cslType;
   if (type === 'bib') {
     return resource.data;
@@ -14,7 +14,7 @@ export const resourceToCslJSON = resource => {
     case 'data-presentation':
       cslType = 'dataset';
       break;
-    case 'iframe':
+    case 'webpage':
       cslType = 'webpage';
       break;
     case 'table':

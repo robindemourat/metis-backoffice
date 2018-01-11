@@ -254,7 +254,7 @@ class ContextualizationWidget extends Component {
             .map((option, index) => {
               const onC = () => onOptionClick(option);
               const optionName = option.metadata.name || t('resource without name');
-              const optionType = t(option.metadata.ressource_type);
+              const optionType = t(option.metadata.resource_type);
 
               return (<li
                 className={'choice-option' + (index === this.state.selectedItemIndex ? ' active' : '')}

@@ -155,14 +155,22 @@ class CompositionContainer extends Component {
     const insertionType = isInEmptyBlock ? 'block' : 'inline';
 
     /**
-     * @todo in schemas and code rename ressource_type to resource_type for consistency
+     * @todo in schemas and code rename resource_type to resource_type for consistency
      */
-    const resourceType = resource.metadata.ressource_type;
-
+    const resourceType = resource.metadata.resource_type; 
     /**
      * @todo : consume a schema for attributing default contextualizer to a given resource type
      */
-    const contextualizerType = resourceType;
+    let contextualizerType;
+    // for inline use bib by default
+    if(insertionType === 'inline' && resourceType !== 'bib' && resourceType !== 'webpage') {
+        contextualizerType = 'bib';
+    // for all other contextualization situations use provided contextualizer
+    } else {
+      contextualizerType = resource.metadata.resource_type;
+    }
+
+    console.log('contextualizer type', contextualizerType);
 
     const contextualizerId = genId();
 
