@@ -4,14 +4,38 @@ import MicroPublicationPreview from '../MicroPublicationPreview/MicroPublication
 import DynamicMontagePreview from '../DynamicMontagePreview/DynamicMontagePreview';
 import StaticMontagePreview from '../StaticMontagePreview/StaticMontagePreview';
 
-export default ({montage, getAssetUri}) => {
+export default ({
+  assets,
+  resources,
+  compositions,
+  montage, 
+  getAssetUri,
+  citationStyle,
+  citationLocale
+}) => {
   switch (montage.metadata.montage_type) {
     case 'micropublication':
       return <MicroPublicationPreview montage={montage} getAssetUri={getAssetUri} />;
     case 'dynamic':
-      return <DynamicMontagePreview montage={montage} getAssetUri={getAssetUri} />;
+      return <DynamicMontagePreview
+              assets={assets}
+              resources={resources}
+              compositions={compositions}
+              montage={montage} 
+              getAssetUri={getAssetUri} 
+              citationStyle={citationStyle}
+              citationLocale={citationLocale}
+             />;
     case 'static':
-      return <StaticMontagePreview montage={montage} getAssetUri={getAssetUri} />;
+      return <StaticMontagePreview 
+                assets={assets}
+                resources={resources}
+                compositions={compositions}
+                montage={montage} 
+                getAssetUri={getAssetUri} 
+                citationStyle={citationStyle}
+                citationLocale={citationLocale}
+              />;
 
     default:
       return null;

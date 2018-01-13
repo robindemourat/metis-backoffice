@@ -13,7 +13,11 @@ import {Montage as schema} from 'plurishing-schemas';
 
 import MontageLayout from './MontageLayout';
 import * as duck from '../duck';
+
+import * as assetsDuck from '../../Assets/duck';
 import * as resourcesDuck from '../../Resources/duck';
+import * as compositionsDuck from '../../Compositions/duck';
+
 import {buildOperationToastr} from '../../../helpers/toastr';
 
 import getConfig from '../../../helpers/getConfig';
@@ -25,11 +29,16 @@ const {apiBaseUri} = getConfig();
  */
 @connect(
   state => ({
-    ...duck.selector(state.montages),
+    ...assetsDuck.selector(state.assets),
     ...resourcesDuck.selector(state.resources),
+    ...compositionsDuck.selector(state.compositions),
+    ...duck.selector(state.montages),
   }),
   dispatch => ({
     actions: bindActionCreators({
+      ...assetsDuck,
+      ...resourcesDuck,
+      ...compositionsDuck,
       ...duck,
     }, dispatch)
   })
@@ -67,6 +76,14 @@ class MontageContainer extends Component {
         const editedMontage = this.props.montages.find(thatComposition => thatComposition._id === this.props.params.id);
         this.props.actions.setEditedMontage(editedMontage);
       });
+    /**
+     * @todo require data wisely for montage preview
+     * @body for now it loads all assets, compositions, and resources, but it should load
+     * only the ones needed
+     */
+    this.props.actions.getAssets();
+    this.props.actions.getCompositions();
+    this.props.actions.getResources();
   }
 
   componentWillReceiveProps = (nextProps) => {

@@ -170,6 +170,7 @@ class CompositionContainer extends Component {
     else {
       contextualizerType = resource.metadata.resource_type;
     }
+    console.log('contextualizer type', contextualizerType);
 
     const contextualizerId = genId();
 

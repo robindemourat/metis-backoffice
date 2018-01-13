@@ -23,7 +23,8 @@ import {
   getSelectedBlocksList
 } from 'draftjs-utils';
 
-import {resourceToCslJSON} from './utils';
+
+import {resourceToCslJSON} from 'plurishing-shared/dist/utils/assetsUtils';
 
 // import CompositionLink from './CompositionLink/CompositionLink';
 // import compositionLinkStrategy from './CompositionLink/strategy';
@@ -234,7 +235,7 @@ class CompositionEditor extends Component {
     if (
       this.props.composition.contextualizations !== nextProps.composition.contextualizations ||
       this.props.composition.contextualizers !== nextProps.composition.contextualizers ||
-      this.props.composition.resources !== nextProps.composition.contextualizers
+      this.props.composition.resources !== nextProps.composition.resources
     ) {
       /**
        * @todo this state setting causes a bug with editor selection - must investigate

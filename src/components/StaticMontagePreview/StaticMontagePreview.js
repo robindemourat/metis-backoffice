@@ -155,9 +155,9 @@ export default class DynamicMontagePreview extends Component {
     else {
       this.setState({
         loading: false,
-        compositions: this.mapify(availableCompositions, '_id'),
-        resources: this.mapify(availableResources, '_id'),
-        assets: this.mapify(availableAssets, '_id'),
+        compositions: availableCompositions,
+        resources: availableResources,
+        assets: availableAssets,
       });
     }
   }
@@ -173,7 +173,9 @@ export default class DynamicMontagePreview extends Component {
     const {
       props: {
         montage,
-        getAssetUri
+        getAssetUri,
+        citationStyle,
+        citationLocale
       },
       state: {
         loading,
@@ -207,7 +209,11 @@ export default class DynamicMontagePreview extends Component {
         compositions={compositions}
         resources={resources}
         assets={assets}
-        getAssetUri={getAssetUri} />
+        getAssetUri={getAssetUri} 
+        citationStyle={citationStyle}
+        citationLocale={citationLocale}
+        renderingMode="pdf"
+      />
     );
   }
 }

@@ -9,14 +9,6 @@ import PropTypes from 'prop-types';
 import Textarea from 'react-textarea-autosize';
 
 import AssetPreview from '../AssetPreview/AssetPreview';
-// import AsideToggler from '../AsideToggler/AsideToggler';
-// import DropZone from '../DropZone/DropZone';
-// import CodeEditor from '../CodeEditor/CodeEditor';
-
-// import {
-//   fileIsAnImage,
-//   loadImage
-// } from '../../helpers/assetsUtils';
 
 /**
  * BlockContainer class for building react component instances

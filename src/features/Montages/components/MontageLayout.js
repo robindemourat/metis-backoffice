@@ -14,9 +14,18 @@ import SchemaForm from '../../../components/SchemaForm/SchemaForm';
 
 import MontagePreview from '../../../components/MontagePreview/MontagePreview';
 
+
+import citationStyle from 'raw-loader!../assets/apa.csl';
+import citationLocale from 'raw-loader!../assets/english-locale.xml';
+
 const MontageLayout = ({
   schema,
   editedMontage,
+
+  assets,
+  resources,
+  compositions,
+
   actions: {
     updateMontage,
   },
@@ -51,7 +60,15 @@ const MontageLayout = ({
       </div>
       {editedMontage ? <div>
         <h2>{t('montage preview')}</h2>
-        <MontagePreview getAssetUri={getAssetUri} montage={editedMontage} />
+        <MontagePreview 
+          getAssetUri={getAssetUri} 
+          montage={editedMontage} 
+          assets={assets}
+          resources={resources}
+          compositions={compositions}
+          citationStyle={citationStyle}
+          citationLocale={citationLocale}
+        />
       </div> : null}
       <div>
         <h2>{t('related diffusions')}</h2>
