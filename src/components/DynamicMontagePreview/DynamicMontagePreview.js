@@ -170,7 +170,7 @@ export default class DynamicMontagePreview extends Component {
 
   render() {
     const {
-      props: {        
+      props: {
         montage,
         getAssetUri,
         citationStyle,
@@ -208,11 +208,10 @@ export default class DynamicMontagePreview extends Component {
         compositions={compositions}
         resources={resources}
         assets={assets}
-        getAssetUri={getAssetUri} 
+        getAssetUri={getAssetUri}
         citationStyle={citationStyle}
         citationLocale={citationLocale}
-        renderingMode="web"
-      />
+        renderingMode="web" />
     );
   }
 }

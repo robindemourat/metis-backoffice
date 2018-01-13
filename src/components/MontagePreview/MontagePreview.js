@@ -8,7 +8,7 @@ export default ({
   assets,
   resources,
   compositions,
-  montage, 
+  montage,
   getAssetUri,
   citationStyle,
   citationLocale
@@ -17,25 +17,23 @@ export default ({
     case 'micropublication':
       return <MicroPublicationPreview montage={montage} getAssetUri={getAssetUri} />;
     case 'dynamic':
-      return <DynamicMontagePreview
-              assets={assets}
-              resources={resources}
-              compositions={compositions}
-              montage={montage} 
-              getAssetUri={getAssetUri} 
-              citationStyle={citationStyle}
-              citationLocale={citationLocale}
-             />;
+      return (<DynamicMontagePreview
+        assets={assets}
+        resources={resources}
+        compositions={compositions}
+        montage={montage}
+        getAssetUri={getAssetUri}
+        citationStyle={citationStyle}
+        citationLocale={citationLocale} />);
     case 'static':
-      return <StaticMontagePreview 
-                assets={assets}
-                resources={resources}
-                compositions={compositions}
-                montage={montage} 
-                getAssetUri={getAssetUri} 
-                citationStyle={citationStyle}
-                citationLocale={citationLocale}
-              />;
+      return (<StaticMontagePreview
+        assets={assets}
+        resources={resources}
+        compositions={compositions}
+        montage={montage}
+        getAssetUri={getAssetUri}
+        citationStyle={citationStyle}
+        citationLocale={citationLocale} />);
 
     default:
       return null;

@@ -209,11 +209,10 @@ export default class DynamicMontagePreview extends Component {
         compositions={compositions}
         resources={resources}
         assets={assets}
-        getAssetUri={getAssetUri} 
+        getAssetUri={getAssetUri}
         citationStyle={citationStyle}
         citationLocale={citationLocale}
-        renderingMode="pdf"
-      />
+        renderingMode="pdf" />
     );
   }
 }
