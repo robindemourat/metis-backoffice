@@ -9,8 +9,8 @@ import {Form, Text} from 'react-form';
 
 const ChangePasswordLayout = ({
   user,
-  clientStatus,
-  clientOperation,
+  // clientStatus,
+  // clientOperation,
 
   actions: {
     changePassword
@@ -30,19 +30,28 @@ const ChangePasswordLayout = ({
     }
   };
   return (
-    <section>
-      <div>
-        {clientOperation} - {clientStatus}
-      </div>
+    <section className="container is-fluid">
+      <h1 className="title is-1">{t('Change my password')}</h1>
       <Form onSubmit={onSubmit}>
         { formApi => (
-          <form onSubmit={formApi.submitForm} id="form1">
-            <label htmlFor="newpassword">{t('new password')}</label>
-            <Text field="newpassword" id="newpassword" type="password" />
-
-            <label htmlFor="newpasswordconfirm">{t('confirm new password')}</label>
-            <Text field="newpasswordconfirm" id="newpasswordconfirm" type="password" />
-            <button type="submit">{t('submit new password')}</button>
+          <form onSubmit={formApi.submitForm} id="form1" className="section">
+            <div className="field">
+              <label htmlFor="newpassword" className="label">{t('new password')}</label>
+              <div className="control">
+                <Text
+                  className="input" field="newpassword" id="newpassword"
+                  type="password" />
+              </div>
+            </div>
+            <div className="field">
+              <label htmlFor="newpasswordconfirm" className="label">{t('confirm new password')}</label>
+              <div className="control">
+                <Text
+                  className="input" field="newpasswordconfirm" id="newpasswordconfirm"
+                  type="password" />
+              </div>
+            </div>
+            <button className="button is-primary" type="submit">{t('submit new password')}</button>
           </form>
     )}
       </Form>

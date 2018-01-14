@@ -14,5 +14,17 @@
 
 .plurishing-backoffice-Montage
 {
-  
+  height: 100%;
+  overflow: hidden;
+  .column{
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    overflow: hidden;
+    .column-content{
+      flex: 1;
+      overflow: auto;
+    }
+  }
 }

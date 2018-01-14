@@ -18,24 +18,36 @@ const UsersLayout = ({
     deleteUser,
   },
 }, {t}) => (
-  <section className="backoffice-Users">
+  <section className="backoffice-Users container is-fluid">
+    <h1 className="title is-1">{t('Users')}</h1>
     <ul>
+      <li>
+        <a className="button is-primary is-fullwidth" href="new-user">{t('new user')}</a>
+      </li>
       {
         users.map((user, index) => {
           const onDelete = () => deleteUser(user._id);
           return (
-            <li key={index}>
-              <p><a href={`users/${user._id}`}>{user.name}</a></p>
-              <p>{user.email}</p>
-              <p>Admin : {user.admin ? 'oui' : 'non'}</p>
-              {user._id !== ownUser._id && <button onClick={onDelete}>{t('delete user')}</button>}
+            <li key={index} className="box">
+              <article className="media">
+                <div className="media-left">
+                  <figure className="image is-64x64">
+                    <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image" />
+                  </figure>
+                </div>
+                <div className="media-content">
+                  <div className="content">
+                    <p className="title"><a href={`users/${user._id}`}>{user.name}</a></p>
+                    <p>{t('email')} : {user.email}</p>
+                    <p>Admin : {user.admin ? 'oui' : 'non'}</p>
+                    {user._id !== ownUser._id && <button onClick={onDelete}>{t('delete user')}</button>}
+                  </div>
+                </div>
+              </article>
             </li>
           );
         })
       }
-      <li>
-        <a href="new-user">{t('new user')}</a>
-      </li>
     </ul>
   </section>
 );

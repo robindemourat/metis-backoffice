@@ -10,7 +10,7 @@
 
 .plurishing-backoffice-Layout{
   display: flex;
-  flex-flow: row;
+  flex-flow: column nowrap;
   justify-contents: spread;
 
   overflow: hidden;
@@ -21,8 +21,30 @@
   height: 100%;
 
   > nav{
-    flex: 1;
     overflow: hidden;
+    background: rgba(0,0,0,0.05);
+    li{
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: stretch;
+      align-items: stretch;
+      a{
+        flex: 1;
+      }
+    }
+    .navbar-brand,
+    .navbar-brand h1{
+      flex-flow: column nowrap;
+      justify-content: stretch;
+      align-items: stretch;
+      h1{
+        margin: 0;
+        flex: 1;
+        a{
+          flex: 1;
+        }
+      }
+    }
   }
 
   > section{

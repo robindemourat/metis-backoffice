@@ -29,12 +29,16 @@ const CompositionsLayout = ({
     updateComposition,
     promptNewCompositionForm,
     unpromptNewCompositionForm,
-    setEditedComposition,
+    // setEditedComposition,
     unsetEditedComposition,
   }
 }, {t}) => (
-  <section className="plurishing-backoffice-Compositions">
-    <ul>
+  <section className="plurishing-backoffice-Compositions container is-fluid">
+    <h1 className="title is-1">{t('Compositions')}</h1>
+    <ul className="section">
+      <li>
+        <button className="button is-primary is-fullwidth" onClick={promptNewCompositionForm}>{t('new composition')}</button>
+      </li>
       {
         compositions.map((composition, index) => {
           const onDelete = () => {
@@ -43,28 +47,35 @@ const CompositionsLayout = ({
             }
           };
           // const onUpdate = newComposition => updateComposition(composition._id, newComposition);
-          const onPrompt = () => {
+          /*const onPrompt = () => {
             setEditedComposition(composition);
-          };
+          };*/
           return (
             <li
-              key={index}>
-              <h3>
-                <a href={`/compositions/${composition._id}`}>
-                  {composition.metadata.title || t('composition without title')}
-                </a>
-              </h3>
-              <button onClick={onDelete}>{t('delete composition')}</button>
-              <button onClick={onPrompt}>{t('edit metadata')}</button>
-              <a href={`${apiBaseUri}compositions/${composition._id}`} download>{t('download composition')}</a>
-              <a href={`/compositions/${composition._id}`}>{t('edit composition')}</a>
+              key={index}
+              className="box">
+              <article className="media">
+
+                <div className="media-content">
+                  <h3 className="title is-4">
+                    <a href={`/compositions/${composition._id}`}>
+                      {composition.metadata.title || t('composition without title')}
+                    </a>
+                  </h3>
+                  <div>
+                    <a className="button is-success" href={`/compositions/${composition._id}`}>{t('edit composition')}</a>
+                    <a className="button is-link" href={`${apiBaseUri}compositions/${composition._id}`} download>{t('download composition')}</a>
+                    {/*<button className="button is-success" onClick={onPrompt}>{t('edit metadata')}</button>*/}
+                    <button className="button is-danger" onClick={onDelete}>
+                      {t('delete composition')}
+                    </button>
+                  </div>
+                </div>
+              </article>
             </li>
           );
         })
       }
-      <li>
-        <button onClick={promptNewCompositionForm}>{t('new composition')}</button>
-      </li>
     </ul>
     <Modal
       isOpen={newCompositionPrompted}

@@ -9,7 +9,7 @@ import * as duck from '../../features/Assets/duck';
 
 import AssetPreview from '../PrimitiveAssetPreview/PrimitiveAssetPreview';
 
-import Dropzone from 'react-dropzone';
+import DropZone from '../DropZone/DropZone';
 
 import {buildOperationToastr} from '../../helpers/toastr';
 
@@ -129,17 +129,21 @@ class AssetWidget extends Component {
         label: asset.filename
       }));
       return (
-        <div>
-          <Select
-            options={options}
-            value={value}
-            clearable={false}
-            onChange={e => onChange(e && e.value)} />
-          <Dropzone onDrop={this.onDrop}>
-            Add new asset
-          </Dropzone>
-          <AssetPreview
-            asset={assets && assets.find(asset => asset._id === value)} />
+        <div className="columns">
+          <div className="column">
+            <Select
+              options={options}
+              value={value}
+              clearable={false}
+              onChange={e => onChange(e && e.value)} />
+            <DropZone onDrop={this.onDrop}>
+              Add new asset
+            </DropZone>
+          </div>
+          <div className="column">
+            <AssetPreview
+              asset={assets && assets.find(asset => asset._id === value)} />
+          </div>
         </div>
       );
     }

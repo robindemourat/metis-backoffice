@@ -30,6 +30,7 @@
   "dependencies": {
     "ajv": "^5.5.2",
     "axios": "^0.17.1",
+    "bulma": "^0.6.2",
     "citation-js": "^0.3.4",
     "codemirror": "^5.30.0",
     "dot-prop": "git+https://github.com/robindemourat/dot-prop.git",
@@ -40,7 +41,7 @@
     "plurishing-schemas": "git+https://github.com/robindemourat/plurishing-schemas.git",
     "plurishing-shared": "git+https://github.com/robindemourat/plurishing-shared.git",
     "react": "^16.1.1",
-    "react-citeproc": "^0.1.7",
+    "react-citeproc": "^0.1.9",
     "react-codemirror2": "^3.0.7",
     "react-color": "^2.13.8",
     "react-datepicker": "^0.64.0",

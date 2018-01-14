@@ -1,4 +1,5 @@
 /* eslint react/jsx-no-bind : 0 */
+/* eslint no-alert : 0 */
 /**
  * This module exports a stateless component rendering the layout of the operations view
  * @module plurishing-backoffice/features/Operations
@@ -22,7 +23,7 @@ const OperationsLayout = ({
 }, {t}) => {
 
   const onDelete = () => {
-    if (confirm(t('Are you sure you want to delete all data ?'))) {/* eslint no-alert : 0 */
+    if (confirm(t('Are you sure you want to delete all data ?'))) {
       deleteAllData();
     }
   };
@@ -36,26 +37,27 @@ const OperationsLayout = ({
     }
   };
   return (
-    <section className="plurishing-backoffice-Operations">
-      <section>
-        <h3>{t('download all data (dump)')}</h3>
+    <section className="plurishing-backoffice-Operations container is-fluid">
+      <h1 className="title is-1">{t('Operations')}</h1>
+      <section className="section">
+        <h3 className="title is-2">{t('Download all data from a dump archive')}</h3>
         <div>
-          <a target="blank" href={dumpUrl}>{t('download all data (dump)')}</a>
+          <a className="button is-primary" target="blank" href={dumpUrl}>{t('download all data (dump)')}</a>
         </div>
       </section>
-      <section>
-        <h3>{t('upload new data from dump')}</h3>
+      <section className="section">
+        <h3 className="title is-2">{t('Upload new data from dump')}</h3>
         <div>
           <DropZone
             onDrop={onDrop}>
-            <p>{t('drop here a zip file previously downloaded on this page')}</p>
+            <p>{t('Drop here a zip file previously downloaded on this page')}</p>
           </DropZone>
         </div>
       </section>
-      <section>
-        <h3>{t('delete all data (clear all database except users)')}</h3>
+      <section className="section">
+        <h3 className="title is-2">{t('Delete all data (it will clear all database except users)')}</h3>
         <div>
-          <button onClick={onDelete}>{t('delete all data')}</button>
+          <button className="button is-danger" onClick={onDelete}>{t('delete all data')}</button>
         </div>
       </section>
     </section>

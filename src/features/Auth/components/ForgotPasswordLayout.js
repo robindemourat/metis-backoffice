@@ -19,21 +19,29 @@ const ForgotPasswordLayout = ({
     requestPasswordReset(values.email);
   };
   return (
-    <section>
-      <h1>{t('you forgot your password')}</h1>
-      <p>
-        {t('please submit your email and a reset link will be sent to you')}
-      </p>
-      <p>{clientOperation} - {clientStatus}</p>
-      <Form onSubmit={onSubmit}>
-        { formApi => (
-          <form onSubmit={formApi.submitForm} id="form1">
-            <label htmlFor="email">{t('your email')}</label>
-            <Text field="email" id="email" type="email" />
-            <button type="submit">{t('send email reset request')}</button>
-          </form>
-    )}
-      </Form>
+    <section className="container is-fluid">
+      <section className="section">
+        <h1 className="title is-1">{t('You forgot your password ! no worries ;)')}</h1>
+        <p>
+          {t('Please submit your email and a reset link will be sent to you !')}
+        </p>
+        <p>{clientOperation} - {clientStatus}</p>
+        <Form onSubmit={onSubmit}>
+          { formApi => (
+            <form onSubmit={formApi.submitForm} id="form1">
+              <div className="field">
+                <label htmlFor="email" className="label">{t('your email')}</label>
+                <div className="control">
+                  <Text
+                    className="input" field="email" id="email"
+                    type="email" />
+                </div>
+              </div>
+              <button className="button is-primary" type="submit">{t('send email reset request')}</button>
+            </form>
+      )}
+        </Form>
+      </section>
     </section>
 );
 };

@@ -79,98 +79,97 @@ const CompositionLayout = ({
 
   return (
     <section className="plurishing-backoffice-Composition">
-      <ResourcesContainer />
-      {editedComposition ?
-        <section className="composition-editor-wrapper">
-          <div className="header">
-            <h1>
-              <button onClick={onOpenMetadata}>{editedComposition.metadata.title}</button>
-            </h1>
-            <ul>
-              <li>
-                <button onClick={onOpenMetadata}>{t('edit metadata')}</button>
-              </li>
-            </ul>
-            <ul>
-              {
-                [
-                  {
-                    id: 'web',
-                    label: t('web')
-                  },
-                  {
-                    id: 'pdf',
-                    label: t('pdf')
-                  },
-                  {
-                    id: 'epub-fixed',
-                    label: t('epub-fixed')
-                  },
-                  {
-                    id: 'epub-reflowable',
-                    label: t('epub-reflowable')
-                  }
-                ]
-                .map(option => {
-                  const active = option.id === previewMode;
-                  const onClick = () => {
-                    setPreviewMode(option.id);
-                  };
-                  return (
-                    <li key={option.id}>
-                      <button onClick={onClick}>
-                        {option.label}{active ? ' - active' : ''}
-                      </button>
-                    </li>
-                  );
-                })
-              }
-            </ul>
-          </div>
-          <div className="body">
-            <CompositionEditor
-              resources={resourcesMap}
-              assets={assetsMap}
+      <aside className="column is-one-quarter aside-picker">
+        <ResourcesContainer />
+      </aside>
+      <section className="column is-three-quarter">
+        {editedComposition ?
+          <section className="composition-editor-wrapper">
+            <div className="header">
+              <h1 className="title is-1">
+                <button onClick={onOpenMetadata}>{editedComposition.metadata.title}</button>
+              </h1>
+              <ul className="columns">
+                {
+                  [
+                    {
+                      id: 'web',
+                      label: t('web')
+                    },
+                    {
+                      id: 'pdf',
+                      label: t('pdf')
+                    },
+                    {
+                      id: 'epub-fixed',
+                      label: t('epub-fixed')
+                    },
+                    {
+                      id: 'epub-reflowable',
+                      label: t('epub-reflowable')
+                    }
+                  ]
+                  .map(option => {
+                    const active = option.id === previewMode;
+                    const onClick = () => {
+                      setPreviewMode(option.id);
+                    };
+                    return (
+                      <li key={option.id} className={'column'}>
+                        <button className={`button is-fullwidth is-primary ${active ? 'is-active' : ''}`} onClick={onClick}>
+                          {option.label}
+                        </button>
+                      </li>
+                    );
+                  })
+                }
+              </ul>
+            </div>
+            <div className="body">
+              <CompositionEditor
+                resources={resourcesMap}
+                assets={assetsMap}
 
-              assetsData={assetsData}
-              getAssetUri={getAssetUri}
+                assetsData={assetsData}
+                getAssetUri={getAssetUri}
 
-              composition={editedComposition}
+                composition={editedComposition}
 
-              updateComposition={onUpdateComposition}
-              editorStates={editorStates}
+                updateComposition={onUpdateComposition}
+                editorStates={editorStates}
 
-              renderingMode={previewMode}
+                renderingMode={previewMode}
 
-              updateDraftEditorState={updateDraftEditorState}
-              updateDraftEditorsStates={updateDraftEditorsStates}
-              editorFocus={editorFocus}
+                updateDraftEditorState={updateDraftEditorState}
+                updateDraftEditorsStates={updateDraftEditorsStates}
+                editorFocus={editorFocus}
 
-              summonAsset={summonAsset}
+                summonAsset={summonAsset}
 
-              createContextualization={createContextualization}
-              createContextualizer={createContextualizer}
+                createContextualization={createContextualization}
+                createContextualizer={createContextualizer}
 
-              updateContextualizer={updateContextualizer}
-              updateResource={e => console.log('update resource', e)}
-              updateContextualization={updateContextualization}
+                updateContextualizer={updateContextualizer}
+                updateResource={e => console.log('update resource', e)}
+                updateContextualization={updateContextualization}
 
-              deleteContextualization={deleteContextualization}
-              deleteContextualizer={deleteContextualizer}
+                deleteContextualization={deleteContextualization}
+                deleteContextualizer={deleteContextualizer}
 
-              requestAsset={promptAssetRequest}
-              cancelAssetRequest={unpromptAssetRequest}
-              assetRequestState={assetRequestState}
-              assetRequestPosition={assetRequestState.selection}
-              assetEmbedType={'resources'}
+                requestAsset={promptAssetRequest}
+                cancelAssetRequest={unpromptAssetRequest}
+                assetRequestState={assetRequestState}
+                assetRequestPosition={assetRequestState.selection}
+                assetEmbedType={'resources'}
 
-              openResourceConfiguration={e => console.log('open resource configuration', e)}
+                openResourceConfiguration={e => console.log('open resource configuration', e)}
 
-              setEditorFocus={setEditorFocus} />
-          </div>
-        </section>
-      : t('loading')
-      }
+                setEditorFocus={setEditorFocus} />
+            </div>
+          </section>
+        : t('loading')
+        }
+      </section>
 
       <Modal
         isOpen={editedMetadata !== undefined}
@@ -178,7 +177,7 @@ const CompositionLayout = ({
         contentLabel="Modal"
         ariaHideApp={false}>
         <SchemaForm
-          title={t('edit composition')}
+          title={t('Edit composition')}
           schema={schema.properties.metadata}
           document={editedMetadata}
           onSubmit={metadata => {

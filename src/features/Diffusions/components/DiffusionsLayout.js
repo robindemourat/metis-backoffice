@@ -43,16 +43,39 @@ class DiffusionCartel extends Component {
         onPrompt
       }
     } = this;
+    let statusClass;
+    switch (diffusion.status) {
+      case 'success':
+        statusClass = 'is-success';
+        break;
+      case 'processing':
+        statusClass = 'is-info';
+        break;
+      default:
+        statusClass = 'is-danger';
+        break;
+    }
     return (
-      <li>
-        <ul>
-          <li>{t('diffusion of montage')} : {diffusion.montage_title}</li>
-          <li>{t('diffusion montage type')} : {diffusion.montage_type}</li>
-          <li>{t('status')} : {diffusion.status}</li>
-          {diffusion.date_started && <li>{t('diffusion date')} {diffusion.date_started}</li>}
-          {/*<li><button onClick={onDelete}>{t('delete diffusion')}</button></li>*/}
-          <li><button onClick={onPrompt}>{t('edit diffusion')}</button></li>
-        </ul>
+      <li className="box">
+        <article className="media">
+          <div className="media-left">
+            <span className="tag">
+              {diffusion.montage_type}
+            </span>
+            {/*<figure className="image is-64x64">
+              <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image" />
+            </figure>*/}
+          </div>
+          <div className="media-content">
+            <ul>
+              <li className="title is-4">{t('diffusion of montage')} : {diffusion.montage_title}</li>
+              <li>{t('status')} : <span className={`tag ${statusClass}`}>{diffusion.status}</span></li>
+              {diffusion.date_started && <li>{t('diffusion date')} {diffusion.date_started}</li>}
+              {/*<li><button onClick={onDelete}>{t('delete diffusion')}</button></li>*/}
+              <li><button className="button is-primary" onClick={onPrompt}>{t('edit diffusion')}</button></li>
+            </ul>
+          </div>
+        </article>
       </li>
     );
   }
@@ -84,8 +107,12 @@ const DiffusionsLayout = ({
     promptNewDiffusionForm(montageId, montageType);
   };
   return (
-    <section className="plurishing-backoffice-Diffusions">
-      <ul>
+    <section className="plurishing-backoffice-Diffusions container is-fluid">
+      <h1 className="title is-1">{t('Diffusions')}</h1>
+      <ul className="section">
+        <li>
+          <button className="button is-primary is-fullwidth" onClick={onPromptNewDiffusionForm}>{t('new diffusion')}</button>
+        </li>
         {
           diffusions.map((diffusion, index) => {
           /*const onDelete = () => deleteDiffusion(diffusion._id);*/
@@ -101,9 +128,6 @@ const DiffusionsLayout = ({
             );
           })
         }
-        <li>
-          <button onClick={onPromptNewDiffusionForm}>{t('new diffusion')}</button>
-        </li>
       </ul>
       <Modal
         isOpen={newDiffusionPrompted}

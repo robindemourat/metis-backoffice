@@ -37,43 +37,44 @@ const MontageLayout = ({
   };
 
   return (
-    <section className="plurishing-backoffice-Montage">
-      <div>
-        <h2>{t('montage edition')}</h2>
-        {editedMontage ?
-          <section className="montage-editor-wrapper">
-            <div className="header">
-              <h1>
-                {editedMontage.metadata.title}
-              </h1>
-            </div>
-            <div className="body">
-              <SchemaForm
-                title={t('edit montage')}
-                schema={schema}
-                document={editedMontage}
-                onSubmit={onUpdateMontage} />
-            </div>
-          </section>
-      : t('loading')
-      }
+    <section className="plurishing-backoffice-Montage columns">
+      <div className="column">
+        <h2 className="title is-3">{t('montage edition')}</h2>
+        <div className="column-content">
+          {editedMontage ?
+            <section className="montage-editor-wrapper">
+              <div className="body">
+                <SchemaForm
+                  schema={schema}
+                  document={editedMontage}
+                  onSubmit={onUpdateMontage} />
+              </div>
+            </section>
+          : t('loading')
+          }
+        </div>
       </div>
-      {editedMontage ? <div>
-        <h2>{t('montage preview')}</h2>
-        <MontagePreview
-          getAssetUri={getAssetUri}
-          montage={editedMontage}
-          assets={assets}
-          resources={resources}
-          compositions={compositions}
-          citationStyle={citationStyle}
-          citationLocale={citationLocale} />
-      </div> : null}
-      <div>
-        <h2>{t('related diffusions')}</h2>
-        <DiffusionsContainer
-          montageId={editedMontage && editedMontage._id}
-          montageType={editedMontage && editedMontage.metadata.montage_type} />
+      {editedMontage ?
+        <div className="column">
+          <h2 className="title is-3">{t('montage preview')}</h2>
+          <div className="column-content">
+            <MontagePreview
+              getAssetUri={getAssetUri}
+              montage={editedMontage}
+              assets={assets}
+              resources={resources}
+              compositions={compositions}
+              citationStyle={citationStyle}
+              citationLocale={citationLocale} />
+          </div>
+        </div> : null}
+      <div className="column aside-picker">
+        <h2 className="title is-3">{t('related diffusions')}</h2>
+        <div className="column-content">
+          <DiffusionsContainer
+            montageId={editedMontage && editedMontage._id}
+            montageType={editedMontage && editedMontage.metadata.montage_type} />
+        </div>
       </div>
     </section>
 );

@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import {Media, Player, controls} from 'react-media-player';
 const {PlayPause, MuteUnmute} = controls;
@@ -67,11 +67,10 @@ const render = asset => {
 
 const AssetPreview = ({
   asset
-}, {t}) => {
+}, /*{t}*/) => {
   if (asset) {
     return (
       <div className="plurishing-backoffice-PrimitiveAssetPreview">
-        <h3>{t('preview')}</h3>
         {render(asset)}
       </div>
     );
@@ -79,8 +78,8 @@ const AssetPreview = ({
   return null;
 };
 
-AssetPreview.contextTypes = {
-  t: PropTypes.func.isRequired,
-};
+// AssetPreview.contextTypes = {
+//   t: PropTypes.func.isRequired,
+// };
 
 export default AssetPreview;

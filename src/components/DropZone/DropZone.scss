@@ -18,9 +18,18 @@
 
     text-align: center;
 
-    // border: 1px dashed $color-very-dark;// todo: parametrize that
+    border: 1px dashed lightgrey;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
 
-    // @extend .interactive-item;
+    cursor: pointer;
+
+    &.active{
+        background: rgba(0,0,0,0.1);
+    }
+
     /*
      * secondary layout components
      */

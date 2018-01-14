@@ -23,3 +23,43 @@
 // abstract classes
 // supposed to be used in other scss definition
 // with @extend operator
+
+
+
+// bulma customization
+.button{
+  border-radius: unset;
+}
+.box .media .media-left {
+  width: 7rem;
+}
+
+// global classes
+.aside-picker{
+  background: rgba(0,0,0,0.05);
+  height: 100%;
+  overflow: auto;
+  .container{
+    margin: 0;
+  }
+  h1{
+    display: none;
+  }
+  .box .media .media-left {
+    width: unset;
+  }
+}
+
+.ReactModal__Content{
+  form{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    height: 100%;
+    overflow: hidden;
+    > div{
+      flex: 1;
+      overflow: auto;
+    }
+  }
+}

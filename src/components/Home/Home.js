@@ -10,8 +10,8 @@ import PropTypes from 'prop-types';
 
 
 const Home = (props, {t}) => (
-  <section>
-    <h1>{t('Welcome to the home')}</h1>
+  <section className="container is-fluid">
+    <h1 className="title is-1">{t('Welcome to Metis')}</h1>
     <p>
       {t('welcome text')}
     </p>

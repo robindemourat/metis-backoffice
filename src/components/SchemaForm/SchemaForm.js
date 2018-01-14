@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import defaults from 'json-schema-defaults';
 import DatePicker from 'react-datepicker';
 import {SketchPicker as ColorPicker} from 'react-color';
+import Textarea from 'react-textarea-autosize';
+
 
 import moment from 'moment';
 
@@ -23,6 +25,8 @@ import AssetWidget from '../AssetWidget/AssetWidget';
 import CompositionWidget from '../CompositionWidget/CompositionWidget';
 import MontageWidget from '../MontageWidget/MontageWidget';
 import CodeEditor from '../CodeEditor/CodeEditor';
+
+import './SchemaForm.scss';
 
 const ajv = new Ajv();
 
@@ -79,7 +83,8 @@ const makeForm = (totalSchema, model, totalObject, value, level, key, path, onCh
             }
             // ... a plain number
             return (
-              <textarea
+              <input
+                className="input"
                 value={value}
                 onChange={e => onChange(path, +e.target.value)} />
             );
@@ -158,14 +163,14 @@ const makeForm = (totalSchema, model, totalObject, value, level, key, path, onCh
                           false,
                           translate
                         )}
-                          {index > 0 && <button onClick={onUp}>up</button>}
-                          {index < value.length - 1 && <button onClick={onDown}>down</button>}
-                          <button onClick={onDelete}>delete</button>
+                          {index > 0 && <button className="button is-secondary" onClick={onUp}>up</button>}
+                          {index < value.length - 1 && <button className="button is-secondary" onClick={onDown}>down</button>}
+                          <button className="button is-danger" onClick={onDelete}>delete</button>
                         </li>
                     );
                     })
                   }
-                  <li><button onClick={addElement}>Add {key.replace(/s$/, '')}</button></li>
+                  <li><button className="button is-primary" onClick={addElement}>Add {key.replace(/s$/, '')}</button></li>
                 </ul>
               );
 
@@ -232,7 +237,7 @@ const makeForm = (totalSchema, model, totalObject, value, level, key, path, onCh
                       model.enum.map(thatValue => ({value: thatValue, label: thatValue}))
                     } />);
               }
- else {
+              else {
                 return (
                   <p>
                     {value}
@@ -243,8 +248,9 @@ const makeForm = (totalSchema, model, totalObject, value, level, key, path, onCh
             // value is a plain string
             else {
               return (
-                <textarea
+                <Textarea
                   value={value}
+                  className="textarea"
                   onChange={e => onChange(path, e.target.value)} />
               );
             }
@@ -299,11 +305,13 @@ const makeForm = (totalSchema, model, totalObject, value, level, key, path, onCh
         }
       };
   return (
-    <div style={{marginLeft: level * 10}}>
-      {(model.title || key) && <h2>{model.title || key}</h2>}
+    <div style={{marginLeft: level * 4}} className="schema-item">
+      {(model.title || key) &&
+        <h2 className={`title is-${level + 3}`}>{model.title || key}</h2>
+      }
       {model.description && <p>{model.description}</p>}
+      {required && <p><span className="tag">Required</span></p>}
       {render()}
-      {required && <p>Required</p>}
     </div>
   );
 };
@@ -411,8 +419,8 @@ export default class SchemaForm extends Component {
     } = this;
 
     return (
-      <form onSubmit={e => e.preventDefault()}>
-        <h1>{title}</h1>
+      <form onSubmit={e => e.preventDefault()} className="plurishing-SchemaForm">
+        {title && <h1 className="title is-3">{title}</h1>}
         {makeForm(schema, schema, document, document, 0, undefined, [], onChange, false, t)}
         {errors &&
           <ul>
@@ -423,9 +431,13 @@ export default class SchemaForm extends Component {
             ))}
           </ul>
         }
-        <ul>
-          <li><button onClick={onValidate}>{t('validate')}</button></li>
-          <li><button onClick={onCancel}>{t('cancel')}</button></li>
+        <ul className="columns">
+          <li className="column">
+            <button className="button is-fullwidth is-primary" onClick={onValidate}>{t('validate')}</button>
+          </li>
+          <li className="column">
+            <button className="button is-fullwidth is-warning" onClick={onCancel}>{t('cancel')}</button>
+          </li>
         </ul>
       </form>
     );

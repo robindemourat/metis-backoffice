@@ -29,12 +29,16 @@ const MontagesLayout = ({
     updateMontage,
     promptNewMontageForm,
     unpromptNewMontageForm,
-    setEditedMontage,
+    // setEditedMontage,
     unsetEditedMontage,
   }
 }, {t}) => (
-  <section className="plurishing-backoffice-Montages">
-    <ul>
+  <section className="plurishing-backoffice-Montages container is-fluid">
+    <h1 className="title is-1">{t('Montages')}</h1>
+    <ul className="section">
+      <li>
+        <button className="button is-primary is-fullwidth" onClick={promptNewMontageForm}>{t('new montage')}</button>
+      </li>
       {
         montages.map((montage, index) => {
           const onDelete = () => {
@@ -42,41 +46,39 @@ const MontagesLayout = ({
               deleteMontage(montage._id);
             }
           };
-          const onPrompt = () => {
+          /*const onPrompt = () => {
             setEditedMontage(montage);
-          };
+          };*/
           return (
             <li
-              key={index}>
-              <h2>
-                <a href={`/montages/${montage._id}`}>
-                  {montage.metadata.title || t('montage without title')}
-                </a>
-              </h2>
-              <ul>
-                <li>
-                  {t('montage type')}: {montage.metadata.montage_type}
-                </li>
-                <li>
-                  <button onClick={onDelete}>{t('delete montage')}</button>
-                </li>
-                <li>
-                  <button onClick={onPrompt}>{t('edit metadata')}</button>
-                </li>
-                <li>
-                  <a href={`${apiBaseUri}montages/${montage._id}`} download>{t('download montage')}</a>
-                </li>
-                <li>
-                  <a href={`/montages/${montage._id}`}>{t('edit montage')}</a>
-                </li>
-              </ul>
+              key={index}
+              className="box">
+              <article className="media">
+                <div className="media-left">
+                  <span className="tag">
+                    {montage.metadata.montage_type}
+                  </span>
+                </div>
+                <div className="media-content">
+                  <h2 className="title is-3">
+                    <a href={`/montages/${montage._id}`}>
+                      {montage.metadata.title || t('montage without title')}
+                    </a>
+                  </h2>
+                  <div>
+                    {/*<li>
+                        <button className="button is-success" onClick={onPrompt}>{t('edit metadata')}</button>
+                      </li>*/}
+                    <a className="button is-success" href={`/montages/${montage._id}`}>{t('edit montage')}</a>
+                    <a className="button is-link" href={`${apiBaseUri}montages/${montage._id}`} download>{t('download montage')}</a>
+                    <button className="button is-danger" onClick={onDelete}>{t('delete montage')}</button>
+                  </div>
+                </div>
+              </article>
             </li>
           );
         })
       }
-      <li>
-        <button onClick={promptNewMontageForm}>{t('new montage')}</button>
-      </li>
     </ul>
     <Modal
       isOpen={newMontagePrompted}

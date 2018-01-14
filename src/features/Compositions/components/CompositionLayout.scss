@@ -18,7 +18,7 @@
   flex-flow: row nowrap;
   align-items: stretch;
   height: 100%;
-  > .composition-editor-wrapper{
+  .composition-editor-wrapper{
     flex: 5;
     display: flex;
     flex-flow: column nowrap;
@@ -40,7 +40,16 @@
       }
     }
   }
-  > .plurishing-backoffice-Resources {
+  .plurishing-backoffice-Resources {
     flex: 1;
+  }
+
+  .DraftEditor-editorContainer{
+    margin-right: 2rem;
+    margin-top: 2rem;
+  }
+  .public-DraftEditor-content{
+    background: rgba(0,0,0,0.05);
+    padding: 1rem;
   }
 }

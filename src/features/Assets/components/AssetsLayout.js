@@ -42,8 +42,9 @@ const AssetsLayout = ({
     }, Promise.resolve());
   };
   return (
-    <section className="plurishing-backoffice-Assets">
-      <ul>
+    <section className="plurishing-backoffice-Assets container is-fluid">
+      <h1 className="title is-1">{t('Assets')}</h1>
+      <ul className="section">
         {
           assets.map((asset, index) => {
             const onDelete = () => deleteAsset(asset._id, asset);
@@ -60,26 +61,38 @@ const AssetsLayout = ({
               });
             };
             return (
-              <li key={index}>
-                <p>{asset.filename}</p>
-                <p>{asset.mimetype}</p>
-                <p>
-                  <a target="blank" href={assetUrl}>{t('open asset')}</a>
-                  - <button onClick={onDelete}>{t('delete asset')}</button></p>
-                <DropZone onDrop={onUpdateDrop}>
-                  {t('drop a new file to update the asset')}
-                </DropZone>
+              <li key={index} className="box">
+                <article className="media">
+                  <div className="media-content">
+                    <div className="content">
+                      <p className="title">{asset.filename}</p>
+
+                      <p>{asset.mimetype}</p>
+                      <p>
+                        <a className="button is-primary" target="blank" href={assetUrl}>{t('open asset')}</a>
+                        <button className="button is-danger" onClick={onDelete}><a className="delete" /> {t('delete asset')}</button>
+                      </p>
+                      <DropZone onDrop={onUpdateDrop}>
+                        {t('drop a new file to update the asset')}
+                      </DropZone>
+                    </div>
+                  </div>
+                </article>
               </li>
             );
           })
         }
+        <li className="box">
+          <article className="media">
+            <div className="media-content">
+              <h2 className="title">{t('Add new assets')}</h2>
+              <DropZone onDrop={onDrop}>
+                {t('drop new assets here')}
+              </DropZone>
+            </div>
+          </article>
+        </li>
       </ul>
-      <div>
-        <h2>{t('add assets')}</h2>
-        <DropZone onDrop={onDrop}>
-          {t('drop new assets here')}
-        </DropZone>
-      </div>
     </section>
   );
 };

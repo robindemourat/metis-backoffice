@@ -14,14 +14,25 @@ export default ({
   <Form onSubmit={onSubmit}>
     { formApi => (
       <form onSubmit={formApi.submitForm} id="form1">
+        <div className="field">
+          <label htmlFor="email" className="label">Email</label>
+          <div className="control">
+            <Text
+              className="input" field="email" id="email"
+              type="email" />
+          </div>
+        </div>
 
-        <label htmlFor="email">Email</label>
-        <Text field="email" id="email" type="email" />
+        <div className="field">
+          <label htmlFor="password" className="label">Mot de passe</label>
+          <div className="control">
+            <Text
+              className="input" field="password" id="password"
+              type="password" />
+          </div>
+        </div>
 
-        <label htmlFor="password">Mot de passe</label>
-        <Text field="password" id="password" type="password" />
-
-        <button type="submit">Submit</button>
+        <button className="button is-primary" type="submit">Submit</button>
       </form>
   )}
   </Form>

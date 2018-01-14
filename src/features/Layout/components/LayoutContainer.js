@@ -1,3 +1,4 @@
+/* eslint react/no-set-state : 0 */
 /**
  * This module exports a stateful component connected to the redux logic of the app,
  * dedicated to rendering the layout container
@@ -48,10 +49,19 @@ class LayoutContainer extends Component {
    */
   constructor(props) {
     super(props);
+    this.state = {
+      navOpen: false
+    };
   }
 
   shouldComponentUpdate() {
     return true;
+  }
+
+  toggleNav = () => {
+    this.setState({
+      navOpen: !this.state.navOpen
+    });
   }
 
 
@@ -62,6 +72,8 @@ class LayoutContainer extends Component {
   render() {
     return (
       <LayoutLayout
+        toggleNav={this.toggleNav}
+        navOpen={this.state.navOpen}
         {...this.props} />
     );
   }

@@ -18,8 +18,9 @@ const DeliverablesLayout = ({
     deleteDeliverable
   }
 }, {t}) => (
-  <section className="plurishing-backoffice-Deliverables">
-    <ul>
+  <section className="plurishing-backoffice-Deliverables container is-fluid">
+    <h1 className="title is-1">{t('Deliverables')}</h1>
+    <ul className="section">
       {
         deliverables.map((deliverable, index) => {
           const attachmentName = deliverable.filename;
@@ -29,36 +30,46 @@ const DeliverablesLayout = ({
           };
           return (
             <li
-              key={index}>
-              <ul>
-
-                <li>
-                  {t('montage title')} : {deliverable.montage_title}
-                </li>
-                <li>
-                  {t('version')} : {deliverable.version}
-                </li>
-                <li>
-                  {t('date')} : {deliverable.date_produced}
-                </li>
-                <li>
-                  <a target="blank" href={deliverableUrl}>{t('open/download deliverable')}</a>
-                </li>
-                <li>
-                  {t('montage type')} : {deliverable.montage_type}
-                </li>
-                <li>
-                  {t('filename')} : {deliverable.filename}
-                </li>
-                <li>
-                  {t('mimetype')} : {deliverable.mimetype}
-                </li>
-                <li>
-                  <button onClick={onDelete}>
-                    {t('delete deliverable')}
-                  </button>
-                </li>
-              </ul>
+              key={index}
+              className="box">
+              <article className="media">
+                <div className="media-left">
+                  <span className="tag">
+                    {deliverable.montage_type}
+                  </span>
+                  {/*<figure className="image is-64x64">
+                    <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image" />
+                  </figure>*/}
+                </div>
+                <div className="media-content">
+                  <ul>
+                    <li>
+                      <h3 className="title is-3">{deliverable.montage_title}</h3>
+                    </li>
+                    {deliverable.version && <li>
+                      {t('version')} : <span className="tag">{deliverable.version}</span>
+                    </li>
+                    }
+                    {deliverable.date_produced && <li>
+                      {t('date')} : <span className="tag">{deliverable.date_produced.toString()}</span>
+                    </li>}
+                    <li>
+                      {t('filename')} : <span className="tag">{deliverable.filename}</span>
+                    </li>
+                    <li>
+                      {t('mimetype')} : <span className="tag">{deliverable.mimetype}</span>
+                    </li>
+                    <li>
+                      <a target="blank" className="button is-link" href={deliverableUrl}>{t('open/download deliverable')}</a>
+                    </li>
+                    <li>
+                      <button className="button is-danger" onClick={onDelete}>
+                        {t('delete deliverable')}
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </article>
             </li>
           );
         })

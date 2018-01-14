@@ -134,8 +134,8 @@ export default class MicroPublicationPreview extends Component {
     } = this;
     return (
       <section>
-        <section>
-          <h3>{t('twitter preview')}</h3>
+        <section className="section">
+          <h3 className="title is-4">{t('twitter preview')}</h3>
           {montage && composition ?
             <TwitterPreview
               montage={montage}
@@ -144,8 +144,8 @@ export default class MicroPublicationPreview extends Component {
               profileImageUri={profileImageUri} />
            : t('loading')}
         </section>
-        <section>
-          <h3>{t('facebook preview')}</h3>
+        <section className="section">
+          <h3 className="title is-4">{t('facebook preview')}</h3>
           {montage && composition ?
             <FacebookPreview
               montage={montage}
@@ -154,8 +154,8 @@ export default class MicroPublicationPreview extends Component {
               profileImageUri={profileImageUri} />
            : t('loading')}
         </section>
-        <section>
-          <h3>{t('mailing preview')}</h3>
+        <section className="section">
+          <h3 className="title is-4">{t('mailing preview')}</h3>
           {montage && composition ?
             <MailingPreview
               montage={montage}

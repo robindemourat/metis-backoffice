@@ -25,27 +25,43 @@ const NewUser = ({
     router.push('/users');
   };
   return (
-    <section className="backoffice-NewUser">
-      <h1>{t('new user')}</h1>
+    <section className="backoffice-NewUser container is-fluid">
+      <h1 className="title is-1">{t('New user')}</h1>
       <Form defaultValues={{admin: 'no'}} onSubmit={onSubmit}>
         { formApi => (
-          <form onSubmit={formApi.submitForm} id="form1">
-            <label htmlFor="email">{t('new user email')}</label>
-            <Text field="email" id="email" type="email" />
-            <label htmlFor="name">{t('new user name')}</label>
-            <Text field="name" id="name" type="name" />
+          <form onSubmit={formApi.submitForm} id="form1" className="section">
+            <div className="field">
+              <label className="label" htmlFor="email">{t('new user email')}</label>
+              <div className="control">
+                <Text
+                  className="input" field="email" id="email"
+                  type="email" />
+              </div>
+            </div>
+            <div className="field">
+              <label className="label" htmlFor="name">{t('new user name')}</label>
+              <div className="control">
+                <Text
+                  className="input" field="name" id="name"
+                  type="name" />
+              </div>
+            </div>
             <RadioGroup field="admin">
               {group => (
-                <div>
-                  <label htmlFor="admin">{t('new user is admin')}</label>
-                  <Radio group={group} value={t('yes')} id="yes" />
-                  <label htmlFor="no">{t('new user is not admin')}</label>
-                  <Radio group={group} value={t('no')} id="no" />
+                <div className="control">
+                  <label htmlFor="admin" className="radio">
+                    <Radio group={group} value={t('yes')} id="yes" />
+                    {t('new user is admin')}
+                  </label>
+                  <label htmlFor="no" className="radio">
+                    <Radio group={group} value={t('no')} id="no" />
+                    {t('new user is not admin')}
+                  </label>
                 </div>
             )}
             </RadioGroup>
 
-            <button type="submit">Submit</button>
+            <button type="submit" className="button is-primary">Submit</button>
           </form>
       )}
       </Form>

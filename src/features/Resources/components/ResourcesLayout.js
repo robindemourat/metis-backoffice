@@ -31,8 +31,12 @@ const ResourcesLayout = ({
   },
   createResources
 }, {t}) => (
-  <section className="plurishing-backoffice-Resources">
-    <ul>
+  <section className="plurishing-backoffice-Resources container is-fluid">
+    <h1 className="title is-1">{t('Resources')}</h1>
+    <ul className="section">
+      <li>
+        <button className="button is-primary is-fullwidth" onClick={promptNewResourceForm}>{t('new resource')}</button>
+      </li>
       {
         resources.map((resource, index) => {
           const onDelete = () => deleteResource(resource._id);
@@ -41,21 +45,42 @@ const ResourcesLayout = ({
           };
           return (
             <li
+              className="box"
               key={index}>
-              <button onClick={onPrompt}>{resource.metadata.name || t('resource without name')}</button>
-              <button onClick={onDelete}>{t('delete resource')}</button>
-              <button onClick={onPrompt}>{t('edit resource')}</button>
+              <article className="media">
+                <div className="media-left">
+                  <span className="tag">
+                    {resource.metadata.resource_type}
+                  </span>
+                  {/*<figure className="image is-64x64">
+                    <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image" />
+                  </figure>*/}
+                </div>
+                <div className="media-content">
+                  <h4 className="title is-4" onClick={onPrompt}>{resource.metadata.name || t('resource without name')}</h4>
+                  <div>
+                    <button className="button is-success" onClick={onPrompt}>
+                      {t('edit resource')}
+                    </button>
+                    <button className="button is-danger" onClick={onDelete}>
+                      {t('delete resource')}
+                    </button>
+                  </div>
+                </div>
+              </article>
             </li>
           );
         })
       }
-      <li>
-        <button onClick={promptNewResourceForm}>{t('new resource')}</button>
-      </li>
-      <li>
-        <ResourceDrop
-          title={t('drop .bib file here to add bibliographical resources')}
-          onDrop={createResources} />
+      <li className="box">
+        <article className="media">
+          <div className="media-content">
+            <h4 className="title is-4">{t('Add resources from bibtex file')}</h4>
+            <ResourceDrop
+              title={t('drop .bib file here to add bibliographical resources')}
+              onDrop={createResources} />
+          </div>
+        </article>
       </li>
     </ul>
     <Modal
