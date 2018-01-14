@@ -12,7 +12,7 @@ import * as resourcesDuck from '../../features/Resources/duck';
 
 import PreviewContainer from 'plurishing-shared/dist/components/previews/StaticMontagePreview/PreviewContainer';
 
-import style from 'plurishing-shared/dist/components/views/static/styles.scss';
+import style from 'plurishing-shared/dist/components/views/static/styles.scss';/* eslint no-unused-vars: 0*/
 
 @connect(
   state => ({

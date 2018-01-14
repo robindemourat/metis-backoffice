@@ -1,15 +1,62 @@
 /* eslint react/jsx-no-bind : 0 */
+/* eslint react/no-set-state : 0 */
 /**
  * This module exports a stateless component rendering the layout of the diffusions view
  * @module plurishing-backoffice/features/Diffusions
  */
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 
 import './DiffusionsLayout.scss';
 
 import SchemaForm from '../../../components/SchemaForm/SchemaForm';
+
+class DiffusionCartel extends Component {
+  static contextTypes = {
+    t: PropTypes.func,
+  }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      isWaiting: false
+    };
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.diffusion && nextProps.diffusion.status === 'processing' && !this.state.isWaiting) {
+      this.setState({isWaiting: true});
+      setTimeout(() => {
+        nextProps.getDiffusion(nextProps.diffusion._id);
+        this.setState({isWaiting: false});
+      }, 1000);
+    }
+  }
+  render() {
+    const {
+      context: {
+        t
+      },
+      props: {
+        diffusion,
+        onPrompt
+      }
+    } = this;
+    return (
+      <li>
+        <ul>
+          <li>{t('diffusion of montage')} : {diffusion.montage_title}</li>
+          <li>{t('diffusion montage type')} : {diffusion.montage_type}</li>
+          <li>{t('status')} : {diffusion.status}</li>
+          {diffusion.date_started && <li>{t('diffusion date')} {diffusion.date_started}</li>}
+          {/*<li><button onClick={onDelete}>{t('delete diffusion')}</button></li>*/}
+          <li><button onClick={onPrompt}>{t('edit diffusion')}</button></li>
+        </ul>
+      </li>
+    );
+  }
+}
 
 const DiffusionsLayout = ({
   schema,
@@ -23,6 +70,7 @@ const DiffusionsLayout = ({
   onAfterChange,
 
   actions: {
+    getDiffusion,
     createDiffusion,
     // deleteDiffusion,
     updateDiffusion,
@@ -45,17 +93,11 @@ const DiffusionsLayout = ({
               setEditedDiffusion(diffusion);
             };
             return (
-              <li
-                key={index}>
-                <ul>
-                  <li>{t('diffusion of montage')} : {diffusion.montage_title}</li>
-                  <li>{t('diffusion montage type')} : {diffusion.montage_type}</li>
-                  <li>{t('status')} : {diffusion.status}</li>
-                  {diffusion.date_started && <li>{t('diffusion date')} {diffusion.date_started}</li>}
-                  {/*<li><button onClick={onDelete}>{t('delete diffusion')}</button></li>*/}
-                  <li><button onClick={onPrompt}>{t('edit diffusion')}</button></li>
-                </ul>
-              </li>
+              <DiffusionCartel
+                key={index}
+                diffusion={diffusion}
+                onPrompt={onPrompt}
+                getDiffusion={getDiffusion} />
             );
           })
         }
