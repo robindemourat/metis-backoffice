@@ -143,7 +143,6 @@ function ui(state = UI_DEFAULT_STATE, action) {
     case CREATE_MONTAGE:
     case UPDATE_MONTAGE:
     case DELETE_MONTAGE:
-      console.log('setting client status to requesting');
       return {
         ...state,
         clientStatus: 'requesting',

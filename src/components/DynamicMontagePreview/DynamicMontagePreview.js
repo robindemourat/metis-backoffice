@@ -11,6 +11,8 @@ import * as resourcesDuck from '../../features/Resources/duck';
 
 import PreviewContainer from 'plurishing-shared/dist/components/previews/DynamicMontagePreview/PreviewContainer';
 
+import style from 'plurishing-shared/dist/components/views/dynamic/styles.scss';
+
 @connect(
   state => ({
     ...compositionsDuck.selector(state.compositions),
