@@ -27,7 +27,9 @@ const UserSetupLayout = ({
   };
   return user ? (
     <section className="container is-fluid">
-      <h1 className="title is-1">{t('welcome on the backoffice, {n}', {n: user.name})}</h1>
+      <section className="section">
+        <h1 className="title is-1">{t('welcome on the backoffice, {n}', {n: user.name})}</h1>
+      </section>
       <section className="section">
         <p>{t('enter a new password to begin with')}</p>
         <Form onSubmit={onSubmit}>

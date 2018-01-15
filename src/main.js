@@ -40,7 +40,7 @@ const mountNode = document.getElementById('mount');
 export function renderApplication() {
   const group = (
     <Provider store={store}>
-      <I18n translations={translations}>
+      <I18n translations={translations} initialLang={'fr'}>
         <CurrentApplication history={history} />
       </I18n>
     </Provider>

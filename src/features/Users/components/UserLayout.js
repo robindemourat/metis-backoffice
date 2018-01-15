@@ -27,10 +27,12 @@ const UserLayout = ({
   };
   return editedUser ? (
     <section className="backoffice-User container is-fluid">
-      <h1 className="title is-1">{editedUser.name}</h1>
       <section className="section">
-        <p>{t('Email')} : {editedUser.email}</p>
-        <p>{t('Admin')} : {editedUser.admin ? t('yes') : t('no')}</p>
+        <h1 className="title is-1">{editedUser.name}</h1>
+      </section>
+      <section className="section">
+        <p>{t('Email')} : <span className="tag">{editedUser.email}</span></p>
+        <p>{t('Admin')} : <span className="tag">{editedUser.admin ? t('yes') : t('no')}</span></p>
       </section>
       {editedUser && <Form defaultValues={editedUser} onSubmit={onSubmit}>
         { formApi => (

@@ -34,9 +34,11 @@ const CompositionsLayout = ({
   }
 }, {t}) => (
   <section className="plurishing-backoffice-Compositions container is-fluid">
-    <h1 className="title is-1">{t('Compositions')}</h1>
+    <section className="section">
+      <h1 className="title is-1">{t('Compositions')}</h1>
+    </section>
     <ul className="section">
-      <li>
+      <li className="section">
         <button className="button is-primary is-fullwidth" onClick={promptNewCompositionForm}>{t('new composition')}</button>
       </li>
       {

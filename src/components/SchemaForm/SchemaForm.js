@@ -62,10 +62,13 @@ const makeForm = (totalSchema, model, totalObject, value, level, key, path, onCh
             return (
               <div onClick={onRadioClick}>
                 <input
-                  type="radio" id={key}
-                  name={key} value={key} onChange={onRadioClick}
+                  type="radio"
+                  id={key}
+                  name={key}
+                  value={key}
+                  onChange={onRadioClick}
                   checked={value || false} />
-                <label htmlFor={key}>{key}</label>
+                <label htmlFor={key}>{translate(key)}</label>
               </div>
               );
           // value is a number
@@ -113,11 +116,16 @@ const makeForm = (totalSchema, model, totalObject, value, level, key, path, onCh
                       };
                       return (
                         <li key={item}>
-                          <input
-                            type="checkbox" id={item}
-                            name={key} value={item} onChange={onRadioClick}
-                            checked={checked || false} />
-                          <label htmlFor={item}>{item}</label>
+                          <label className="checkbox" htmlFor={item}>
+                            <input
+                              type="checkbox"
+                              id={item}
+                              name={key}
+                              value={item}
+                              onChange={onRadioClick}
+                              checked={checked || false} />
+                            {item}
+                          </label>
                         </li>
                       );
                     })
@@ -163,14 +171,14 @@ const makeForm = (totalSchema, model, totalObject, value, level, key, path, onCh
                           false,
                           translate
                         )}
-                          {index > 0 && <button className="button is-secondary" onClick={onUp}>up</button>}
-                          {index < value.length - 1 && <button className="button is-secondary" onClick={onDown}>down</button>}
-                          <button className="button is-danger" onClick={onDelete}>delete</button>
+                          {index > 0 && <button className="button is-secondary" onClick={onUp}>{translate('up')}</button>}
+                          {index < value.length - 1 && <button className="button is-secondary" onClick={onDown}>{translate('down')}</button>}
+                          <button className="button is-danger" onClick={onDelete}>{translate('delete')}</button>
                         </li>
                     );
                     })
                   }
-                  <li><button className="button is-primary" onClick={addElement}>Add {key.replace(/s$/, '')}</button></li>
+                  <li className="section"><button className="button is-primary is-fullwidth" onClick={addElement}>{translate(`Add ${key.replace(/s$/, '')}`)}</button></li>
                 </ul>
               );
 
@@ -234,7 +242,7 @@ const makeForm = (totalSchema, model, totalObject, value, level, key, path, onCh
                     clearable={false}
                     searchable={false}
                     options={
-                      model.enum.map(thatValue => ({value: thatValue, label: thatValue}))
+                      model.enum.map(thatValue => ({value: thatValue, label: translate(thatValue)}))
                     } />);
               }
               else {
@@ -307,10 +315,10 @@ const makeForm = (totalSchema, model, totalObject, value, level, key, path, onCh
   return (
     <div style={{marginLeft: level * 4}} className="schema-item">
       {(model.title || key) &&
-        <h2 className={`title is-${level + 3}`}>{model.title || key}</h2>
+        <h2 className={`title is-${level + 3}`}>{translate(model.title || key)}</h2>
       }
-      {model.description && <p>{model.description}</p>}
-      {required && <p><span className="tag">Required</span></p>}
+      {model.description && <p>{translate(model.description)}</p>}
+      {required && <p><span className="tag">{translate('Required')}</span></p>}
       {render()}
     </div>
   );

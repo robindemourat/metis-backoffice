@@ -26,7 +26,9 @@ const NewUser = ({
   };
   return (
     <section className="backoffice-NewUser container is-fluid">
-      <h1 className="title is-1">{t('New user')}</h1>
+      <section className="section">
+        <h1 className="title is-1">{t('New user')}</h1>
+      </section>
       <Form defaultValues={{admin: 'no'}} onSubmit={onSubmit}>
         { formApi => (
           <form onSubmit={formApi.submitForm} id="form1" className="section">
@@ -61,7 +63,7 @@ const NewUser = ({
             )}
             </RadioGroup>
 
-            <button type="submit" className="button is-primary">Submit</button>
+            <button type="submit" className="button is-primary">{t('Submit')}</button>
           </form>
       )}
       </Form>

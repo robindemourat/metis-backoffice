@@ -137,7 +137,7 @@ class AssetWidget extends Component {
               clearable={false}
               onChange={e => onChange(e && e.value)} />
             <DropZone onDrop={this.onDrop}>
-              Add new asset
+              {t('Add new asset')}
             </DropZone>
           </div>
           <div className="column">

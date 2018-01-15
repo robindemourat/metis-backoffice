@@ -34,9 +34,11 @@ const MontagesLayout = ({
   }
 }, {t}) => (
   <section className="plurishing-backoffice-Montages container is-fluid">
-    <h1 className="title is-1">{t('Montages')}</h1>
+    <section className="section">
+      <h1 className="title is-1">{t('Montages')}</h1>
+    </section>
     <ul className="section">
-      <li>
+      <li className="section">
         <button className="button is-primary is-fullwidth" onClick={promptNewMontageForm}>{t('new montage')}</button>
       </li>
       {
@@ -56,7 +58,7 @@ const MontagesLayout = ({
               <article className="media">
                 <div className="media-left">
                   <span className="tag">
-                    {montage.metadata.montage_type}
+                    {t(montage.metadata.montage_type)}
                   </span>
                 </div>
                 <div className="media-content">

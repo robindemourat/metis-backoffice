@@ -19,7 +19,9 @@ const DeliverablesLayout = ({
   }
 }, {t}) => (
   <section className="plurishing-backoffice-Deliverables container is-fluid">
-    <h1 className="title is-1">{t('Deliverables')}</h1>
+    <section className="section">
+      <h1 className="title is-1">{t('Deliverables')}</h1>
+    </section>
     <ul className="section">
       {
         deliverables.map((deliverable, index) => {

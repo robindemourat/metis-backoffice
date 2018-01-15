@@ -31,7 +31,9 @@ const ChangePasswordLayout = ({
   };
   return (
     <section className="container is-fluid">
-      <h1 className="title is-1">{t('Change my password')}</h1>
+      <section className="section">
+        <h1 className="title is-1">{t('Change my password')}</h1>
+      </section>
       <Form onSubmit={onSubmit}>
         { formApi => (
           <form onSubmit={formApi.submitForm} id="form1" className="section">

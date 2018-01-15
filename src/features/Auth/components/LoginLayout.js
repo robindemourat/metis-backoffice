@@ -19,7 +19,9 @@ const LoginLayout = ({
   }
 }, {t}) => (
   <section className="container is-fluid">
-    <h1 className="title is-1">{t('Welcome to Metis - login')}</h1>
+    <section className="section">
+      <h1 className="title is-1">{t('Welcome to Metis - login')}</h1>
+    </section>
     <section className="section">
       <Login onSubmit={login} />
       <div>

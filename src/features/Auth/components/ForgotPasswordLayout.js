@@ -22,6 +22,8 @@ const ForgotPasswordLayout = ({
     <section className="container is-fluid">
       <section className="section">
         <h1 className="title is-1">{t('You forgot your password ! no worries ;)')}</h1>
+      </section>
+      <section className="section">
         <p>
           {t('Please submit your email and a reset link will be sent to you !')}
         </p>

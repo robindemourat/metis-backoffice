@@ -19,9 +19,11 @@ const UsersLayout = ({
   },
 }, {t}) => (
   <section className="backoffice-Users container is-fluid">
-    <h1 className="title is-1">{t('Users')}</h1>
+    <section className="section">
+      <h1 className="title is-1">{t('Users')}</h1>
+    </section>
     <ul>
-      <li>
+      <li className="section">
         <a className="button is-primary is-fullwidth" href="new-user">{t('new user')}</a>
       </li>
       {
@@ -39,7 +41,7 @@ const UsersLayout = ({
                   <div className="content">
                     <p className="title"><a href={`users/${user._id}`}>{user.name}</a></p>
                     <p>{t('email')} : {user.email}</p>
-                    <p>Admin : {user.admin ? 'oui' : 'non'}</p>
+                    <p>Admin : {user.admin ? t('yes') : t('no')}</p>
                     {user._id !== ownUser._id && <button onClick={onDelete}>{t('delete user')}</button>}
                   </div>
                 </div>

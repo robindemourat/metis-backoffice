@@ -38,7 +38,9 @@ const OperationsLayout = ({
   };
   return (
     <section className="plurishing-backoffice-Operations container is-fluid">
-      <h1 className="title is-1">{t('Operations')}</h1>
+      <section className="section">
+        <h1 className="title is-1">{t('Operations')}</h1>
+      </section>
       <section className="section">
         <h3 className="title is-2">{t('Download all data from a dump archive')}</h3>
         <div>

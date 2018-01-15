@@ -43,8 +43,20 @@ const AssetsLayout = ({
   };
   return (
     <section className="plurishing-backoffice-Assets container is-fluid">
-      <h1 className="title is-1">{t('Assets')}</h1>
+      <section className="section">
+        <h1 className="title is-1">{t('Assets')}</h1>
+      </section>
       <ul className="section">
+        <li className="box section">
+          <article className="media">
+            <div className="media-content">
+              <h2 className="title">{t('Add new assets')}</h2>
+              <DropZone onDrop={onDrop}>
+                {t('drop new assets here')}
+              </DropZone>
+            </div>
+          </article>
+        </li>
         {
           assets.map((asset, index) => {
             const onDelete = () => deleteAsset(asset._id, asset);
@@ -70,7 +82,7 @@ const AssetsLayout = ({
                       <p>{asset.mimetype}</p>
                       <p>
                         <a className="button is-primary" target="blank" href={assetUrl}>{t('open asset')}</a>
-                        <button className="button is-danger" onClick={onDelete}><a className="delete" /> {t('delete asset')}</button>
+                        <button className="button is-danger" onClick={onDelete}>{t('delete asset')}</button>
                       </p>
                       <DropZone onDrop={onUpdateDrop}>
                         {t('drop a new file to update the asset')}
@@ -82,16 +94,6 @@ const AssetsLayout = ({
             );
           })
         }
-        <li className="box">
-          <article className="media">
-            <div className="media-content">
-              <h2 className="title">{t('Add new assets')}</h2>
-              <DropZone onDrop={onDrop}>
-                {t('drop new assets here')}
-              </DropZone>
-            </div>
-          </article>
-        </li>
       </ul>
     </section>
   );

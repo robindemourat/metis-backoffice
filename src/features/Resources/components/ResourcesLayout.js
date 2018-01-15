@@ -32,9 +32,11 @@ const ResourcesLayout = ({
   createResources
 }, {t}) => (
   <section className="plurishing-backoffice-Resources container is-fluid">
-    <h1 className="title is-1">{t('Resources')}</h1>
+    <section className="section section-title">
+      <h1 className="title is-1">{t('Resources')}</h1>
+    </section>
     <ul className="section">
-      <li>
+      <li className="section">
         <button className="button is-primary is-fullwidth" onClick={promptNewResourceForm}>{t('new resource')}</button>
       </li>
       {
@@ -50,7 +52,7 @@ const ResourcesLayout = ({
               <article className="media">
                 <div className="media-left">
                   <span className="tag">
-                    {resource.metadata.resource_type}
+                    {t(resource.metadata.resource_type)}
                   </span>
                   {/*<figure className="image is-64x64">
                     <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image" />

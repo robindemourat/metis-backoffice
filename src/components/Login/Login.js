@@ -6,11 +6,12 @@
  * @module backoffice
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Form, Text} from 'react-form';
 
-export default ({
+const Login = ({
   onSubmit
-}) => (
+}, {t}) => (
   <Form onSubmit={onSubmit}>
     { formApi => (
       <form onSubmit={formApi.submitForm} id="form1">
@@ -32,8 +33,14 @@ export default ({
           </div>
         </div>
 
-        <button className="button is-primary" type="submit">Submit</button>
+        <button className="button is-primary" type="submit">{t('Submit')}</button>
       </form>
   )}
   </Form>
 );
+
+Login.contextTypes = {
+  t: PropTypes.func,
+};
+
+export default Login;
