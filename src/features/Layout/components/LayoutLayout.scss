@@ -23,11 +23,28 @@
   > nav{
     overflow: hidden;
     background: rgba(0,0,0,0.05);
+
+    .navbar-burger{
+      background: inherit;
+      border: none;
+    }
+
+    .navbar-start{
+          display: flex;
+          flex-flow: row nowrap;
+          align-items: stretch;
+          justify-content: stretch;
+          flex: 1;
+          @media screen and (max-width: 1024px){
+            flex-flow: column nowrap;
+          }
+    }
     li{
       display: flex;
       flex-flow: column nowrap;
       justify-content: stretch;
       align-items: stretch;
+      flex: 1;
       a{
         flex: 1;
       }
@@ -42,6 +59,21 @@
         flex: 1;
         a{
           flex: 1;
+        }
+      }
+    }
+    .navbar-brand{
+      @media screen and (max-width: 1024px){
+        flex-flow: row nowrap;
+        h1{
+          display: flex;
+          flex-flow: row nowrap;
+          justify-content: stretch;
+          align-items: stretch;
+          a{
+            flex: 1;
+            height: 100%;
+          }
         }
       }
     }
