@@ -196,7 +196,7 @@ class CompositionEditor extends Component {
    * Executes code when component receives new properties
    * @param {object} nextProps - the future properties of the component
    */
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps, nextContext) {
 
     // const nextEditor = nextProps.editorStates[nextProps.composition._id];
     // console.log('will receive selection', nextEditor.getSelection().toJS());
@@ -235,7 +235,8 @@ class CompositionEditor extends Component {
     if (
       this.props.composition.contextualizations !== nextProps.composition.contextualizations ||
       this.props.composition.contextualizers !== nextProps.composition.contextualizers ||
-      this.props.composition.resources !== nextProps.composition.resources
+      this.props.composition.resources !== nextProps.composition.resources ||
+      this.context.assetsData !== nextContext.assetsData
     ) {
       /**
        * @todo this state setting causes a bug with editor selection - must investigate
@@ -1429,6 +1430,7 @@ class CompositionEditor extends Component {
     // define citation style and locales
     const style = defaultStyle;
     const locale = defaultLocale;
+
 
     // console.log(mainEditorState && mainEditorState.getSelection().toJS());
 
