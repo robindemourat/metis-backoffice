@@ -261,8 +261,8 @@ class ContextualizationWidget extends Component {
                 className={'choice-option' + (index === this.state.selectedItemIndex ? ' active' : '')}
                 key={index}
                 onClick={onC}>
-                  <button className="button is-link is-fullwidth">{optionName} ({optionType})</button>
-                </li>
+                <button className="button is-link is-fullwidth">{optionName} ({optionType})</button>
+              </li>
               );
             })
           }

@@ -92,6 +92,7 @@ const CompositionLayout = ({
             <div className="header">
               <h1 className="title is-1">
                 <button onClick={onOpenMetadata}>{editedComposition.metadata.title}</button>
+                <button onClick={onOpenMetadata} className="button is-primary">{t('metadata')}</button>
               </h1>
               <ul className="columns">
                 {

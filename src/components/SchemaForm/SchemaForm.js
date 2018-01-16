@@ -262,15 +262,15 @@ const makeForm = (totalSchema, model, totalObject, value, level, key, path, onCh
                   placeholder={translate(model.description)}
                   onChange={e => onChange(path, e.target.value)} />
               );
-            } else {
+            }
+ else {
               return (
                 <input
                   value={value}
                   className="input"
                   placeholder={translate(model.description)}
-                  onChange={e => onChange(path, e.target.value)} 
-                />
-              )
+                  onChange={e => onChange(path, e.target.value)} />
+              );
             }
           // value is an object ...
           case 'object':
@@ -326,7 +326,7 @@ const makeForm = (totalSchema, model, totalObject, value, level, key, path, onCh
     <div style={{marginLeft: level * 4}} className="schema-item">
       {(model.title || key) &&
         <h2 className={`title is-${level + 3}`}>
-        <span>{translate(model.title || key)}</span> {required && <span className="tag">{translate('required')}</span>}
+          <span>{translate(model.title || key)}</span> {required && <span className="tag">{translate('required')}</span>}
         </h2>
       }
       {model.description && <p>{translate(model.description)}</p>}

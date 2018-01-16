@@ -1160,7 +1160,7 @@ class CompositionEditor extends Component {
   }
 
   onAssetFocus = () => {
-    console.log('on asset focus');
+    // console.log('on asset focus');
   }
 
 

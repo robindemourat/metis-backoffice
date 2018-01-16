@@ -18,6 +18,12 @@
   flex-flow: row nowrap;
   align-items: stretch;
   height: 100%;
+  .header{
+    .title{
+      display: flex;
+      align-items: center;
+    }
+  }
   .composition-editor-wrapper{
     flex: 5;
     display: flex;

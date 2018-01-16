@@ -151,7 +151,14 @@ const DiffusionsLayout = ({
           <button className="button is-primary is-fullwidth" onClick={onPromptNewDiffusionForm}>{t('new diffusion')}</button>
         </li>
         {
-          diffusions.reverse().map((diffusion, index) => {
+          diffusions
+          .sort((a, b) => {
+            if (a.date_started > b.date_started) {
+              return -1;
+            }
+ else return 1;
+          })
+          .map((diffusion, index) => {
           /*const onDelete = () => deleteDiffusion(diffusion._id);*/
             const onPrompt = () => {
               setEditedDiffusion(diffusion);

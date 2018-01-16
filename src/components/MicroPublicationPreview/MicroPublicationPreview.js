@@ -17,6 +17,7 @@ import TwitterPreview from 'plurishing-shared/dist/components/previews/TwitterPr
 import FacebookPreview from 'plurishing-shared/dist/components/previews/FacebookPreview/FacebookPreview';
 import MailingPreview from 'plurishing-shared/dist/components/previews/MailingPreview/MailingPreview';
 
+import './MicroPublicationPreview.scss';
 
 import profileImageUri from './assets/profile-placeholder.jpg';
 
@@ -69,6 +70,8 @@ export default class MicroPublicationPreview extends Component {
     ) {
       this.updateAbstractImage(nextProps);
     }
+    this.updateComposition(nextProps);
+
   }
 
   updateAbstractImage = () => {
@@ -133,7 +136,7 @@ export default class MicroPublicationPreview extends Component {
       }
     } = this;
     return (
-      <section>
+      <section className="plurishing-backoffice-MicroPublicationPreview">
         <section className="section">
           <h3 className="title is-4">{t('twitter preview')}</h3>
           {montage && composition ?

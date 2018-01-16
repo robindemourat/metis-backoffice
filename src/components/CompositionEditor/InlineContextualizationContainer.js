@@ -73,15 +73,15 @@ class InlineContainer extends Component {
       ThatComponent = contextualizers[type].Inline;
       return (<span onClick={onEditRequest} className="plurishing-backoffice-InlineContextualizationContainer button is-primary">
         <ThatComponent
-        type={type}
-        data={resource.data}
-        metadata={resource.metadata}
-        onEditRequest={onEditRequest}
-        resource={resource}
-        contextualization={contextualization}
-        contextualizer={contextualizer}
-        showPannel
-        renderingMode={renderingMode} />
+          type={type}
+          data={resource.data}
+          metadata={resource.metadata}
+          onEditRequest={onEditRequest}
+          resource={resource}
+          contextualization={contextualization}
+          contextualizer={contextualizer}
+          showPannel
+          renderingMode={renderingMode} />
       </span>);
     }
 
