@@ -49,7 +49,7 @@ class InlineContainer extends Component {
     } = this.props;
 
     const {
-      startExistingResourceConfiguration
+      openResourceConfiguration
     } = this.context;
 
     const {
@@ -58,18 +58,21 @@ class InlineContainer extends Component {
       ...contextualization
     } = asset;
 
-    const onEditRequest = () => {
-      if (typeof startExistingResourceConfiguration === 'function') {
-        startExistingResourceConfiguration(resource.metadata.id, resource);
+    const onEditRequest = e => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (typeof openResourceConfiguration === 'function') {
+        openResourceConfiguration(resource.metadata._id, resource);
       }
     };
 
     let ThatComponent;
-    const type = resource.metadata && resource.metadata.resource_type;
+    const type = contextualizer.type;
 
     if (contextualizers[type] && contextualizers[type].Inline) {
       ThatComponent = contextualizers[type].Inline;
-      return (<ThatComponent
+      return (<span onClick={onEditRequest} className="plurishing-backoffice-InlineContextualizationContainer button is-primary">
+        <ThatComponent
         type={type}
         data={resource.data}
         metadata={resource.metadata}
@@ -78,7 +81,8 @@ class InlineContainer extends Component {
         contextualization={contextualization}
         contextualizer={contextualizer}
         showPannel
-        renderingMode={renderingMode} />);
+        renderingMode={renderingMode} />
+      </span>);
     }
 
     return null;
@@ -107,7 +111,7 @@ InlineContainer.contextTypes = {
    * Callbacks when resource configuration is asked from
    * within the asset component
    */
-  startExistingResourceConfiguration: PropTypes.func,
+  openResourceConfiguration: PropTypes.func,
 
   contextualizers: PropTypes.object,
 };

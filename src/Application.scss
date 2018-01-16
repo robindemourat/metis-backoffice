@@ -5,12 +5,14 @@
  * @module backoffice
  */
 
-@import "~bulma/sass/utilities/_all";
-@import "~bulma/sass/base/_all";
-@import "~bulma/sass/elements/_all";
-@import "~bulma/sass/components/_all";
-@import "~bulma/sass/grid/_all";
-@import "~bulma/sass/layout/_all";
+// @import "~bulma-scss/scss/utilities/_all";
+// @import "~bulma-scss/scss/base/_all";
+// @import "~bulma-scss/scss/elements/_all";
+// @import "~bulma-scss/scss/components/_all";
+// @import "~bulma-scss/scss/grid/_all";
+// @import "~bulma-scss/scss/layout/_all";
+
+@import "~bulma/css/bulma.css";
 
 @import './parameters.scss';
 @import 'node_modules/react-redux-toastr/src/styles/index';

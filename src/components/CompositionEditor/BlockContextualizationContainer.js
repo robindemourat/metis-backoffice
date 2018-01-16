@@ -76,7 +76,7 @@ class BlockContainer extends Component {
         renderingMode,
       },
       context: {
-        startExistingResourceConfiguration,
+        openResourceConfiguration,
         // lang = 'en',
         t,
       },
@@ -105,8 +105,8 @@ class BlockContainer extends Component {
         e.preventDefault();
         e.stopPropagation();
       }
-      if (typeof startExistingResourceConfiguration === 'function') {
-        startExistingResourceConfiguration(resource._id, resource);
+      if (typeof openResourceConfiguration === 'function') {
+        openResourceConfiguration(resource._id, resource);
       }
     };
 
@@ -182,23 +182,34 @@ class BlockContainer extends Component {
           contextualizer={contextualizer}
           renderingMode={renderingMode}
           showPannel />
-        <div className="legend-container">
-          <input
-            value={title}
-            onClick={onInputClick}
-            onChange={onTitleChange}
-            placeholder={t('title-placeholder')}
-            onFocus={onAssetFocus}
-            onBlur={onAssetBlur} />
-          <h3>{t('legend')}</h3>
-          <Textarea
-            value={legend}
-            onClick={onInputClick}
-            onChange={onLegendChange}
-            placeholder={t('legend-placeholder')}
-            onFocus={onAssetFocus}
-            onBlur={onAssetBlur} />
-        </div>
+        <form className="legend-container">
+          <div className="field">
+            <label className="label">{t('title')}</label>
+            <div className="control">
+              <input
+                className="input"
+                value={title}
+                onClick={onInputClick}
+                onChange={onTitleChange}
+                placeholder={t('title-placeholder')}
+                onFocus={onAssetFocus}
+                onBlur={onAssetBlur} />
+            </div>
+          </div>
+          <div className="field">
+            <label className="label">{t('legend')}</label>
+            <div className="control">
+              <Textarea
+                className="textarea"
+                value={legend}
+                onClick={onInputClick}
+                onChange={onLegendChange}
+                placeholder={t('legend-placeholder')}
+                onFocus={onAssetFocus}
+                onBlur={onAssetBlur} />
+            </div>
+          </div>
+        </form>
       </div>
     );
   }
@@ -226,7 +237,7 @@ BlockContainer.contextTypes = {
    * Callbacks when resource configuration is asked from
    * within the asset component
    */
-  startExistingResourceConfiguration: PropTypes.func,
+  openResourceConfiguration: PropTypes.func,
 
   t: PropTypes.func,
 

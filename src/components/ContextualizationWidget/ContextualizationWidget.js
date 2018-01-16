@@ -239,6 +239,7 @@ class ContextualizationWidget extends Component {
         <form className="search-form" onSubmit={this.onSubmit}>
           <span className="arobase">@</span>
           <input
+            className="input"
             ref={bindRef}
             value={this.state.searchTerm}
             onBlur={this.onBlur}
@@ -259,7 +260,9 @@ class ContextualizationWidget extends Component {
               return (<li
                 className={'choice-option' + (index === this.state.selectedItemIndex ? ' active' : '')}
                 key={index}
-                onClick={onC}>{optionName} ({optionType})</li>
+                onClick={onC}>
+                  <button className="button is-link is-fullwidth">{optionName} ({optionType})</button>
+                </li>
               );
             })
           }

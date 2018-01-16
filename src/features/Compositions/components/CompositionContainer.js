@@ -39,8 +39,9 @@ const {apiBaseUri} = getConfig();
   }),
   dispatch => ({
     actions: bindActionCreators({
-      ...duck,
+      ...resourcesDuck,
       ...assetsDuck,
+      ...duck,
     }, dispatch)
   })
 )
@@ -109,9 +110,6 @@ class CompositionContainer extends Component {
    * @param {string} resourceId - id of the resource to summon
    */
   summonAsset = (contentId, resourceId) => {
-    // todo: this is a duplicate with ResourcesManagerContainer.summonAsset
-    // so this should be refactored as a shared helper
-    // or some other solution should be found not to repeat it
     const {
       editorStates,
       actions,
@@ -170,7 +168,6 @@ class CompositionContainer extends Component {
     else {
       contextualizerType = resource.metadata.resource_type;
     }
-
     const contextualizerId = genId();
 
     const contextualizer = {

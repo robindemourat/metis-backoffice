@@ -7,9 +7,18 @@
 
 .plurishing-backoffice-ContextualizationWidget
 {
+    background: darkgrey;
+    color: white;
+    padding: 1rem;
+    width: unset;
+    max-width: 40rem;
     // background: $background-default;
     .search-form
     {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: stretch;
+        padding-bottom: 1rem;
         // @extend .flex-stretched-row;
         .arobase
         {
@@ -21,14 +30,13 @@
         }
         input
         {
-            flex: 5;
+            flex: 20;
         }
     }
     .choice-options-container
     {
-        overflow: auto;
+        overflow: hidden;
 
-        max-height: 10rem;
         margin: 0;
         padding: 0;
         .choice-option
@@ -46,6 +54,12 @@
 
                 // @extend .important-item-intent;
             }
+        }
+        button{
+            overflow: auto;
+            width: 100%;
+            text-align: left;
+            justify-content: unset;
         }
     }
 }

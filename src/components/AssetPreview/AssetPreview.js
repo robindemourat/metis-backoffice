@@ -68,7 +68,7 @@ const AssetPreview = ({
         {metadata.title && <h5>{metadata.title}</h5>}
         {metadata.description && <p>{metadata.description}</p>}
         <div>
-          <button onClick={onClick}>{t('edit')}</button>
+          <button className="button is-primary is-fullwidth" onClick={onClick}>{t('edit')}</button>
         </div>
       </div>}
     </div>);

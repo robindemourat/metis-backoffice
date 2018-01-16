@@ -254,13 +254,23 @@ const makeForm = (totalSchema, model, totalObject, value, level, key, path, onCh
               }
             }
             // value is a plain string
-            else {
+            else if (model.longString) {
               return (
                 <Textarea
                   value={value}
                   className="textarea"
+                  placeholder={translate(model.description)}
                   onChange={e => onChange(path, e.target.value)} />
               );
+            } else {
+              return (
+                <input
+                  value={value}
+                  className="input"
+                  placeholder={translate(model.description)}
+                  onChange={e => onChange(path, e.target.value)} 
+                />
+              )
             }
           // value is an object ...
           case 'object':
@@ -315,10 +325,11 @@ const makeForm = (totalSchema, model, totalObject, value, level, key, path, onCh
   return (
     <div style={{marginLeft: level * 4}} className="schema-item">
       {(model.title || key) &&
-        <h2 className={`title is-${level + 3}`}>{translate(model.title || key)}</h2>
+        <h2 className={`title is-${level + 3}`}>
+        <span>{translate(model.title || key)}</span> {required && <span className="tag">{translate('required')}</span>}
+        </h2>
       }
       {model.description && <p>{translate(model.description)}</p>}
-      {required && <p><span className="tag">{translate('Required')}</span></p>}
       {render()}
     </div>
   );

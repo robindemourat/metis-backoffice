@@ -1150,7 +1150,7 @@ class CompositionEditor extends Component {
     else if (dataType === 'contextualizer') {
       updateContextualizer(dataId, data);
     }
- else if (dataType === 'contextualization') {
+    else if (dataType === 'contextualization') {
       updateContextualization(dataId, data);
     }
   }
@@ -1160,7 +1160,7 @@ class CompositionEditor extends Component {
   }
 
   onAssetFocus = () => {
-    // console.log('on asset focus');
+    console.log('on asset focus');
   }
 
 
@@ -1372,6 +1372,7 @@ class CompositionEditor extends Component {
         setEditorFocus(contentId);
       }
     };
+
 
     const onBlur = (event, contentId = 'main') => {
       event.stopPropagation();

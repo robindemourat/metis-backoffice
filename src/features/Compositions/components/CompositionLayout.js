@@ -55,6 +55,8 @@ const CompositionLayout = ({
     updateContextualizer,
     deleteContextualizer,
 
+    setEditedResource,
+
   },
   // custom functions
   summonAsset,
@@ -76,6 +78,8 @@ const CompositionLayout = ({
   const onUpdateComposition = composition => {
     updateComposition(composition._id, composition);
   };
+
+  const openResourceConfiguration = (id, resource) => setEditedResource(resource);
 
   return (
     <section className="plurishing-backoffice-Composition">
@@ -162,7 +166,7 @@ const CompositionLayout = ({
                 assetRequestPosition={assetRequestState.selection}
                 assetEmbedType={'resources'}
 
-                openResourceConfiguration={e => console.log('open resource configuration', e)}
+                openResourceConfiguration={openResourceConfiguration}
 
                 setEditorFocus={setEditorFocus} />
             </div>

@@ -8,5 +8,105 @@
 
 .plurishing-backoffice-CompositionEditor
 {
-    
+    margin-bottom: 10rem;
+
+    .plurishing-backoffice-BlockContextualizationContainer
+    {
+        overflow: hidden;
+
+        max-width: 100%;
+        padding: 1rem;
+
+        background: rgba(0,0,0,.05);
+
+        img,
+        video
+        {
+            display: inline-block;
+
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .mobiliscene
+        {
+            text-align: center;
+        }
+    }
+
+    .notes-container
+    {
+        padding-right: 3%;
+        padding-left: 3%;
+
+        .scholar-draft-NoteContainer
+        {
+            width: 100%;
+            margin-top: 1rem;
+            padding: 1rem;
+
+            background: rgba(0,0,0,.05);
+  
+            .note-header
+            {
+                display: flex;
+
+                flex-flow: row nowrap;
+                align-items: stretch;
+                h3
+                {
+                    font-size: 1.3rem;
+                    font-weight: 600;
+                    line-height: 1.125;
+
+                    color: #363636;
+
+                    flex: 1;
+                }
+            }
+        }
+    }
+
+    .plurishing-backoffice-InlineContextualizationContainer
+    {
+        line-height: unset;
+
+        height: unset;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .editor-bibliography
+    {
+        padding: 2rem;
+        h2
+        {
+            font-size: 1.5rem;
+            font-weight: 600;
+            line-height: 1.125;
+            // @extend .is-title;
+
+            color: #363636;
+        }
+        .csl-entry
+        {
+            padding-bottom: 1rem;
+        }
+    }
+
+    .public-DraftEditorPlaceholder-root{
+      top: 1rem;
+      left: 1rem;
+      position: absolute;
+      width: 100%;
+    }
+
+    .scholar-draft-NotePointer{
+      cursor: pointer;
+      color: white;
+      background: darkgrey;
+      padding-left: .3rem;
+      padding-right: .3rem;
+      border-radius: 50%;
+    }
 }
