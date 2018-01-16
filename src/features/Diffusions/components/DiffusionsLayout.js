@@ -28,7 +28,8 @@ class DiffusionCartel extends Component {
     if (nextProps.diffusion && nextProps.diffusion.status === 'processing' && !this.state.isWaiting) {
       this.setState({isWaiting: true});
       setTimeout(() => {
-        nextProps.getDiffusion(nextProps.diffusion._id);
+        nextProps.getDiffusion(nextProps.diffusion._id)
+          .then(() => nextProps.getDeliverables());
         this.setState({isWaiting: false});
       }, 1000);
     }
@@ -40,7 +41,9 @@ class DiffusionCartel extends Component {
       },
       props: {
         diffusion,
-        onPrompt
+        deliverables = [],
+        onPrompt,
+        deliverableURLPrefix,
       }
     } = this;
     let statusClass;
@@ -68,9 +71,38 @@ class DiffusionCartel extends Component {
           </div>
           <div className="media-content">
             <ul>
-              <li className="title is-4">{t('diffusion of montage')} : {diffusion.montage_title}</li>
+              <li className="title is-4">{diffusion.montage_title}</li>
               <li>{t('status')} : <span className={`tag ${statusClass}`}>{t(diffusion.status)}</span></li>
-              {diffusion.date_started && <li>{t('diffusion date')} {diffusion.date_started}</li>}
+              {
+                diffusion.version && diffusion.version.length ?
+                  <li>
+                    <p>{t('version')} : <span className="tag">{diffusion.version}</span> </p>
+                  </li>
+                : null
+              }
+              <li>
+                <span>{t('targets')}</span> : {
+                  diffusion.parameters.targets.map(target => (
+                    <span key={target} className="tag">{t(target)}</span>
+                  ))
+                }
+              </li>
+              {deliverables.length ?
+                <li>
+                  <span>{t('attached deliverables')}</span> : {
+                    deliverables.map(deliverable => (
+                      <a
+                        className="button is-link"
+                        href={`${deliverableURLPrefix}${deliverable._id}/${deliverable.filename}`}
+                        target="blank"
+                        key={deliverable._id}>
+                        {deliverable.mimetype.split('/').pop()}
+                      </a>
+                    ))
+                  }
+                </li> : null
+              }
+              {diffusion.date_started && <li><span>{t('date')}</span> : <span className="tag">{new Date(diffusion.date_started).toLocaleString()}</span></li>}
               {/*<li><button onClick={onDelete}>{t('delete diffusion')}</button></li>*/}
               <li><button className="button is-primary" onClick={onPrompt}>{t('edit diffusion')}</button></li>
             </ul>
@@ -84,6 +116,7 @@ class DiffusionCartel extends Component {
 const DiffusionsLayout = ({
   schema,
   diffusions = [],
+  deliverables = [],
   montageId,
   montageType,
 
@@ -94,14 +127,16 @@ const DiffusionsLayout = ({
 
   actions: {
     getDiffusion,
-    createDiffusion,
     // deleteDiffusion,
     updateDiffusion,
     promptNewDiffusionForm,
     unpromptNewDiffusionForm,
     setEditedDiffusion,
     unsetEditedDiffusion,
-  }
+    getDeliverables,
+  },
+  createDiffusion,
+  deliverableURLPrefix
 }, {t}) => {
   const onPromptNewDiffusionForm = () => {
     promptNewDiffusionForm(montageId, montageType);
@@ -116,17 +151,21 @@ const DiffusionsLayout = ({
           <button className="button is-primary is-fullwidth" onClick={onPromptNewDiffusionForm}>{t('new diffusion')}</button>
         </li>
         {
-          diffusions.map((diffusion, index) => {
+          diffusions.reverse().map((diffusion, index) => {
           /*const onDelete = () => deleteDiffusion(diffusion._id);*/
             const onPrompt = () => {
               setEditedDiffusion(diffusion);
             };
+            const targetDeliverables = deliverables.filter(deliverable => deliverable.diffusion_id === diffusion._id);
             return (
               <DiffusionCartel
                 key={index}
                 diffusion={diffusion}
+                deliverables={targetDeliverables}
+                deliverableURLPrefix={deliverableURLPrefix}
                 onPrompt={onPrompt}
-                getDiffusion={getDiffusion} />
+                getDiffusion={getDiffusion}
+                getDeliverables={getDeliverables} />
             );
           })
         }

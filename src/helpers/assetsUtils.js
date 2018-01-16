@@ -1,6 +1,6 @@
 /**
  * This module provides utils related to the test and loading of assets' data
- * @module ovide/utils/assetsUtils
+ * @module plurishing-backoffice/utils/assetsUtils
  */
 
 import {

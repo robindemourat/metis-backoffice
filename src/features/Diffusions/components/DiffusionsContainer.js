@@ -13,19 +13,25 @@ import {Diffusion as schema} from 'plurishing-schemas';
 
 import DiffusionsLayout from './DiffusionsLayout';
 import * as duck from '../duck';
+import * as deliverableDuck from '../../Deliverables/duck';
 import {buildOperationToastr} from '../../../helpers/toastr';
 import {get} from '../../../helpers/client';
 
+import getConfig from '../../../helpers/getConfig';
+const {apiBaseUri} = getConfig();
+const deliverableURLPrefix = `${apiBaseUri}deliverables/`;
 
 /**
  * Redux-decorated component class rendering the takeaway dialog feature to the app
  */
 @connect(
   state => ({
+    ...deliverableDuck.selector(state.deliverables),
     ...duck.selector(state.diffusions),
   }),
   dispatch => ({
     actions: bindActionCreators({
+      ...deliverableDuck,
       ...duck,
     }, dispatch)
   })
@@ -59,6 +65,7 @@ class DiffusionsContainer extends Component {
 
   componentWillMount () {
     this.props.actions.getDiffusions();
+    this.props.actions.getDeliverables();
   }
 
   componentWillReceiveProps = (nextProps) => {
@@ -80,27 +87,47 @@ class DiffusionsContainer extends Component {
     return true;
   }
 
+  updateFormWithMontageId = (document, montageId) =>
+    new Promise((resolve, reject) =>
+      get('montages', {id: montageId})
+              .then(data => {
+                const montage = data.data;
+                const transformedDocument = {
+                  ...document,
+                  montage_type: montage.metadata.montage_type,
+                  montage_title: montage.metadata.title,
+                  date_started: new Date().getTime(),
+                };
+                resolve(transformedDocument);
+              })
+              .catch(reject)
+    )
+
   onAfterChange = (document, inputPath) =>
     new Promise((resolve, reject) => {
-      const path = inputPath.join('.');
-      switch (path) {
-        case 'montage_id':
-          get('montages', {id: document.montage_id})
-            .then(data => {
-              const montage = data.data;
-              const transformedDocument = {
-                ...document,
-                montage_type: montage.metadata.montage_type,
-                montage_title: montage.metadata.title,
-              };
-              resolve(transformedDocument);
-            })
-            .catch(reject);
-          break;
-        default:
-          return resolve(document);
+      if (this.props.montageId) {
+        return this.updateFormWithMontageId(document, this.props.montageId)
+                .then(resolve)
+                .catch(reject);
+      }
+      else {
+        const path = inputPath.join('.');
+        switch (path.pop()) {
+          case 'montage_id':
+            return this.updateFormWithMontageId(document, document.montage_id)
+                    .then(resolve)
+                    .catch(reject);
+          default:
+            return resolve(document);
+        }
       }
     })
+
+  createDiffusion = diffusion => {
+    this.props.actions.createDiffusion({
+      ...diffusion,
+    });
+  }
   /**
    * Renders the component
    * @return {ReactElement} component - the component
@@ -112,7 +139,8 @@ class DiffusionsContainer extends Component {
         montageType,
         diffusions = []
       },
-      onAfterChange
+      onAfterChange,
+      createDiffusion,
     } = this;
 
     const activeDiffusions = montageId ?
@@ -126,7 +154,9 @@ class DiffusionsContainer extends Component {
         onAfterChange={onAfterChange}
         montageId={montageId}
         montageType={montageType}
-        diffusions={activeDiffusions} />
+        diffusions={activeDiffusions}
+        createDiffusion={createDiffusion}
+        deliverableURLPrefix={deliverableURLPrefix} />
     );
   }
 }

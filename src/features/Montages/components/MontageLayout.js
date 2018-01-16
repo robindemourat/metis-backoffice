@@ -39,7 +39,9 @@ const MontageLayout = ({
   return (
     <section className="plurishing-backoffice-Montage columns">
       <div className="column">
-        <h2 className="title is-3">{t('montage edition')}</h2>
+        <div className="section">
+          <h2 className="title is-3">{t('montage edition')}</h2>
+        </div>
         <div className="column-content">
           {editedMontage ?
             <section className="montage-editor-wrapper">
@@ -56,7 +58,9 @@ const MontageLayout = ({
       </div>
       {editedMontage ?
         <div className="column">
-          <h2 className="title is-3">{t('montage preview')}</h2>
+          <div className="section">
+            <h2 className="title is-3">{t('montage preview')}</h2>
+          </div>
           <div className="column-content">
             <MontagePreview
               getAssetUri={getAssetUri}
@@ -69,7 +73,9 @@ const MontageLayout = ({
           </div>
         </div> : null}
       <div className="column aside-picker">
-        <h2 className="title is-3">{t('related diffusions')}</h2>
+        <div className="section">
+          <h2 className="title is-3">{t('related diffusions')}</h2>
+        </div>
         <div className="column-content">
           <DiffusionsContainer
             montageId={editedMontage && editedMontage._id}
