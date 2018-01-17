@@ -9,10 +9,9 @@ import Login from '../../../components/Login/Login';
 
 
 const LoginLayout = ({
-  clientStatus,
+  // clientStatus,
   // clientOperation,
 
-  token,
   user,
   actions: {
     login
@@ -24,33 +23,8 @@ const LoginLayout = ({
     </section>
     <section className="section">
       <Login onSubmit={login} />
-      <div>
-        {clientStatus && (
-          clientStatus === 'processing' || clientStatus === 'success' ?
-            <article className="message is-info">
-              <div className="message-header">
-                <p>{t('connecting ...')}</p>
-              </div>
-            </article>
-          :
-            <article className="message is-danger">
-              <div className="message-header">
-                <p>{t('connexion failed')}</p>
-              </div>
-              <div className="message-body">
-                {t('oups try again')}
-              </div>
-            </article>
-        )}
-      </div>
-      {
-        token && user ?
-          <span>{t('you are authentified as {n}', {n: user && user.name})}</span>
-          :
-          <span>{t('you are not authentified')}</span>
-      }
       {!user &&
-      <p>
+      <p className="section">
         <a className="button is-link" href="/forgot-password">{t('password forgotten')}</a>
       </p>
           }
