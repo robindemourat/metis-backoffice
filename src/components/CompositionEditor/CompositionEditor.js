@@ -196,7 +196,7 @@ class CompositionEditor extends Component {
    * Executes code when component receives new properties
    * @param {object} nextProps - the future properties of the component
    */
-  componentWillReceiveProps(nextProps, nextContext) {
+  componentWillReceiveProps(nextProps) {
 
     // const nextEditor = nextProps.editorStates[nextProps.composition._id];
     // console.log('will receive selection', nextEditor.getSelection().toJS());
@@ -236,7 +236,7 @@ class CompositionEditor extends Component {
       this.props.composition.contextualizations !== nextProps.composition.contextualizations ||
       this.props.composition.contextualizers !== nextProps.composition.contextualizers ||
       this.props.composition.resources !== nextProps.composition.resources ||
-      this.context.assetsData !== nextContext.assetsData
+      this.props.assetsData !== nextProps.assetsData
     ) {
       /**
        * @todo this state setting causes a bug with editor selection - must investigate
