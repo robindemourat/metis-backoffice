@@ -59,7 +59,7 @@ class DiffusionCartel extends Component {
         break;
     }
     return (
-      <li className="box">
+      <li className="box plurishing-backoffice-DiffusionCartel">
         <article className="media">
           <div className="media-left">
             <span className="tag">
@@ -83,7 +83,7 @@ class DiffusionCartel extends Component {
               <li>
                 <span>{t('targets')}</span> : {
                   diffusion.parameters.targets.map(target => (
-                    <span key={target} className="tag">{t(target)}</span>
+                    <span key={target} className="tag target">{t(target)}</span>
                   ))
                 }
               </li>
@@ -92,7 +92,7 @@ class DiffusionCartel extends Component {
                   <span>{t('attached deliverables')}</span> : {
                     deliverables.map(deliverable => (
                       <a
-                        className="button is-link"
+                        className="tag button is-link attachment"
                         href={`${deliverableURLPrefix}${deliverable._id}/${deliverable.filename}`}
                         target="blank"
                         key={deliverable._id}>
@@ -147,17 +147,11 @@ const DiffusionsLayout = ({
         <h1 className="title is-1">{t('Diffusions')}</h1>
       </section>
       <ul className="section">
-        <li className="section">
+        {montageId && <li className="section">
           <button className="button is-primary is-fullwidth" onClick={onPromptNewDiffusionForm}>{t('new diffusion')}</button>
-        </li>
+        </li>}
         {
           diffusions
-          .sort((a, b) => {
-            if (a.date_started > b.date_started) {
-              return -1;
-            }
- else return 1;
-          })
           .map((diffusion, index) => {
           /*const onDelete = () => deleteDiffusion(diffusion._id);*/
             const onPrompt = () => {
