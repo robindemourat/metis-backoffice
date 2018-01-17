@@ -102,7 +102,7 @@ class DiffusionCartel extends Component {
                   }
                 </li> : null
               }
-              {diffusion.date_started && <li><span>{t('date')}</span> : <span className="tag">{new Date(diffusion.date_started).toLocaleString()}</span></li>}
+              {diffusion.date_started && <li><span>{t('diffusion date')}</span> : <span className="tag">{new Date(diffusion.date_started).toLocaleString()}</span></li>}
               {/*<li><button onClick={onDelete}>{t('delete diffusion')}</button></li>*/}
               <li><button className="button is-primary" onClick={onPrompt}>{t('edit diffusion')}</button></li>
             </ul>

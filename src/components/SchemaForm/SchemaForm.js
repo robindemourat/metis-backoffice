@@ -245,10 +245,11 @@ const makeForm = (totalSchema, model, totalObject, value, level, key, path, onCh
                       model.enum.map(thatValue => ({value: thatValue, label: translate(thatValue)}))
                     } />);
               }
+              // only one value enumerable --> informative
               else {
                 return (
                   <p>
-                    {value}
+                    <span className="tag">{value}</span>
                   </p>
                 );
               }
@@ -326,7 +327,7 @@ const makeForm = (totalSchema, model, totalObject, value, level, key, path, onCh
     <div style={{marginLeft: level * 4}} className="schema-item">
       {(model.title || key) &&
         <h2 className={`title is-${level + 3}`}>
-          <span>{translate(model.title || key)}</span> {required && <span className="tag">{translate('required')}</span>}
+          <span>{translate(model.title || key)}</span> {required && <span className="tag is-danger">{translate('required')}</span>}
         </h2>
       }
       {model.description && <p>{translate(model.description)}</p>}
