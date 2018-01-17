@@ -27,4 +27,32 @@
       overflow: auto;
     }
   }
+
+  .column:first-of-type{
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    > .column-content{
+      .montage-editor-wrapper,
+      .body{
+        height: 100%;
+
+      }
+
+      .plurishing-SchemaForm{
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: stretch;
+        justify-content: stretch;
+        height: 100%;
+        overflow : hidden;
+        > .schema-item{
+          flex: 1;
+          overflow: auto;
+        }
+      }
+    }
+  }
 }

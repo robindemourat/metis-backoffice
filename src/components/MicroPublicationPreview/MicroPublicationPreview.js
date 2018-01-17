@@ -3,14 +3,14 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {bindActionCreators} from 'redux';
-import {post} from 'axios';
+import {get, post} from 'axios';
 
 import {connect} from 'react-redux';
 import * as duck from '../../features/Compositions/duck';
 
 import getConfig from '../../helpers/getConfig';
 const config = getConfig();
-const {servicesBaseUri} = config;
+const {servicesBaseUri, apiBaseUri} = config;
 
 
 import TwitterPreview from 'plurishing-shared/dist/components/previews/TwitterPreview/TwitterPreview';
@@ -34,7 +34,7 @@ import profileImageUri from './assets/profile-placeholder.jpg';
 export default class MicroPublicationPreview extends Component {
 
   static contextTypes = {
-    t: PropTypes.func.isRequired
+    t: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -61,22 +61,26 @@ export default class MicroPublicationPreview extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.montage.data.target_composition_id !== nextProps.montage.data.target_composition_id) {
+    // if (this.props.montage.data.target_composition_id !== nextProps.montage.data.target_composition_id) {
+    //   this.updateComposition(nextProps);
+    // }
+
+    if (this.props.montage !== nextProps.montage) {
       this.updateComposition(nextProps);
     }
 
     if (
-      nextProps.montage.data.include_abstract && !this.props.montage.data.include_abstract
+      nextProps.montage.data.include_abstract && !this.props.montage.data.include_abstract &&
+      this.state.composition
     ) {
-      this.updateAbstractImage(nextProps);
+      this.updateImagesUris(nextProps);
     }
-    this.updateComposition(nextProps);
-
   }
 
-  updateAbstractImage = () => {
+  updateImagesUris = (props) => {
     const abstr = this.state.composition && this.state.composition.metadata.abstract_original;
-    if (abstr) {
+    const includeAbstract = props.montage.data.include_abstract;
+    if (abstr && includeAbstract) {
       const html = `<html>
       <head>
         <style>
@@ -96,6 +100,37 @@ export default class MicroPublicationPreview extends Component {
         })
         .catch();
     }
+    if (this.state.assets.abstractImageUri && !includeAbstract) {
+      this.setState({
+        assets: {
+          ...this.state.assets,
+          abstractImageUri: undefined
+        }
+      });
+    }
+    if (this.props.montage && this.props.montage.data.attached_assets) {
+      const toResolve = this.props.montage.data.attached_assets.map(citation => {
+        return new Promise((resolve, reject) => {
+          const {image_asset_id: imageAssetId} = citation;
+          const asset = this.props.assets.find(a => a._id === imageAssetId);
+          if (asset) {
+            const uri = `${apiBaseUri}assets/${asset._id}/${asset.filename}?encoding=base64`;
+            get(uri)
+              .then(data => {
+                this.setState({
+                  assets: {
+                    ...this.state.assets,
+                    [asset._id]: 'data:image/jpg;base64,' + data.data
+                  }
+                });
+                resolve();
+              })
+              .catch(reject);
+          }
+        });
+      });
+      Promise.all(toResolve);
+    }
   }
 
   updateComposition = (props) => {
@@ -110,14 +145,14 @@ export default class MicroPublicationPreview extends Component {
     let composition = compositions.find(thatComposition => thatComposition._id === targetCompositionId);
     if (composition) {
       this.setState({composition});
-      this.updateAbstractImage(props);
+      this.updateImagesUris(props);
     }
     else {
       this.props.actions.getComposition(targetCompositionId)
         .then(() => {
           composition = this.props.compositions.find(thatComposition => thatComposition._id === targetCompositionId);
           this.setState({composition});
-          this.updateAbstractImage(props);
+          this.updateImagesUris(props);
         });
     }
   }
@@ -125,14 +160,14 @@ export default class MicroPublicationPreview extends Component {
   render() {
     const {
       props: {
-        montage
+        montage,
       },
       state: {
         composition,
         assets
       },
       context: {
-        t
+        t,
       }
     } = this;
     return (

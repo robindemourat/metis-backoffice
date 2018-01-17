@@ -163,8 +163,8 @@ function ui(state = UI_DEFAULT_STATE, action) {
         ...state,
         clientStatus: 'success',
         editedMontage: state.editedMontage && newMontage._id === state.editedMontage._id ?
-          newMontage
-          : state.editedMontage
+          {...newMontage}
+          : {...state.editedMontage}
       };
 
     case `${GET_MONTAGES}_FAIL`:

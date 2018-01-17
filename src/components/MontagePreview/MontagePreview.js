@@ -15,7 +15,10 @@ export default ({
 }) => {
   switch (montage.metadata.montage_type) {
     case 'micropublication':
-      return <MicroPublicationPreview montage={montage} getAssetUri={getAssetUri} />;
+      return (<MicroPublicationPreview
+        montage={montage}
+        getAssetUri={getAssetUri}
+        assets={assets} />);
     case 'dynamic':
       return (<DynamicMontagePreview
         assets={assets}
