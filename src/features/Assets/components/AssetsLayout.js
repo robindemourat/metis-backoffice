@@ -75,6 +75,11 @@ const AssetsLayout = ({
             return (
               <li key={index} className="box">
                 <article className="media">
+                  <div className="media-left">
+                    <DropZone onDrop={onUpdateDrop}>
+                      {t('drop a new file to update the asset')}
+                    </DropZone>
+                  </div>
                   <div className="media-content">
                     <div className="content">
                       <p className="title">{asset.filename}</p>
@@ -84,9 +89,6 @@ const AssetsLayout = ({
                         <a className="button is-primary" target="blank" href={assetUrl}>{t('open asset')}</a>
                         <button className="button is-danger" onClick={onDelete}>{t('delete asset')}</button>
                       </p>
-                      <DropZone onDrop={onUpdateDrop}>
-                        {t('drop a new file to update the asset')}
-                      </DropZone>
                     </div>
                   </div>
                 </article>
