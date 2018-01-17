@@ -55,8 +55,13 @@ var discoverTranslations = function() {
     //     console.log(colors.red('Automatically adding the key ' + shortKey + ' to locale ' + locale.fileName));
     //   }
     // });
+    // starting with existing translations
+    const allKeys = Object.keys(locale.translations).reduce((total, k) => ({
+      ...total,
+      [k]: locale.translations[k]
+    }), keys)
     const newTranslations = {};
-    Object.keys(keys).map(key => {
+    Object.keys(allKeys).map(key => {
       if (locale.translations[key] !== undefined) {
         const shortKey = key.split('.').pop();
         newTranslations[key] = locale.translations[key];
