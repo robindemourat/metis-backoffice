@@ -6,10 +6,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Form, Text} from 'react-form';
 
+import ReduxToastr from 'react-redux-toastr';
 
 const ForgotPasswordLayout = ({
-  clientStatus,
-  clientOperation,
+  // clientStatus,
+  // clientOperation,
 
   actions: {
     requestPasswordReset
@@ -27,7 +28,6 @@ const ForgotPasswordLayout = ({
         <p>
           {t('Please submit your email and a reset link will be sent to you !')}
         </p>
-        <p>{clientOperation} - {clientStatus}</p>
         <Form onSubmit={onSubmit}>
           { formApi => (
             <form onSubmit={formApi.submitForm} id="form1">
@@ -44,6 +44,10 @@ const ForgotPasswordLayout = ({
       )}
         </Form>
       </section>
+      <ReduxToastr
+        transitionIn="fadeIn"
+        transitionOut="fadeOut"
+        timeOut={1000} />
     </section>
 );
 };

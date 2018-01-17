@@ -6,11 +6,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Form, Text} from 'react-form';
 
+import ReduxToastr from 'react-redux-toastr';
+
 
 const UserSetupLayout = ({
 
-  clientStatus,
-  clientOperation,
+  // clientStatus,
+  // clientOperation,
 
   user,
   actions: {
@@ -55,9 +57,10 @@ const UserSetupLayout = ({
             </form>
           )}
         </Form>
-        <div>
-          {clientOperation} - {clientStatus}
-        </div>
+        <ReduxToastr
+          transitionIn="fadeIn"
+          transitionOut="fadeOut"
+          timeOut={1000} />
       </section>
     </section>
   ) :
