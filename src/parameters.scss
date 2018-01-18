@@ -27,43 +27,65 @@
 
 
 // bulma customization
-.button{
-  border-radius: unset;
+.button
+{
+    border-radius: unset;
 }
-.box .media .media-left {
-  width: 7rem;
+.box .media .media-left
+{
+    width: 7rem;
 }
 
-.tag{
-  margin-left: .5rem;
+.tag
+{
+    margin-left: .5rem;
 }
 
 // global classes
-.aside-picker{
-  background: rgba(0,0,0,0.05);
-  height: 100%;
-  overflow: auto;
-  .container{
-    margin: 0;
-  }
-  .section-title{
-    display: none;
-  }
-  .box .media .media-left {
-    width: unset;
-  }
+.aside-picker
+{
+    overflow: auto;
+
+    height: 100%;
+
+    background: rgba(0,0,0,.05);
+    .container
+    {
+        margin: 0;
+    }
+    .section-title
+    {
+        display: none;
+    }
+    .box .media .media-left
+    {
+        width: unset;
+    }
 }
 
-.ReactModal__Content{
-  form{
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: stretch;
-    height: 100%;
-    overflow: hidden;
-    > div{
-      flex: 1;
-      overflow: auto;
+.ReactModalPortal
+{
+    position: absolute;
+    z-index: 3;
+}
+
+.ReactModal__Content
+{
+    z-index: 3;
+    form
+    {
+        display: flex;
+        overflow: hidden;
+
+        height: 100%;
+
+        flex-flow: column nowrap;
+        align-items: stretch;
+         > div
+        {
+            overflow: auto;
+
+            flex: 1;
+        }
     }
-  }
 }
