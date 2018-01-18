@@ -2,6 +2,7 @@
   "name": "plurishing-backoffice",
   "version": "0.0.1",
   "description": "An application for handling plurishing backoffice",
+  "license": "LGPL-3.0",
   "main": "dist/entry.js",
   "scripts": {
     "dev": "kotatsu serve --config ./webpack.config.dev.js --progress --babel --index ./index.html --public ./ ./src/main.js",
@@ -59,7 +60,7 @@
     "redux-auth-wrapper": "^2.0.2",
     "redux-i18n": "^1.1.4",
     "reselect": "^3.0.1",
-    "scholar-draft": "^0.2.9",
+    "scholar-draft": "git+https://github.com/robindemourat/scholar-draft.git",
     "uuid": "^3.0.1"
   },
   "devDependencies": {
