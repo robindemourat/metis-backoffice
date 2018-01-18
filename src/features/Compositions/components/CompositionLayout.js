@@ -94,7 +94,7 @@ const CompositionLayout = ({
                 <button onClick={onOpenMetadata}>{editedComposition.metadata.title}</button>
                 <button onClick={onOpenMetadata} className="button is-primary">{t('metadata')}</button>
               </h1>
-              <ul className="columns">
+              <ul className="columns preview-mode-switcher">
                 {
                   [
                     {

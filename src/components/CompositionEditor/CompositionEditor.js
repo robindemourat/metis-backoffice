@@ -199,7 +199,7 @@ class CompositionEditor extends Component {
   componentWillReceiveProps(nextProps) {
 
     // const nextEditor = nextProps.editorStates[nextProps.composition._id];
-    // console.log('will receive selection', nextEditor.getSelection().toJS());
+    // console.log('will receive selection', nextEditor.getSelection().toJS().anchorOffset);
     if (this.props.composition._id !== nextProps.composition._id) {
       const {
         composition
@@ -445,13 +445,12 @@ class CompositionEditor extends Component {
       editorFocus,
       composition,
       editorStates,
-      activeStory
     } = this.props;
     const {
       contextualizations,
       contextualizers,
       // resources
-    } = activeStory;
+    } = composition;
 
     // first step is to retrieve draft-made clipboard ImmutableRecord
     // and proper editor state (wether copy event comes from a note or the main content)
@@ -566,7 +565,6 @@ class CompositionEditor extends Component {
     }
 
     const {
-      activeStoryId,
       editorFocus,
       composition,
       editorStates,
@@ -617,13 +615,13 @@ class CompositionEditor extends Component {
         // past assets/contextualizations (attributing them a new id)
         if (data.copiedContextualizations) {
           data.copiedContextualizations.forEach(contextualization => {
-            createContextualization(activeStoryId, contextualization.id, contextualization);
+            createContextualization(contextualization.id, contextualization);
           });
         }
         // past contextualizers (attributing them a new id)
         if (data.copiedContextualizers) {
           data.copiedContextualizers.forEach(contextualizer => {
-            createContextualizer(activeStoryId, contextualizer.id, contextualizer);
+            createContextualizer(contextualizer.id, contextualizer);
           });
         }
         // paste notes (attributing them a new id to duplicate them if in situation of copy/paste)
@@ -1327,10 +1325,8 @@ class CompositionEditor extends Component {
       /*, contentId*/
     ) => {
       const id = option._id;
-      // let targetedEditorId = contentId;
-      // if (!targetedEditorId) {
       const targetedEditorId = this.props.editorFocus;
-      // }
+
       cancelAssetRequest();
       summonAsset(targetedEditorId, id);
       setTimeout(() => {
@@ -1341,6 +1337,7 @@ class CompositionEditor extends Component {
 
     const onEditorChange = (editorId, editor) => {
       const editorStateId = editorId === 'main' ? composition._id : editorId;
+      // console.log(editorId, 'update with anchor offset', editor.getSelection().toJS().anchorOffset)
       // update active immutable editor state
       updateDraftEditorState(editorStateId, editor);
       // console.log('update draft editor state', editor && editor.getSelection().toJS());
@@ -1369,6 +1366,14 @@ class CompositionEditor extends Component {
       }
     };
     const onClick = (event, contentId = 'main') => {
+      event.stopPropagation();
+      event.preventDefault();
+      // setTimeout(() => setEditorFocus(undefined));
+      // setTimeout(() => {
+      //   console.log('re, focus', contentId);
+      //   setEditorFocus(contentId);
+      //   this.editor.focus(contentId);
+      // }, 100)
       if (focusedEditorId !== contentId) {
         setEditorFocus(contentId);
       }
@@ -1377,11 +1382,17 @@ class CompositionEditor extends Component {
 
     const onBlur = (event, contentId = 'main') => {
       event.stopPropagation();
+
+      // setEditorFocus(undefined);
+
+
       // if focus has not be retaken by another editor
       // after a timeout, blur the whole editor
       // "- be my guest ! - no, you first ! - thank you madame."
       setTimeout(() => {
+        // console.log('on blur');
         if (focusedEditorId === contentId && !assetRequestPosition) {
+          // console.log('deselect');
           setEditorFocus(undefined);
         }
       });

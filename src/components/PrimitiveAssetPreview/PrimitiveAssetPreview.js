@@ -5,6 +5,7 @@ import {Media, Player, controls} from 'react-media-player';
 const {PlayPause, MuteUnmute} = controls;
 
 import Table from 'plurishing-shared/dist/components/contextualizers/Table/DynamicTable';
+import TextPlayer from 'plurishing-shared/dist/components/contextualizers/Audio/TextPlayer';
 
 import getConfig from '../../helpers/getConfig';
 const config = getConfig();
@@ -26,6 +27,7 @@ const render = asset => {
     case 'image/jpg':
     case 'image/jpeg':
     case 'image/gif':
+    case 'image/svg+xml':
       return <img src={assetUrl} />;
 
     case 'video/mp4':
@@ -36,6 +38,8 @@ const render = asset => {
     case 'video/3gp':
     case 'audio/mpeg':
     case 'audio/mp3':
+    case 'video/quicktime':
+    case 'audio/mp4':
       return (
         <Media>
           <div className="media">
@@ -56,6 +60,11 @@ const render = asset => {
         <Table
           src={assetUrl} />
       );
+
+    case 'application/x-subrip':
+    case 'text/srt':
+    case 'text/plain':
+      return <TextPlayer src={assetUrl} />;
     default:
       return (
         <div>

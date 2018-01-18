@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 
 import Login from '../../../components/Login/Login';
 
+import ReduxToastr from 'react-redux-toastr';
 
 const LoginLayout = ({
   // clientStatus,
@@ -29,6 +30,10 @@ const LoginLayout = ({
       </p>
           }
     </section>
+    <ReduxToastr
+      transitionIn="fadeIn"
+      transitionOut="fadeOut"
+      timeOut={1000} />
   </section>
 );
 

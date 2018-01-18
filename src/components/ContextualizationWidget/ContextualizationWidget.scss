@@ -12,7 +12,12 @@
     padding: 1rem;
     width: unset;
     max-width: 40rem;
-    // background: $background-default;
+    max-height: 20rem;
+    overflow: hidden;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+
     .search-form
     {
         display: flex;
@@ -35,7 +40,9 @@
     }
     .choice-options-container
     {
-        overflow: hidden;
+        margin-top: 1rem;
+        overflow: auto;
+        flex: 1;
 
         margin: 0;
         padding: 0;
