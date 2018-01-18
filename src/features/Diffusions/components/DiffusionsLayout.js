@@ -44,6 +44,7 @@ class DiffusionCartel extends Component {
         deliverables = [],
         onPrompt,
         deliverableURLPrefix,
+        deleteDiffusion,
       }
     } = this;
     let statusClass;
@@ -58,6 +59,7 @@ class DiffusionCartel extends Component {
         statusClass = 'is-danger';
         break;
     }
+    const onDelete = () => deleteDiffusion(diffusion._id);
     return (
       <li className="box plurishing-backoffice-DiffusionCartel">
         <article className="media">
@@ -105,6 +107,7 @@ class DiffusionCartel extends Component {
               {diffusion.date_started && <li><span>{t('diffusion date')}</span> : <span className="tag">{new Date(diffusion.date_started).toLocaleString()}</span></li>}
               {/*<li><button onClick={onDelete}>{t('delete diffusion')}</button></li>*/}
               <li><button className="button is-primary" onClick={onPrompt}>{t('edit diffusion')}</button></li>
+              <li><button className="button is-danger" onClick={onDelete}>{t('delete diffusion')}</button></li>
             </ul>
           </div>
         </article>
@@ -127,7 +130,7 @@ const DiffusionsLayout = ({
 
   actions: {
     getDiffusion,
-    // deleteDiffusion,
+    deleteDiffusion,
     updateDiffusion,
     promptNewDiffusionForm,
     unpromptNewDiffusionForm,
@@ -152,6 +155,7 @@ const DiffusionsLayout = ({
         </li>}
         {
           diffusions
+          .reverse()
           .map((diffusion, index) => {
           /*const onDelete = () => deleteDiffusion(diffusion._id);*/
             const onPrompt = () => {
@@ -165,6 +169,7 @@ const DiffusionsLayout = ({
                 deliverables={targetDeliverables}
                 deliverableURLPrefix={deliverableURLPrefix}
                 onPrompt={onPrompt}
+                deleteDiffusion={deleteDiffusion}
                 getDiffusion={getDiffusion}
                 getDeliverables={getDeliverables} />
             );
