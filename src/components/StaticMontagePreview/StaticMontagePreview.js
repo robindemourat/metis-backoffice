@@ -109,12 +109,26 @@ export default class DynamicMontagePreview extends Component {
       }
     });
 
-    // register assets requirement
-    const assetsRequirements = availableResources.reduce((result, resource) => {
-      const assetKeys = Object.keys(resource.data).filter(key => key.indexOf('asset_id') > -1);
-      const assetMentions = assetKeys.map(key => resource.data[key]);
-      return result.concat(assetMentions || []);
-    }, [])
+    const parseData = data =>
+      Object.keys(data).reduce((result, key) => {
+          if (key.indexOf('asset_id') > -1) {
+            return result.concat(data[key]);
+          }
+          return result;
+        }, []);
+
+    // register assets requirement as a list of assets ids
+    const assetsRequirements = availableResources
+      .reduce((result, resource) => {
+        if (Array.isArray(resource.data)) {
+          const results = resource.data.reduce(parseData);
+          return result.concat(resource.data.reduce((result2, item) => {
+            return result2.concat(parseData(item));
+          }, []));
+
+        }
+        else return result.concat(parseData(resource.data));
+      }, [])
     .filter(id => id);
 
     // dissociate fetched resources and others

@@ -11,6 +11,7 @@ import * as resourcesDuck from '../../features/Resources/duck';
 
 import PreviewContainer from 'plurishing-shared/dist/components/previews/DynamicMontagePreview/PreviewContainer';
 
+import './DynamicMontagePreview.scss';
 import style from 'plurishing-shared/dist/components/views/dynamic/styles.scss';/* eslint no-unused-vars: 0*/
 
 @connect(
@@ -205,15 +206,17 @@ export default class DynamicMontagePreview extends Component {
       );
     }
     return (
-      <PreviewContainer
-        montage={montage}
-        compositions={compositions}
-        resources={resources}
-        assets={assets}
-        getAssetUri={getAssetUri}
-        citationStyle={citationStyle}
-        citationLocale={citationLocale}
-        renderingMode="web" />
+      <div className="plurishing-backoffice-DynamicMontagePreview">
+        <PreviewContainer
+          montage={montage}
+          compositions={compositions}
+          resources={resources}
+          assets={assets}
+          getAssetUri={getAssetUri}
+          citationStyle={citationStyle}
+          citationLocale={citationLocale}
+          renderingMode="web" />
+      </div>
     );
   }
 }

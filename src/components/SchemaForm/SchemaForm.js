@@ -88,7 +88,7 @@ const makeForm = (totalSchema, model, totalObject, value, level, key, path, onCh
             return (
               <input
                 className="input"
-                value={value}
+                value={value || ''}
                 onChange={e => onChange(path, +e.target.value)} />
             );
           // value is an array
@@ -264,10 +264,10 @@ const makeForm = (totalSchema, model, totalObject, value, level, key, path, onCh
                   onChange={e => onChange(path, e.target.value)} />
               );
             }
- else {
+            else {
               return (
                 <input
-                  value={value}
+                  value={value || ''}
                   className="input"
                   placeholder={translate(model.description)}
                   onChange={e => onChange(path, e.target.value)} />

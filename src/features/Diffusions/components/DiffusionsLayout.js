@@ -25,13 +25,18 @@ class DiffusionCartel extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    if (nextProps.diffusion && nextProps.diffusion.status === 'processing' && !this.state.isWaiting) {
+    // if waiting or processing ask server if status is changed every 2 seconds
+    if (
+        nextProps.diffusion &&
+        (nextProps.diffusion.status === 'processing' || nextProps.diffusion.status === 'waiting') &&
+        !this.state.isWaiting
+      ) {
       this.setState({isWaiting: true});
       setTimeout(() => {
         nextProps.getDiffusion(nextProps.diffusion._id)
           .then(() => nextProps.getDeliverables());
         this.setState({isWaiting: false});
-      }, 1000);
+      }, 2000);
     }
   }
   render() {
@@ -51,6 +56,9 @@ class DiffusionCartel extends Component {
     switch (diffusion.status) {
       case 'success':
         statusClass = 'is-success';
+        break;
+      case 'waiting':
+        statusClass = 'is-warning';
         break;
       case 'processing':
         statusClass = 'is-info';
