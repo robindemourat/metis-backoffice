@@ -1,3 +1,9 @@
+/**
+ * This module exports a function providing the proper configuration object
+ * regarding process mode (production or development)
+ * @module metis-backoffice/utils/config
+ */
+
 import devConfig from '../../config.dev';
 import prodConfig from '../../config.prod';
 

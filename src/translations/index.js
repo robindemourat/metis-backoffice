@@ -1,8 +1,8 @@
 /**
- * Backoffice Application
+ * Metis backoffice Application
  * =======================================
  * Locales hashmaps
- * @module backoffice
+ * @module metis-backoffice
  */
 
 import fr from './locales/fr';

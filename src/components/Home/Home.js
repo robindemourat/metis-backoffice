@@ -1,8 +1,6 @@
 /**
- * Backoffice Application
- * =======================================
- * Home view component
- * @module backoffice
+ * This module provides a representation of the application main page.
+ * @module metis-backoffice/components/Home
  */
 
 import React from 'react';

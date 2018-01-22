@@ -1,7 +1,7 @@
 /* eslint react/jsx-no-bind : 0 */
 /**
  * This module exports a stateless component rendering the layout of the assets view
- * @module backoffice/features/Assets
+ * @module metis-backoffice/features/Assets
  */
 import React from 'react';
 import PropTypes from 'prop-types';

@@ -1,7 +1,7 @@
 /**
  * This module exports a stateful component connected to the redux logic of the app,
  * dedicated to rendering the "forgot password" container
- * @module backoffice/features/Auth
+ * @module metis-backoffice/features/Auth
  */
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';

@@ -1,4 +1,13 @@
 /* eslint react/no-set-state : 0 */
+/**
+ * This module generates and manages a form for editing
+ * an object according to its json-schema model.
+ * The entire form is generated out of the json schema.
+ * This component should be kept as generic as possible
+ * to preserve UI flexibility regarding data schemas.
+ * @module metis-backoffice/components/SchemaForm
+ */
+
 
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';

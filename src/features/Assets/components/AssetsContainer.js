@@ -1,7 +1,7 @@
 /**
  * This module exports a stateful component connected to the redux logic of the app,
  * dedicated to rendering the assets container
- * @module backoffice/features/Assets
+ * @module metis-backoffice/features/Assets
  */
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';

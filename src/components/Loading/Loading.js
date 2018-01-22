@@ -1,8 +1,6 @@
 /**
- * Backoffice Application
- * =======================================
- * Loading component
- * @module backoffice
+ * This module provides a basic loading component.
+ * @module metis-backoffice/components/Loading
  */
 import React from 'react';
 

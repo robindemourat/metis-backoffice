@@ -11,10 +11,10 @@ const {
   components: {contextualizers}
 } = shared;
 
-import 'react-table/react-table.css';
-
 import './AssetPreview.scss';
 
+
+import 'react-table/react-table.css';
 
 /**
  * Renders the AssetPreview component

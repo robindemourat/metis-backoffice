@@ -1,3 +1,10 @@
+/**
+ * This module provides a component for previewing an asset document attached file
+ * with the right html representation.
+ * @module metis-backoffice/components/PrimitiveAssetPreview
+ */
+
+
 import React from 'react';
 // import PropTypes from 'prop-types';
 

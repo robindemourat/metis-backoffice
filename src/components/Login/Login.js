@@ -1,9 +1,7 @@
 /* eslint react/jsx-no-bind : 0 */
 /**
- * Backoffice Application
- * =======================================
- * Login form component
- * @module backoffice
+ * This module provides a login form.
+ * @module metis-backoffice/components/Login
  */
 import React from 'react';
 import PropTypes from 'prop-types';

@@ -1,7 +1,7 @@
 /**
  * This module follows the ducks convention for putting in the same place actions, action types,
  * state selectors and reducers about a given feature (see https://github.com/erikras/ducks-modular-redux)
- * @module backoffice/features/GlobalUi
+ * @module metis-backoffice/features/GlobalUi
  */
 
 import {combineReducers} from 'redux';

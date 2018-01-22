@@ -1,3 +1,7 @@
+/**
+ * This module provides a asset preview & selection widget element component
+ * @module metis-backoffice/components/AssetWidget
+ */
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {bindActionCreators} from 'redux';

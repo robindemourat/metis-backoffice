@@ -1,6 +1,6 @@
 /**
  * This module provides a reusable block contextualization for the editor component
- * @module metis-backoffice/components/SectionEditor
+ * @module metis-backoffice/components/CompositionEditor
  */
 
 import React, {Component} from 'react';

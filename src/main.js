@@ -3,7 +3,7 @@
  * ======================================
  *
  * Rendering the application.
- * @module backoffice
+ * @module metis-backoffice
  */
 import React from 'react';
 import {render} from 'react-dom';

@@ -1,7 +1,7 @@
 /**
  * This module exports a stateful component connected to the redux logic of the app,
  * dedicated to rendering the users container
- * @module backoffice/features/Users
+ * @module metis-backoffice/features/Users
  */
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';

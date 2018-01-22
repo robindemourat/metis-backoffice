@@ -1,8 +1,8 @@
 /**
- * Backoffice Application
+ * Metis backoffice Application
  * =======================================
  * Root component of the application.
- * @module backoffice
+ * @module metis-backoffice
  */
 import React from 'react';
 

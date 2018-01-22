@@ -2,7 +2,7 @@
  * This module exports logic-related elements for the compositions feature
  * This module follows the ducks convention for putting in the same place actions, action types,
  * state selectors and reducers about a given feature (see https://github.com/erikras/ducks-modular-redux)
- * @module backoffice/features/Compositions
+ * @module metis-backoffice/features/Compositions
  */
 
 import {combineReducers} from 'redux';

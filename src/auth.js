@@ -1,8 +1,8 @@
 /**
- * Backoffice Application
+ * Metis backoffice Application
  * =======================================
  * Auth-related routes middlewares
- * @module backoffice
+ * @module metis-backoffice
  */
 import locationHelperBuilder from 'redux-auth-wrapper/history3/locationHelper';
 import {connectedRouterRedirect} from 'redux-auth-wrapper/history3/redirect';

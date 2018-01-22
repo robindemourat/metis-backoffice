@@ -1,3 +1,8 @@
+/**
+ * This module provides a composition  preview & selection widget element component
+ * @module metis-backoffice/components/CompositionWidget
+ */
+
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {bindActionCreators} from 'redux';

@@ -1,6 +1,6 @@
 /**
  * This module exports a stateless component rendering the layout of the user setup view
- * @module backoffice/features/Users
+ * @module metis-backoffice/features/Users
  */
 import React from 'react';
 import PropTypes from 'prop-types';

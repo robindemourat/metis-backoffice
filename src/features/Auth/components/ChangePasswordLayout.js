@@ -1,6 +1,6 @@
 /**
  * This module exports a stateless component rendering the layout of the "change password" view
- * @module backoffice/features/Auth
+ * @module metis-backoffice/features/Auth
  */
 import React from 'react';
 import PropTypes from 'prop-types';

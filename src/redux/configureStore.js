@@ -1,8 +1,8 @@
 /**
- * Backoffice Application
+ * Metis backoffice Application
  * =======================================
  * Configuring store with appropriate middlewares
- * @module backoffice
+ * @module metis-backoffice
  */
 import {
   applyMiddleware,

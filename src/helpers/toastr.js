@@ -1,4 +1,9 @@
-
+/**
+ * This module exports a function that converts
+ * a logic-based status related to an http request
+ * into a toastr-compatible status
+ * @module metis-frontoffice/utils/toastr
+ */
 
 export const buildOperationToastr = ({operation, status, translations = {}}) => {
   let type;

@@ -1,4 +1,10 @@
 /* eslint react/no-set-state : 0 */
+/**
+ * This module provides a static preview wrapper component.
+ * It is a redux connected component.
+ * It ensure proper data is available by launching data request and renders the preview component.
+ * @module metis-backoffice/components/StaticMontagePreview
+ */
 
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';

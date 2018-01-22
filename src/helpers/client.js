@@ -1,8 +1,8 @@
 /**
- * Backoffice Application
+ * Metis backoffice Application
  * =======================================
  * Axios client wrapper - plugged directly to the config file specifying api endpoints
- * @module backoffice
+ * @module metis-backoffice
  */
 
 import axios from 'axios';

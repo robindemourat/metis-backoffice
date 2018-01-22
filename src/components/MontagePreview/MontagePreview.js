@@ -1,3 +1,10 @@
+/**
+ * This module provides a montage preview wrapper.
+ * It is basically a switch between specific montage preview components.
+ * @module metis-backoffice/components/MontagePreview
+ */
+
+
 import React from 'react';
 
 import MicroPublicationPreview from '../MicroPublicationPreview/MicroPublicationPreview';

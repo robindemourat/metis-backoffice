@@ -1,6 +1,6 @@
 /**
  * This module exports a stateless component rendering the layout of the layout view
- * @module backoffice/features/Layout
+ * @module metis-backoffice/features/Layout
  */
 import React from 'react';
 import PropTypes from 'prop-types';

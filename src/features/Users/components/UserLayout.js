@@ -1,7 +1,7 @@
 /* eslint react/jsx-no-bind : 0 */
 /**
  * This module exports a stateless component rendering the layout of the single user view
- * @module backoffice/features/Users
+ * @module metis-backoffice/features/Users
  */
 import React from 'react';
 import PropTypes from 'prop-types';

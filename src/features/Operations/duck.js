@@ -2,7 +2,7 @@
  * This module exports logic-related elements for the operations feature
  * This module follows the ducks convention for putting in the same place actions, action types,
  * state selectors and reducers about a given feature (see https://github.com/erikras/ducks-modular-redux)
- * @module backoffice/features/Operations
+ * @module metis-backoffice/features/Operations
  */
 
 import {combineReducers} from 'redux';

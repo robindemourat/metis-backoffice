@@ -1,4 +1,7 @@
-
+/**
+ * This module provides utils used by the composition editor
+ * @module metis-backoffice/components/CompositionEditor
+ */
 
 export const resourceToCslJSON = resource => {
 

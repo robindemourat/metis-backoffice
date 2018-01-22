@@ -2,7 +2,7 @@
 /**
  * This module exports a stateful component connected to the redux logic of the app,
  * dedicated to rendering the layout container
- * @module backoffice/features/Layout
+ * @module metis-backoffice/features/Layout
  */
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';

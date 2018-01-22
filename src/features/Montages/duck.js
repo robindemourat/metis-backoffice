@@ -2,7 +2,7 @@
  * This module exports logic-related elements for the montages feature
  * This module follows the ducks convention for putting in the same place actions, action types,
  * state selectors and reducers about a given feature (see https://github.com/erikras/ducks-modular-redux)
- * @module backoffice/features/Montages
+ * @module metis-backoffice/features/Montages
  */
 
 import {combineReducers} from 'redux';

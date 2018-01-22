@@ -1,5 +1,10 @@
 /* eslint react/no-set-state : 0 */
-
+/**
+ * This module provides a dynamic preview wrapper component.
+ * It is a redux connected component.
+ * It ensures proper data is available by launching data request and renders the preview component
+ * @module metis-backoffice/components/DynamicMontagePreview
+ */
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {bindActionCreators} from 'redux';
