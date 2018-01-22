@@ -42,7 +42,7 @@ const UsersLayout = ({
                     <p className="title"><a href={`users/${user._id}`}>{user.name}</a></p>
                     <p>{t('email')} : {user.email}</p>
                     <p>Admin : {user.admin ? t('yes') : t('no')}</p>
-                    {user._id !== ownUser._id && <button onClick={onDelete}>{t('delete user')}</button>}
+                    {user._id !== ownUser._id && <button onClick={onDelete} className="button is-danger">{t('delete user')}</button>}
                   </div>
                 </div>
               </article>
