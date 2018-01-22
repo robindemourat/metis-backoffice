@@ -1,5 +1,5 @@
 /**
- * This module provides a component handling the drag&drop of 
+ * This module provides a component handling the drag&drop of
  * a .bib file in order to create new bibliographical resources.
  * @module metis-backoffice/components/ResourceDrop
  */
