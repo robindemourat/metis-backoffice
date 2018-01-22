@@ -2,6 +2,8 @@
 
 Metis-backoffice is a front-end interface to the backend used to run the `metis` experimental plateform for multimodal publishing.
 
+![Metis backoffice screencast](https://github.com/robindemourat/metis-backoffice/blob/master/screencast.gif?raw=true)
+
 ## Installation
 
 ```sh
