@@ -1,7 +1,7 @@
 /**
- * This module prplurishing-backoffices a aside toggler element component
+ * This module prmetis-backoffices a aside toggler element component
  * Sets the mode of an aside ui column
- * @module plurishing-backoffice/components/AsideToggler
+ * @module metis-backoffice/components/AsideToggler
  */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -20,7 +20,7 @@ const AsideToggler = ({
   activeOption,
 }) => {
   return (
-    <ul className="plurishing-backoffice-AsideToggler">
+    <ul className="metis-backoffice-AsideToggler">
       {
         options.map((option, index) => {
           const onClick = () => {

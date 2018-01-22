@@ -1,7 +1,7 @@
 {
   "resetTimeMs": 2000,
-  "apiBaseUri": "https://plurishing-backend.herokuapp.com/api/",
-  "servicesBaseUri": "https://plurishing-backend.herokuapp.com/services/",
+  "apiBaseUri": "https://metis-backend.herokuapp.com/api/",
+  "servicesBaseUri": "https://metis-backend.herokuapp.com/services/",
   "endpoints": {
     "resources": "resources",
     "compositions": "compositions",

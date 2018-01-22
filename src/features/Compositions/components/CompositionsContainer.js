@@ -1,7 +1,7 @@
 /**
  * This module exports a stateful component connected to the redux logic of the app,
  * dedicated to rendering the compositions container
- * @module plurishing-backoffice/features/Compositions
+ * @module metis-backoffice/features/Compositions
  */
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
@@ -9,7 +9,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {actions as toastrActions} from 'react-redux-toastr';
 
-import {Composition as schema} from 'plurishing-schemas';
+import {Composition as schema} from 'metis-schemas';
 
 import CompositionsLayout from './CompositionsLayout';
 import * as duck from '../duck';

@@ -1,12 +1,12 @@
-# plurishing-backoffice 
+# metis-backoffice 
 
-Plurishing-backoffice is a front-end interface to the backend used to run the `plurishing` experimental plateform for multimodal publishing.
+Metis-backoffice is a front-end interface to the backend used to run the `metis` experimental plateform for multimodal publishing.
 
 ## Installation
 
 ```sh
-git clone https://github.com/robindemourat/plurishing-backoffice
-cd plurishing-backoffice
+git clone https://github.com/robindemourat/metis-backoffice
+cd metis-backoffice
 ```
 
 ## Scripts
@@ -59,8 +59,8 @@ npm test
 - [json-schema-defaults](https://github.com/chute/json-schema-defaults): Generate JSON object from default values in JSON Schema
 - [moment](https://github.com/moment/moment): Parse, validate, manipulate, and display dates
 - [oy-vey](https://github.com/oysterbooks/oy): React utilities for building server-side email templates.
-- [plurishing-schemas](): Multimodal publishing schemas
-- [plurishing-shared](): Collection of plurishing elements being used accross apps
+- [metis-schemas](): Multimodal publishing schemas
+- [metis-shared](): Collection of metis elements being used accross apps
 - [react](https://github.com/facebook/react): React is a JavaScript library for building user interfaces.
 - [react-citeproc](https://github.com/robindemourat/react-citeproc): react wrapping components for csl-based citations
 - [react-codemirror2](https://github.com/scniro/react-codemirror2): a tiny react codemirror component wrapper

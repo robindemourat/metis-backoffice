@@ -1,11 +1,11 @@
 /**
  * This module provides a reusable Inline contextualization for the editor component
- * @module plurishing-backoffice/components/SectionEditor
+ * @module metis-backoffice/components/SectionEditor
  */
 
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import shared from 'plurishing-shared';
+import shared from 'metis-shared';
 const {
   components: {contextualizers}
 } = shared;
@@ -71,7 +71,7 @@ class InlineContainer extends Component {
 
     if (contextualizers[type] && contextualizers[type].Inline) {
       ThatComponent = contextualizers[type].Inline;
-      return (<span onClick={onEditRequest} className="plurishing-backoffice-InlineContextualizationContainer button is-primary">
+      return (<span onClick={onEditRequest} className="metis-backoffice-InlineContextualizationContainer button is-primary">
         <ThatComponent
           type={type}
           data={resource.data}

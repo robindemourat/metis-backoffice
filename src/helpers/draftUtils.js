@@ -1,6 +1,6 @@
 /**
  * This module handles scholar-draft related operations on draft-js states
- * @module plurishing-backoffice/utils/draftUtils
+ * @module metis-backoffice/utils/draftUtils
  */
 
 import {

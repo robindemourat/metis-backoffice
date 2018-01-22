@@ -1,8 +1,8 @@
 /**
- * Plurishing backoffice Application
+ * Metis backoffice Application
  * =======================================
  * Combining the app's reducers
- * @module plurishing-backoffice
+ * @module metis-backoffice
  */
 import {combineReducers} from 'redux';
 

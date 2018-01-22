@@ -1,7 +1,7 @@
 /**
  * This module exports a stateful component connected to the redux logic of the app,
  * dedicated to rendering the diffusions container
- * @module plurishing-backoffice/features/Diffusions
+ * @module metis-backoffice/features/Diffusions
  */
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
@@ -9,7 +9,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {actions as toastrActions} from 'react-redux-toastr';
 
-import {Diffusion as schema} from 'plurishing-schemas';
+import {Diffusion as schema} from 'metis-schemas';
 
 import DiffusionsLayout from './DiffusionsLayout';
 import * as duck from '../duck';

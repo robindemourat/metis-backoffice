@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import DropZone from '../DropZone/DropZone';
 
-import {parseBibTeXToCSLJSON} from 'plurishing-shared/dist/utils/assetsUtils';
+import {parseBibTeXToCSLJSON} from 'metis-shared/dist/utils/assetsUtils';
 
 
 /**

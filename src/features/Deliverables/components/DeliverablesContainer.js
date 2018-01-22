@@ -1,7 +1,7 @@
 /**
  * This module exports a stateful component connected to the redux logic of the app,
  * dedicated to rendering the deliverables container
- * @module plurishing-backoffice/features/Deliverables
+ * @module metis-backoffice/features/Deliverables
  */
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
@@ -9,7 +9,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {actions as toastrActions} from 'react-redux-toastr';
 
-import {Deliverable as schema} from 'plurishing-schemas';
+import {Deliverable as schema} from 'metis-schemas';
 
 import DeliverablesLayout from './DeliverablesLayout';
 import * as duck from '../duck';

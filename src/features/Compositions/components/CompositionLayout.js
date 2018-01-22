@@ -2,7 +2,7 @@
 /* eslint no-console : 0 */
 /**
  * This module exports a stateless component rendering the layout of the compositions view
- * @module plurishing-backoffice/features/Compositions
+ * @module metis-backoffice/features/Compositions
  */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -82,7 +82,7 @@ const CompositionLayout = ({
   const openResourceConfiguration = (id, resource) => setEditedResource(resource);
 
   return (
-    <section className="plurishing-backoffice-Composition">
+    <section className="metis-backoffice-Composition">
       <aside className="column is-one-quarter aside-picker">
         <ResourcesContainer />
       </aside>

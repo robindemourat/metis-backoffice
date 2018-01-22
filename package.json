@@ -1,7 +1,7 @@
 {
-  "name": "plurishing-backoffice",
+  "name": "metis-backoffice",
   "version": "0.0.1",
-  "description": "An application for handling plurishing backoffice",
+  "description": "An application for handling metis backoffice",
   "license": "LGPL-3.0",
   "main": "dist/entry.js",
   "scripts": {
@@ -37,10 +37,10 @@
     "dot-prop": "git+https://github.com/robindemourat/dot-prop.git",
     "draft-js": "^0.10.4",
     "json-schema-defaults": "^0.3.0",
+    "metis-schemas": "git+https://github.com/robindemourat/metis-schemas.git",
+    "metis-shared": "git+https://github.com/robindemourat/metis-shared.git",
     "moment": "^2.20.1",
     "oy-vey": "^0.11.0",
-    "plurishing-schemas": "git+https://github.com/robindemourat/plurishing-schemas.git",
-    "plurishing-shared": "git+https://github.com/robindemourat/plurishing-shared.git",
     "react": "^16.1.1",
     "react-citeproc": "^0.1.9",
     "react-codemirror2": "^3.0.7",

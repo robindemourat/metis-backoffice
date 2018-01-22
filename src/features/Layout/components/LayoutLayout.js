@@ -32,7 +32,7 @@ const LoginLayout = ({
     pathname
   }
 }, {t}) => (
-  <div className="plurishing-backoffice-Layout">
+  <div className="metis-backoffice-Layout">
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand is-flex-desktop">
         <h1 className="title is-flex-desktop">

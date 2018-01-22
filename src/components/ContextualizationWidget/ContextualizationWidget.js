@@ -3,7 +3,7 @@
  * This module provides a reusable resource search widget component.
  * It displays available resources and allow to search by text input
  * and go up in down with keyboard arrows in the list of search-matching items.
- * @module plurishing-backoffice/components/ContextualizationWidget
+ * @module metis-backoffice/components/ContextualizationWidget
  */
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
@@ -235,7 +235,7 @@ class ContextualizationWidget extends Component {
       this.input = input;
     };
     return (
-      <div className="plurishing-backoffice-ContextualizationWidget">
+      <div className="metis-backoffice-ContextualizationWidget">
         <form className="search-form" onSubmit={this.onSubmit}>
           <span className="arobase">@</span>
           <input

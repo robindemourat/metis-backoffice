@@ -3,7 +3,7 @@
 /**
  * This module provides a code editor element component
  * Sets the mode of an aside ui column
- * @module plurishing-backoffice/components/CodeEditor
+ * @module metis-backoffice/components/CodeEditor
  */
 import React, {Component} from 'react';
 import {Controlled as CodeMirror} from 'react-codemirror2';
@@ -54,7 +54,7 @@ class CodeEditor extends Component {
       }
     } = this;
     return (
-      <div className="plurishing-backoffice-CodeEditor" onClick={onClick}>
+      <div className="metis-backoffice-CodeEditor" onClick={onClick}>
         <CodeMirror
           value={value}
           options={{

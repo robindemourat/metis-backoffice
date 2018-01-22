@@ -1,7 +1,7 @@
 /**
  * This module exports a stateful component connected to the redux logic of the app,
  * dedicated to rendering the montages container
- * @module plurishing-backoffice/features/Montages
+ * @module metis-backoffice/features/Montages
  */
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
@@ -9,7 +9,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {actions as toastrActions} from 'react-redux-toastr';
 
-import {Montage as schema} from 'plurishing-schemas';
+import {Montage as schema} from 'metis-schemas';
 
 import MontageLayout from './MontageLayout';
 import * as duck from '../duck';

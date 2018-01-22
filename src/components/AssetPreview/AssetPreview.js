@@ -2,11 +2,11 @@
 /* eslint react/prefer-stateless-function : 0 */
 /**
  * This module provides a asset preview element component
- * @module plurishing-backoffice/components/AssetPreview
+ * @module metis-backoffice/components/AssetPreview
  */
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import shared from 'plurishing-shared';
+import shared from 'metis-shared';
 const {
   components: {contextualizers}
 } = shared;
@@ -104,7 +104,7 @@ export default class AssetPreview extends Component {
     };
 
     return (
-      <div className="plurishing-backoffice-AssetPreview">
+      <div className="metis-backoffice-AssetPreview">
         <div className={`preview-container ${contextualizer.type}`}>
           {renderPreview()}
         </div>

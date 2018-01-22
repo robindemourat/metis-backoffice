@@ -1,7 +1,7 @@
 /**
  * This module exports a stateful component connected to the redux logic of the app,
  * dedicated to rendering the resources container
- * @module plurishing-backoffice/features/Resources
+ * @module metis-backoffice/features/Resources
  */
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
@@ -9,7 +9,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {actions as toastrActions} from 'react-redux-toastr';
 
-import {Resource as schema} from 'plurishing-schemas';
+import {Resource as schema} from 'metis-schemas';
 
 import ResourcesLayout from './ResourcesLayout';
 import * as duck from '../duck';

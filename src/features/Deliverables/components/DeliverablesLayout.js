@@ -1,7 +1,7 @@
 /* eslint react/jsx-no-bind : 0 */
 /**
  * This module exports a stateless component rendering the layout of the deliverables view
- * @module plurishing-backoffice/features/Deliverables
+ * @module metis-backoffice/features/Deliverables
  */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -18,7 +18,7 @@ const DeliverablesLayout = ({
     deleteDeliverable
   }
 }, {t}) => (
-  <section className="plurishing-backoffice-Deliverables container is-fluid">
+  <section className="metis-backoffice-Deliverables container is-fluid">
     <section className="section">
       <h1 className="title is-1">{t('Deliverables')}</h1>
     </section>

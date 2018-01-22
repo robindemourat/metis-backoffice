@@ -42,7 +42,7 @@ const AssetsLayout = ({
     }, Promise.resolve());
   };
   return (
-    <section className="plurishing-backoffice-Assets container is-fluid">
+    <section className="metis-backoffice-Assets container is-fluid">
       <section className="section">
         <h1 className="title is-1">{t('Assets')}</h1>
       </section>

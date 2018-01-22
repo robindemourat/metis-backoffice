@@ -1,7 +1,7 @@
 /* eslint react/jsx-no-bind : 0 */
 /**
  * This module exports a stateless component rendering the layout of the resources view
- * @module plurishing-backoffice/features/Resources
+ * @module metis-backoffice/features/Resources
  */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -31,7 +31,7 @@ const ResourcesLayout = ({
   },
   createResources
 }, {t}) => (
-  <section className="plurishing-backoffice-Resources container is-fluid">
+  <section className="metis-backoffice-Resources container is-fluid">
     <section className="section section-title">
       <h1 className="title is-1">{t('Resources')}</h1>
     </section>

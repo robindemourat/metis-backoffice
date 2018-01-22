@@ -2,7 +2,7 @@
 /* eslint no-alert : 0 */
 /**
  * This module exports a stateless component rendering the layout of the montages view
- * @module plurishing-backoffice/features/Montages
+ * @module metis-backoffice/features/Montages
  */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -33,7 +33,7 @@ const MontagesLayout = ({
     unsetEditedMontage,
   }
 }, {t}) => (
-  <section className="plurishing-backoffice-Montages container is-fluid">
+  <section className="metis-backoffice-Montages container is-fluid">
     <section className="section">
       <h1 className="title is-1">{t('Montages')}</h1>
     </section>

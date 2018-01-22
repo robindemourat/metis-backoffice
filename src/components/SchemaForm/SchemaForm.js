@@ -439,7 +439,7 @@ export default class SchemaForm extends Component {
     } = this;
 
     return (
-      <form onSubmit={e => e.preventDefault()} className="plurishing-SchemaForm">
+      <form onSubmit={e => e.preventDefault()} className="metis-SchemaForm">
         {title && <h1 className="title is-3">{title}</h1>}
         {makeForm(schema, schema, document, document, 0, undefined, [], onChange, false, t)}
         {errors &&

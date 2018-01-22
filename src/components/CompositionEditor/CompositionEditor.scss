@@ -1,16 +1,16 @@
 /**
  * style definitions for the CompositionEditor component
  *
- * @module plurishing-backoffice/components/CompositionEditor
+ * @module metis-backoffice/components/CompositionEditor
  */
 @import '../../parameters.scss';
 
 
-.plurishing-backoffice-CompositionEditor
+.metis-backoffice-CompositionEditor
 {
     margin-bottom: 10rem;
 
-    .plurishing-backoffice-BlockContextualizationContainer
+    .metis-backoffice-BlockContextualizationContainer
     {
         overflow: hidden;
 
@@ -67,7 +67,7 @@
         }
     }
 
-    .plurishing-backoffice-InlineContextualizationContainer
+    .metis-backoffice-InlineContextualizationContainer
     {
         line-height: unset;
 

@@ -1,6 +1,6 @@
 /**
- * This module provides a wrapper for displaying composition editor in plurishing-backoffice editor
- * @module plurishing-backoffice/components/CompositionEditor
+ * This module provides a wrapper for displaying composition editor in metis-backoffice editor
+ * @module metis-backoffice/components/CompositionEditor
  */
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
@@ -24,7 +24,7 @@ import {
 } from 'draftjs-utils';
 
 
-import {resourceToCslJSON} from 'plurishing-shared/dist/utils/assetsUtils';
+import {resourceToCslJSON} from 'metis-shared/dist/utils/assetsUtils';
 
 // import CompositionLink from './CompositionLink/CompositionLink';
 // import compositionLinkStrategy from './CompositionLink/strategy';
@@ -1446,7 +1446,7 @@ class CompositionEditor extends Component {
     // console.log(mainEditorState && mainEditorState.getSelection().toJS());
 
     return (
-      <div className="plurishing-backoffice-CompositionEditor">
+      <div className="metis-backoffice-CompositionEditor">
         <div className="editor-wrapper" onScroll={onScroll}>
           <ReferencesManager
             style={style}

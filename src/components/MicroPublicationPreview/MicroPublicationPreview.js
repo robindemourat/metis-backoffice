@@ -13,9 +13,9 @@ const config = getConfig();
 const {servicesBaseUri, apiBaseUri} = config;
 
 
-import TwitterPreview from 'plurishing-shared/dist/components/previews/TwitterPreview/TwitterPreview';
-import FacebookPreview from 'plurishing-shared/dist/components/previews/FacebookPreview/FacebookPreview';
-import MailingPreview from 'plurishing-shared/dist/components/previews/MailingPreview/MailingPreview';
+import TwitterPreview from 'metis-shared/dist/components/previews/TwitterPreview/TwitterPreview';
+import FacebookPreview from 'metis-shared/dist/components/previews/FacebookPreview/FacebookPreview';
+import MailingPreview from 'metis-shared/dist/components/previews/MailingPreview/MailingPreview';
 
 import './MicroPublicationPreview.scss';
 
@@ -171,7 +171,7 @@ export default class MicroPublicationPreview extends Component {
       }
     } = this;
     return (
-      <section className="plurishing-backoffice-MicroPublicationPreview">
+      <section className="metis-backoffice-MicroPublicationPreview">
         <section className="section">
           <h3 className="title is-4">{t('twitter preview')}</h3>
           {montage && composition ?

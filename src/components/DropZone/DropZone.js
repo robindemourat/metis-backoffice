@@ -1,8 +1,8 @@
 /**
- * This module prplurishing-backoffices a reusable dropzone component.
+ * This module prmetis-backoffices a reusable dropzone component.
  * It is basically the drop zone module component given a class
  * in order to style all drop zones consistently.
- * @module plurishing-backoffice/components/DropZone
+ * @module metis-backoffice/components/DropZone
  */
 import React from 'react';
 import Dropzone from 'react-dropzone';
@@ -22,7 +22,7 @@ const DropZone = ({
   accept
 }) => (
   <Dropzone
-    className="plurishing-backoffice-DropZone"
+    className="metis-backoffice-DropZone"
     activeClassName="active"
     accept={accept}
     onDrop={onDrop}>

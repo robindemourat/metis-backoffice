@@ -2,7 +2,7 @@
 /* eslint no-alert : 0 */
 /**
  * This module exports a stateless component rendering the layout of the operations view
- * @module plurishing-backoffice/features/Operations
+ * @module metis-backoffice/features/Operations
  */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -37,7 +37,7 @@ const OperationsLayout = ({
     }
   };
   return (
-    <section className="plurishing-backoffice-Operations container is-fluid">
+    <section className="metis-backoffice-Operations container is-fluid">
       <section className="section">
         <h1 className="title is-1">{t('Operations')}</h1>
       </section>

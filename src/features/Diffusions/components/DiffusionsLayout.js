@@ -2,7 +2,7 @@
 /* eslint react/no-set-state : 0 */
 /**
  * This module exports a stateless component rendering the layout of the diffusions view
- * @module plurishing-backoffice/features/Diffusions
+ * @module metis-backoffice/features/Diffusions
  */
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
@@ -69,7 +69,7 @@ class DiffusionCartel extends Component {
     }
     // const onDelete = () => deleteDiffusion(diffusion._id);
     return (
-      <li className="box plurishing-backoffice-DiffusionCartel">
+      <li className="box metis-backoffice-DiffusionCartel">
         <article className="media">
           <div className="media-left">
             <span className="tag">
@@ -153,7 +153,7 @@ const DiffusionsLayout = ({
     promptNewDiffusionForm(montageId, montageType);
   };
   return (
-    <section className="plurishing-backoffice-Diffusions container is-fluid">
+    <section className="metis-backoffice-Diffusions container is-fluid">
       <section className="section  section-title">
         <h1 className="title is-1">{t('Diffusions')}</h1>
       </section>

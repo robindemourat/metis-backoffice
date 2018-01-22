@@ -1,6 +1,6 @@
 /**
  * This module provides a reusable block contextualization for the editor component
- * @module plurishing-backoffice/components/SectionEditor
+ * @module metis-backoffice/components/SectionEditor
  */
 
 import React, {Component} from 'react';
@@ -170,7 +170,7 @@ class BlockContainer extends Component {
     };
 
     return (
-      <div className="plurishing-backoffice-BlockContextualizationContainer" onClick={preventClick}>
+      <div className="metis-backoffice-BlockContextualizationContainer" onClick={preventClick}>
 
         <AssetPreview
           type={contextualizer.type}

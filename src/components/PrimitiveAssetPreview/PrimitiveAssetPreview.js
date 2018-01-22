@@ -4,8 +4,8 @@ import React from 'react';
 import {Media, Player, controls} from 'react-media-player';
 const {PlayPause, MuteUnmute} = controls;
 
-import Table from 'plurishing-shared/dist/components/contextualizers/Table/DynamicTable';
-import TextPlayer from 'plurishing-shared/dist/components/contextualizers/Audio/TextPlayer';
+import Table from 'metis-shared/dist/components/contextualizers/Table/DynamicTable';
+import TextPlayer from 'metis-shared/dist/components/contextualizers/Audio/TextPlayer';
 
 import getConfig from '../../helpers/getConfig';
 const config = getConfig();
@@ -79,7 +79,7 @@ const AssetPreview = ({
 }, /*{t}*/) => {
   if (asset) {
     return (
-      <div className="plurishing-backoffice-PrimitiveAssetPreview">
+      <div className="metis-backoffice-PrimitiveAssetPreview">
         {render(asset)}
       </div>
     );

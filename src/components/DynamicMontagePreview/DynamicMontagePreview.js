@@ -9,10 +9,10 @@ import * as compositionsDuck from '../../features/Compositions/duck';
 import * as assetsDuck from '../../features/Assets/duck';
 import * as resourcesDuck from '../../features/Resources/duck';
 
-import PreviewContainer from 'plurishing-shared/dist/components/previews/DynamicMontagePreview/PreviewContainer';
+import PreviewContainer from 'metis-shared/dist/components/previews/DynamicMontagePreview/PreviewContainer';
 
 import './DynamicMontagePreview.scss';
-import style from 'plurishing-shared/dist/components/views/dynamic/styles.scss';/* eslint no-unused-vars: 0*/
+import style from 'metis-shared/dist/components/views/dynamic/styles.scss';/* eslint no-unused-vars: 0*/
 
 @connect(
   state => ({
@@ -206,7 +206,7 @@ export default class DynamicMontagePreview extends Component {
       );
     }
     return (
-      <div className="plurishing-backoffice-DynamicMontagePreview">
+      <div className="metis-backoffice-DynamicMontagePreview">
         <PreviewContainer
           montage={montage}
           compositions={compositions}

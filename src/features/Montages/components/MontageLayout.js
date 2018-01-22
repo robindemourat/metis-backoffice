@@ -1,7 +1,7 @@
 /* eslint react/jsx-no-bind : 0 */
 /**
  * This module exports a stateless component rendering the layout of the montages view
- * @module plurishing-backoffice/features/Montages
+ * @module metis-backoffice/features/Montages
  */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -37,7 +37,7 @@ const MontageLayout = ({
   };
 
   return (
-    <section className="plurishing-backoffice-Montage columns">
+    <section className="metis-backoffice-Montage columns">
       <div className="column">
         <div className="section">
           <h2 className="title is-3">{t('montage edition')}</h2>

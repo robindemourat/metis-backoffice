@@ -1,6 +1,6 @@
 /**
  * This module provides a reusable bibliography wrapper for the editor component
- * @module plurishing-backoffice/components/SectionEditor
+ * @module metis-backoffice/components/SectionEditor
  */
 
 import React from 'react';

@@ -1,7 +1,7 @@
 /**
  * style definitions for the Montage component
  *
- * @module plurishing-backoffice/features/Montage
+ * @module metis-backoffice/features/Montage
  */
 
 @import '../../../parameters.scss';
@@ -12,7 +12,7 @@
  * Primary layout
  */
 
-.plurishing-backoffice-Montage
+.metis-backoffice-Montage
 {
   height: 100%;
   overflow: hidden;
@@ -41,7 +41,7 @@
 
       }
 
-      .plurishing-SchemaForm{
+      .metis-SchemaForm{
         display: flex;
         flex-flow: column nowrap;
         align-items: stretch;

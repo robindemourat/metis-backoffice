@@ -10,9 +10,9 @@ import * as assetsDuck from '../../features/Assets/duck';
 import * as resourcesDuck from '../../features/Resources/duck';
 
 
-import PreviewContainer from 'plurishing-shared/dist/components/previews/StaticMontagePreview/PreviewContainer';
+import PreviewContainer from 'metis-shared/dist/components/previews/StaticMontagePreview/PreviewContainer';
 
-import style from 'plurishing-shared/dist/components/views/static/styles.scss';/* eslint no-unused-vars: 0*/
+import style from 'metis-shared/dist/components/views/static/styles.scss';/* eslint no-unused-vars: 0*/
 
 @connect(
   state => ({

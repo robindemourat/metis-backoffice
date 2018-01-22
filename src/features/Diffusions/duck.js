@@ -7,7 +7,7 @@
 
 import {combineReducers} from 'redux';
 import {createStructuredSelector} from 'reselect';
-import {Diffusion as diffusionSchema} from 'plurishing-schemas';
+import {Diffusion as diffusionSchema} from 'metis-schemas';
 import defaults from 'json-schema-defaults';
 
 import {get, put, post, del} from '../../helpers/client';

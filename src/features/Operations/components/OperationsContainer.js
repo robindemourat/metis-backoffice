@@ -1,7 +1,7 @@
 /**
  * This module exports a stateful component connected to the redux logic of the app,
  * dedicated to rendering the operations container
- * @module plurishing-backoffice/features/Operations
+ * @module metis-backoffice/features/Operations
  */
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';

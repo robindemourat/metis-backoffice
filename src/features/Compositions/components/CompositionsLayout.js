@@ -2,7 +2,7 @@
 /* eslint no-alert : 0 */
 /**
  * This module exports a stateless component rendering the layout of the compositions view
- * @module plurishing-backoffice/features/Compositions
+ * @module metis-backoffice/features/Compositions
  */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -33,7 +33,7 @@ const CompositionsLayout = ({
     unsetEditedComposition,
   }
 }, {t}) => (
-  <section className="plurishing-backoffice-Compositions container is-fluid">
+  <section className="metis-backoffice-Compositions container is-fluid">
     <section className="section">
       <h1 className="title is-1">{t('Compositions')}</h1>
     </section>
