@@ -122,4 +122,5 @@ npm test
 ## Licenses
 
 LGPL-3.0
+
 CECCIL-C
