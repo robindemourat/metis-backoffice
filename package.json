@@ -1,8 +1,8 @@
 {
   "name": "metis-backoffice",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "An application for handling metis backoffice",
-  "license": "LGPL-3.0",
+  "license": "lgpl-3.0",
   "main": "dist/entry.js",
   "scripts": {
     "dev": "kotatsu serve --config ./webpack.config.dev.js --progress --babel --index ./index.html --public ./ ./src/main.js",
