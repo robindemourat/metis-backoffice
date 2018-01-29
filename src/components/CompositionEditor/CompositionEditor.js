@@ -59,7 +59,7 @@ const {
 } = utils;
 
 import defaultStyle from 'raw-loader!./assets/apa.csl';
-import defaultLocale from 'raw-loader!./assets/english-locale.xml';
+import defaultLocale from 'raw-loader!./assets/french-locale.xml';
 
 import BlockContextualizationContainer from './BlockContextualizationContainer';
 import InlineContextualizationContainer from './InlineContextualizationContainer';
