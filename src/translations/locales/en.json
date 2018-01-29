@@ -228,5 +228,6 @@
   "image assets to publish with the diffusion": "Joindre une ou plusieurs images (issue.s d'atouts de la base) à la micro-publication",
   "Add attached_asset": "Ajouter une image",
   "failure": "échec",
-  "waiting": "en attente"
+  "waiting": "en attente",
+  "Subtitle of the montage": "Sous-titre du montage"
 }
